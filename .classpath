@@ -32,7 +32,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/jjkon/Downloads/org.springframework.test-3.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jjkon/Downloads/com.springsource.org.junit-4.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/lib/org.springframework.test-3.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/lib/com.springsource.org.junit-4.7.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
