@@ -86,6 +86,6 @@ public class UserDaoTest {
 		this.user3 = new User(30, "개발3부", "서울3");
 		
 		System.out.println(this.context);
-		System.out.println(this);
+		System.out.println("this : "+this);
 	}
 }
