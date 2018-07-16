@@ -103,8 +103,8 @@ public class UserDao {
 		PreparedStatement ps = null;
 		try {
 			c = dataSource.getConnection();
-			ps = c.prepareStatement(
-					"delete from dept");	
+			StatementStrategy st = new DeleteAllStatement();
+			ps = st.makePreparedStatement(c);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw e;
@@ -123,6 +123,7 @@ public class UserDao {
 			}
 		}
 	}
+	
 	public int getCount() throws SQLException{
 		Connection c = null;
 		PreparedStatement ps = null;
@@ -159,6 +160,23 @@ public class UserDao {
 		}
 	}
 	
+	public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
+		
+		Connection c = null;
+		PreparedStatement ps = null;
+		
+		try {
+			c = dataSource.getConnection();
+			ps =  stmt.makePreparedStatement(c);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			if (ps != null) { try { ps .close(); } catch (SQLException e) {} }
+			if (c != null) { try {c.close(); } catch (SQLException e) {} }
+		}
+		
+	}
 	
 
 	public static void main(String[] args)throws ClassNotFoundException, SQLException {
