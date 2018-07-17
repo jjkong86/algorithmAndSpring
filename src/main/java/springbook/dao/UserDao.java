@@ -6,20 +6,67 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import springbook.dao.chapter3.JdbcContext;
+import springbook.dao.chapter3.StatementStrategy;
 import springbook.model.User;
 
 public class UserDao {
 	
 	private DataSource dataSource;
 	
+	//applicationContext에서 dataSource주입해줌
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
+	}
+	
+	/*
+	 * dao에서 JdbcContext에 직접 주입
+	 * public void setDataSource(DataSource dataSource) {
+		this.jdbcContext = new JdbcContext();
+		this.jdbcContext.setDataSource(dataSource);
+		this.dataSource = dataSource;
+	}*/
+	
+	private JdbcContext jdbcContext;
+	
+	public void setJdbcContext(JdbcContext jdbcContext) {
+		this.jdbcContext = jdbcContext;
+	}
+			
+	Map<String, String> map = new HashMap<String, String>();
+	String query;
+	public void deleteAll() throws SQLException{
+		String query = "delete from dept";
+		String kindQuery = query.substring(0, query.indexOf(" "));
+		System.out.println("kindQuery : "+kindQuery);
+		map.put("kindQuery", kindQuery);
+		map.put("query", query);
+
+		this.jdbcContext.excuteSql(map);
+	}
+
+	public void add(final User user) throws ClassNotFoundException, SQLException {
+		
+		this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
+			@Override
+			public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
+				
+				PreparedStatement ps = c.prepareStatement(
+						"insert into dept(deptno, dname, loc) values(?, ?, ?)");
+				ps.setInt(1, user.getDeptno());
+				ps.setString(2, user.getDname());
+				ps.setString(3, user.getLoc());
+				return ps;
+			}
+		});
 	}
 	
 	public User get(Integer deptno) throws ClassNotFoundException, SQLException {
@@ -44,18 +91,6 @@ public class UserDao {
 		
 		return user;
 	}
-	
-	public void add(User user) throws ClassNotFoundException, SQLException {
-		Connection c = dataSource.getConnection();
-		PreparedStatement ps = c.prepareStatement(
-				"insert into dept(deptno, dname, loc) values(?, ?, ?)");
-		ps.setInt(1, user.getDeptno());
-		ps.setString(2, user.getDname());
-		ps.setString(3, user.getLoc());
-		ps.executeUpdate();
-		ps.close();
-		c.close();
-	}
 		
 	public ArrayList<Object> list() throws ClassNotFoundException, SQLException {
 		Connection c = dataSource.getConnection();
@@ -74,8 +109,6 @@ public class UserDao {
 		ps.close();
 		c.close();
 		return list;
-		
-		
 	}
 	
 	public ArrayList<LinkedHashMap<String,Object>> convertResultSetToArrayList() throws SQLException, ClassNotFoundException {
@@ -96,32 +129,6 @@ public class UserDao {
 	    }
 	 
 	    return list;
-	}
-	
-	public void deleteAll() throws SQLException{
-		Connection c = null;
-		PreparedStatement ps = null;
-		try {
-			c = dataSource.getConnection();
-			StatementStrategy st = new DeleteAllStatement();
-			ps = st.makePreparedStatement(c);
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw e;
-		} finally {
-			if(ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-				}
-			}
-			if(c != null) {
-				try {
-					c.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
 	}
 	
 	public int getCount() throws SQLException{
@@ -168,18 +175,19 @@ public class UserDao {
 		try {
 			c = dataSource.getConnection();
 			ps =  stmt.makePreparedStatement(c);
-			ps.executeUpdate();
+			try {
+				ps.executeQuery();
+				System.out.println("executeQuery");
+			} catch (SQLException e) {
+				System.out.println("executeUpdate");
+				ps.executeUpdate();
+			}
+			
 		} catch (SQLException e) {
 			throw e;
 		} finally {
 			if (ps != null) { try { ps .close(); } catch (SQLException e) {} }
 			if (c != null) { try {c.close(); } catch (SQLException e) {} }
 		}
-		
-	}
-	
-
-	public static void main(String[] args)throws ClassNotFoundException, SQLException {
-
 	}
 }

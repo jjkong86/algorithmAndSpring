@@ -57,7 +57,6 @@ public class UserDaoTest {
 		assertThat(user2.getDeptno(), is(dao.get(user2.getDeptno()).getDeptno()));
 		assertThat(user3.getDeptno(), is(dao.get(user3.getDeptno()).getDeptno()));
 		
-		
 /*		if(dao.get(insertDeptno).getDeptno() == 0) {
 		}else {
 			System.out.println( "deptno : " + dao.get(insertDeptno).getDeptno() + " > 이미 등록되어 있음");
@@ -78,7 +77,6 @@ public class UserDaoTest {
 	
 	@Before
 	public void setUp() {
-		
 		this.dao = context.getBean("userDao", UserDao.class);
 		
 		this.user1 = new User(10, "개발1부", "서울1");
