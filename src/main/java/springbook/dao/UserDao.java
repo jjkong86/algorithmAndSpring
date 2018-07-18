@@ -13,6 +13,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import springbook.dao.chapter3.JdbcContext;
 import springbook.dao.chapter3.StatementStrategy;
@@ -21,9 +23,11 @@ import springbook.model.User;
 public class UserDao {
 	
 	private DataSource dataSource;
+	private JdbcTemplate jdbcTemplate;
 	
 	//applicationContext에서 dataSource주입해줌
 	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.dataSource = dataSource;
 	}
 	
@@ -45,17 +49,19 @@ public class UserDao {
 	String query;
 	public void deleteAll() throws SQLException{
 		String query = "delete from dept";
-		String kindQuery = query.substring(0, query.indexOf(" "));
+/*		String kindQuery = query.substring(0, query.indexOf(" "));
 		System.out.println("kindQuery : "+kindQuery);
 		map.put("kindQuery", kindQuery);
 		map.put("query", query);
 
 		this.jdbcContext.excuteSql(map);
+*/		
+		this.jdbcTemplate.update(query);
 	}
 
 	public void add(final User user) throws ClassNotFoundException, SQLException {
 		
-		this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
+/*		this.jdbcContext.workWithStatementStrategy(new StatementStrategy() {
 			@Override
 			public PreparedStatement makePreparedStatement(Connection c) throws SQLException {
 				
@@ -66,7 +72,10 @@ public class UserDao {
 				ps.setString(3, user.getLoc());
 				return ps;
 			}
-		});
+		});*/
+		
+		this.jdbcTemplate.update("insert into dept values(?, ?, ?)", user.getDeptno(), user.getDname(), user.getLoc());
+		
 	}
 	
 	public User get(Integer deptno) throws ClassNotFoundException, SQLException {
