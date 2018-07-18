@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.annotation.Bean;
 public class CalcSumTest {
 	Calculator calculator;
 	String numFilepath;
@@ -26,7 +25,14 @@ public class CalcSumTest {
 	}
 	@Test
 	public void multiplyOfNumbers() throws IOException {
-		System.out.println(calculator.calclultiply(this.numFilepath));
-		assertThat(calculator.calclultiply(this.numFilepath) , is(24));
+		System.out.println(calculator.calcMultiply(this.numFilepath));
+		assertThat(calculator.calcMultiply(this.numFilepath) , is(24));
 	}
+	
+	@Test
+	public void concatenateStrings() throws IOException {
+		System.out.println(calculator.concatenate(this.numFilepath));
+		assertThat(calculator.concatenate(this.numFilepath) , is("1234"));
+	}
+	
 }

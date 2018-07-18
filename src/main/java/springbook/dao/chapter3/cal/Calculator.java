@@ -5,24 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Calculator {
-	public Integer calcSum(String filepath ) throws IOException {
+	public Integer calcSum(String filepath) throws IOException {
 
-/*		return fileReadTemplate(filepath, new BufferedReaderCallback() {
-			@Override
-			public Integer doSomethingWithReader(BufferedReader br) throws IOException {
-				Integer sum = 0;
-				String line = null;
-				while((line = br.readLine()) != null) {
-					sum += Integer.valueOf(line);
-				}
-				return sum;
-			}
-		});*/
-		LineCallback callback = new LineCallback() {
+		LineCallback<Integer> callback = new LineCallback<Integer>() {
 			
 			@Override
-			public Integer doSumethingWithLine(String line, Integer value) {
-				
+			public Integer doSumethingWithLine(String line, Integer value) {				
 				return value += Integer.valueOf(line);
 			}
 		};
@@ -31,36 +19,38 @@ public class Calculator {
 		
 	}
 	
-	public Object calclultiply(String filepath) throws IOException {
-		
-/*		return fileReadTemplate(filepath, new BufferedReaderCallback() {
-			@Override
-			public Integer doSomethingWithReader(BufferedReader br) throws IOException {
-				Integer mul = 1;
-				String line = null;
-				while((line = br.readLine()) != null) {
-					mul *= Integer.valueOf(line);
-				}
-				return mul;
-			}
-		});*/
-		LineCallback callback = new LineCallback() {
+	public String concatenate(String filepath) throws IOException {
+
+		LineCallback<String> callback = new LineCallback<String>() {
 			
 			@Override
-			public Integer doSumethingWithLine(String line, Integer value) {
-				
+			public String doSumethingWithLine(String line, String value) {				
+				return value += line;
+			}
+		};
+		return lineReadTemplate(filepath, callback, "");
+		
+		
+	}
+	
+	
+	public Object calcMultiply(String filepath) throws IOException {
+
+		LineCallback<Integer> callback = new LineCallback<Integer>() {			
+			@Override
+			public Integer doSumethingWithLine(String line, Integer value) {				
 				return value *= Integer.valueOf(line);
 			}
 		};
 		return lineReadTemplate(filepath, callback, 1);
 	}
 
-	public Integer lineReadTemplate(String filepath, LineCallback callback, int initVal) throws IOException {
+	public <T> T lineReadTemplate(String filepath, LineCallback<T> callback, T initVal) throws IOException {
 		
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(filepath));
-			Integer res = initVal;
+			T res = initVal;
 			String line = null;
 			while ((line = br.readLine()) != null) {
 				res = callback.doSumethingWithLine(line, res);
