@@ -5,6 +5,8 @@ import static org.junit.Assert.assertThat;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -49,9 +51,9 @@ public class UserDaoTest {
 		dao.add(user1);
 		dao.add(user2);
 		dao.add(user3);
-		System.out.println(user1.getDeptno() + " : 등록성공");
-		System.out.println(user2.getDeptno() + " : 등록성공");
-		System.out.println(user3.getDeptno() + " : 등록성공");
+		System.out.println(dao.get(user1.getDeptno()).getDeptno() + " : 등록성공");
+		System.out.println(dao.get(user2.getDeptno()).getDeptno() + " : 등록성공");
+		System.out.println(dao.get(user3.getDeptno()).getDeptno() + " : 등록성공");
 		System.out.println("count3 : "+dao.getCount());
 		assertThat(user1.getDeptno(), is(dao.get(user1.getDeptno()).getDeptno()));
 		assertThat(user2.getDeptno(), is(dao.get(user2.getDeptno()).getDeptno()));
@@ -62,8 +64,10 @@ public class UserDaoTest {
 			System.out.println( "deptno : " + dao.get(insertDeptno).getDeptno() + " > 이미 등록되어 있음");
 		}*/
 		
-		ArrayList<Object> list = dao.list();
-		System.out.println(list);
+		List<User> getAll = dao.getAll();
+		for(User aa : getAll) {
+			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+" ]");			
+		}
 		
 		/*		CountingConnectionMaker ccm = context.getBean("connectionMaker", CountingConnectionMaker.class);
 		System.out.println(ccm.getCounter());*/
