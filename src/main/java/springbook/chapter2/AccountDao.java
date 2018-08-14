@@ -1,4 +1,4 @@
-package springbook.dao.chapter2;
+package springbook.chapter2;
 
 public class AccountDao {
 

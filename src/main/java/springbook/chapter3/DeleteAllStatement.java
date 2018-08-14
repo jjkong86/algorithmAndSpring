@@ -1,4 +1,4 @@
-package springbook.dao.chapter3;
+package springbook.chapter3;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

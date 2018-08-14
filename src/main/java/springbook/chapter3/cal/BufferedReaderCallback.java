@@ -1,4 +1,4 @@
-package springbook.dao.chapter3.cal;
+package springbook.chapter3.cal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
