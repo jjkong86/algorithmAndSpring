@@ -41,7 +41,11 @@ public class UserDao {
 	}
 
 	public void add(final User user) {
-		this.jdbcTemplate.update("insert into dept values(?, ?, ?)", user.getDeptno(), user.getDname(), user.getLoc());
+		this.jdbcTemplate.update("insert into dept values(?, ?, ?, ?, ?, ?)", user.getDeptno(), user.getDname(), user.getLoc(), user.getLevel().intValue(), user.getLogin(), user.getRecommend());
+	}
+	
+	public void update(final User user) {
+		this.jdbcTemplate.update("update dept set dname = ?, loc = ?, level = ?, login = ?, recommend = ? where deptno = ?", user.getDname(), user.getLoc(), user.getLevel().intValue(), user.getLogin(), user.getRecommend(), user.getDeptno());
 	}
 	
 	public User get(Integer deptno) {
@@ -65,6 +69,9 @@ public class UserDao {
 				user.setDeptno(rs.getInt("deptno"));
 				user.setDname(rs.getString("dname"));
 				user.setLoc(rs.getString("Loc"));
+				user.setLevel(Level.valueOf(rs.getInt("level")));
+				user.setLogin(rs.getInt("login"));
+				user.setRecommend(rs.getInt("recommend"));
 				
 				return user;
 			}

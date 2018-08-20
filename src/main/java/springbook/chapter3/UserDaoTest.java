@@ -1,4 +1,4 @@
-package springbook.dao;
+package springbook.chapter3;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

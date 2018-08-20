@@ -28,7 +28,7 @@ public class UserDaoTest {
 	private ApplicationContext context;
 	
 	public static void main(String[] args){
-		JUnitCore.main("springbook.dao.UserDaoTest");
+		JUnitCore.main("springbook.chapter5.UserDaoTest");
 	}
 
 	private UserDao dao;
@@ -49,15 +49,27 @@ public class UserDaoTest {
 		System.out.println("count2 : "+dao.getCount());
 		
 		dao.add(user1);
+//		user1.setDname("개발운영");
+//		user1.setLoc("선유도");
+//		user1.setLevel(Level.GOLD);
+//		user1.setLogin(999);
+//		user1.setRecommend(88);
+//		dao.update(user1);
+		User user1update = dao.get(user1.getDeptno());
+		checkSameUser(user1, user1update);
+		
 		dao.add(user2);
 		dao.add(user3);
 		System.out.println(dao.get(user1.getDeptno()).getDeptno() + " : 등록성공");
 		System.out.println(dao.get(user2.getDeptno()).getDeptno() + " : 등록성공");
 		System.out.println(dao.get(user3.getDeptno()).getDeptno() + " : 등록성공");
 		System.out.println("count3 : "+dao.getCount());
-		assertThat(user1.getDeptno(), is(dao.get(user1.getDeptno()).getDeptno()));
+/*		assertThat(user1.getDeptno(), is(dao.get(user1.getDeptno()).getDeptno()));
 		assertThat(user2.getDeptno(), is(dao.get(user2.getDeptno()).getDeptno()));
-		assertThat(user3.getDeptno(), is(dao.get(user3.getDeptno()).getDeptno()));
+		assertThat(user3.getDeptno(), is(dao.get(user3.getDeptno()).getDeptno()));*/
+		checkSameUser(user1, dao.get(user1.getDeptno()));
+		checkSameUser(user2, dao.get(user2.getDeptno()));
+		checkSameUser(user3, dao.get(user3.getDeptno()));
 		
 /*		if(dao.get(insertDeptno).getDeptno() == 0) {
 		}else {
@@ -66,11 +78,21 @@ public class UserDaoTest {
 		
 		List<User> getAll = dao.getAll();
 		for(User aa : getAll) {
-			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+" ]");			
+			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
+					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 		
 		/*		CountingConnectionMaker ccm = context.getBean("connectionMaker", CountingConnectionMaker.class);
 		System.out.println(ccm.getCounter());*/
+	}
+	
+	private void checkSameUser(User user1 , User user2) {
+		assertThat(user1.getDeptno() , is(user2.getDeptno()));
+		assertThat(user1.getDname() , is(user2.getDname()));
+		assertThat(user1.getLoc() , is(user2.getLoc()));
+		assertThat(user1.getLevel() , is(user2.getLevel()));
+		assertThat(user1.getLogin() , is(user2.getLogin()));
+		assertThat(user1.getRecommend() , is(user2.getRecommend()));
 	}
 	
 	@Test(expected=EmptyResultDataAccessException.class)
@@ -82,10 +104,9 @@ public class UserDaoTest {
 	@Before
 	public void setUp() {
 		this.dao = context.getBean("userDao", UserDao.class);
-		
-		this.user1 = new User(10, "개발1부", "서울1");
-		this.user2 = new User(20, "개발2부", "서울2");
-		this.user3 = new User(30, "개발3부", "서울3");
+		this.user1 = new User(10, "개발1부", "서울1", Level.BASIC, 1, 0);
+		this.user2 = new User(20, "개발2부", "서울2", Level.SILVER, 55 , 19);
+		this.user3 = new User(30, "개발3부", "서울3", Level.GOLD, 199, 40);
 		
 		System.out.println(this.context);
 		System.out.println("this : "+this);

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 
-import springbook.dao.UserDao;
+import springbook.chapter3.UserDao3;
 
 //UserDao와 DConnectionMaker사이의 런타임 의존관계 주입 작업을 주도하는 존재이며, 
 //동시에 IoC방식으로 오브젝트의 생성과 초기화, 제공 등의 작업을 수행하는 컨테이너이다 
@@ -53,13 +53,13 @@ public class DaoFactory {
 		return dataSource;
 	}
 	@Bean
-	public UserDao userDao() {
+	public UserDao3 userDao() {
 		//ConnectionMaker connectionMaker = new DConnectionMaker();
 		//UserDao bb = new UserDao(connectionMaker);
 		//return bb;		
 		//return new UserDao(connectionMaker());
 		
-		UserDao userDao = new UserDao();
+		UserDao3 userDao = new UserDao3();
 		userDao.setDataSource(dataSource());
 		return userDao;
 	}
