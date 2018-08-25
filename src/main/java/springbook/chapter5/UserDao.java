@@ -44,8 +44,8 @@ public class UserDao {
 		this.jdbcTemplate.update("insert into dept values(?, ?, ?, ?, ?, ?)", user.getDeptno(), user.getDname(), user.getLoc(), user.getLevel().intValue(), user.getLogin(), user.getRecommend());
 	}
 	
-	public void update(final User user) {
-		this.jdbcTemplate.update("update dept set dname = ?, loc = ?, level = ?, login = ?, recommend = ? where deptno = ?", user.getDname(), user.getLoc(), user.getLevel().intValue(), user.getLogin(), user.getRecommend(), user.getDeptno());
+	public int update(final User user) {
+		return this.jdbcTemplate.update("update dept set dname = ?, loc = ?, level = ?, login = ?, recommend = ? where deptno = ?", user.getDname(), user.getLoc(), user.getLevel().intValue(), user.getLogin(), user.getRecommend(), user.getDeptno());
 	}
 	
 	public User get(Integer deptno) {

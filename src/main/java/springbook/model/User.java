@@ -1,5 +1,7 @@
 package springbook.model;
 
+import java.util.Date;
+
 import springbook.chapter5.Level;
 
 public class User {
@@ -9,7 +11,9 @@ public class User {
 	Level level;
 	int login;
 	int recommend;
-
+	Date lastUpgraded;
+	
+	
 	public int getDeptno() {
 		return deptno;
 	}
@@ -67,6 +71,16 @@ public class User {
 		this.login = login;
 		this.recommend = recommend;
 	}
+	public User(int deptno, String dname, String loc, Level level, int login, int recommend, Date lastUpgraded) {
+		super();
+		this.deptno = deptno;
+		this.dname = dname;
+		this.loc = loc;
+		this.level = level;
+		this.login = login;
+		this.recommend = recommend;
+		this.lastUpgraded = new Date();
+	}	
 
 	public User(int deptno, String dname, String loc) {
 		super();
@@ -77,6 +91,16 @@ public class User {
 
 	public User() {
 
+	}
+	
+	public void upgradeLevel() {
+		Level nextLevel = this.level.nextLevel();
+		if (nextLevel == null) {
+			throw new IllegalStateException(this.level + "은 업그레이드가 불가능합니다");
+		} else {
+			this.level = nextLevel;
+		}
+		
 	}
 
 }
