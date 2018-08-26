@@ -27,5 +27,4 @@ public class UserLevelUpgradePolicyOriginal implements UserLevelUpgradePolicy {
 		user.upgradeLevel();
 		userDao.update(user);
 	}
-
 }

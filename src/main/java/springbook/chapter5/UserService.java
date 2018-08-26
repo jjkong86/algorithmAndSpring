@@ -18,14 +18,9 @@ public class UserService {
 		this.userLevelUpgradePolicy = userLevelUpgradePolicy;
 	}
 	
-	public void upgradeLevels() {
-		List<User> users = userDao.getAll();
-		
-		for(User user : users) {
-			if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
-				System.out.println(user.getDeptno());
-				userLevelUpgradePolicy.upgradeLevel(user);
-			}
+	protected void upgradeLevels(User user) {
+		if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
+			userLevelUpgradePolicy.upgradeLevel(user);
 		}
 	}
 	
@@ -34,5 +29,22 @@ public class UserService {
 		userDao.add(user);
 	}
 	
+	static class TestUserService extends UserService {
+		private int deptno;
+		
+		TestUserService(int deptno) {
+			this.deptno = deptno;
+		}
+		
+		protected void upgradeLevels(User user) {
+			if (user.getDeptno() == this.deptno) throw new TestUserServiceException();
+			super.upgradeLevels(user);
+		}
+	}
 	
+	static class TestUserServiceException extends RuntimeException {
+		
+	}
 }
+
+

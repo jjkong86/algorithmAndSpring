@@ -14,7 +14,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 <!-- 		<property name="jdbcContext" ref="jdbcContext"></property> -->
 	</bean>
-	<bean id="userLevelUpgradePolicy" class="springbook.chapter5.UserLevelUpgradePolicyEvent">
+	<bean id="userLevelUpgradePolicy" class="springbook.chapter5.UserLevelUpgradePolicyOriginal">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	
