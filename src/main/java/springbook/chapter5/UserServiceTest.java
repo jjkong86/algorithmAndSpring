@@ -2,10 +2,10 @@ package springbook.chapter5;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -44,7 +43,7 @@ public class UserServiceTest {
 			);
 	}
 	@Test
-	public void upgradelevels() {
+	public void upgradelevels() throws SQLException {
 		userDao.deleteAll();
 		System.out.println(userDao.getCount());
 
@@ -66,13 +65,13 @@ public class UserServiceTest {
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 		
-		for (User user : getAll) userService.upgradeLevels(user);
+		userService.upgradeLevels();
 		
 		checkLevelUpgraded(users.get(0), false);
-		checkLevelUpgraded(users.get(1) , true);
-		checkLevelUpgraded(users.get(2) , false);
-		checkLevelUpgraded(users.get(3) , true);
-		checkLevelUpgraded(users.get(4) , false);
+		checkLevelUpgraded(users.get(1), true);
+		checkLevelUpgraded(users.get(2), false);
+		checkLevelUpgraded(users.get(3), true);
+		checkLevelUpgraded(users.get(4), false);
 
 		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------"); 
 		
@@ -94,36 +93,38 @@ public class UserServiceTest {
 		if (upgraded) {
 				assertThat(userUpdate.getLevel(), is(user.getLevel().nextLevel()));
 		} else {
-			assertThat(userUpdate.getLevel() , is(user.getLevel()));
+			assertThat(userUpdate.getLevel(), is(user.getLevel()));
 		}
 	}
 	
 	@Test
-	public void upgradeAIIOrNothing() {
+	public void upgradeAIIOrNothing() throws SQLException {
 		UserService testUserService = new TestUserService(users.get(3).getDeptno());
 		testUserService.setUserDao(this.userDao);
 		testUserService.setUserLevelUpgradePolicy(this.userLevelUpgradePolicy);
+		
 		userDao.deleteAll();
 		
 		for(User user : users) {
 			userDao.add(user);
-			try {
-				testUserService.upgradeLevels(user);
-			} catch (TestUserServiceException e) {
-			}
 		}
+		try {
+			testUserService.upgradeLevels();
+		} catch (TestUserServiceException e) {
+			System.out.println(e.getMessage());
+		}
+		
 		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------");
 		for(User aa : users) {
 			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
-		checkLevelUpgraded(users.get(1),false);
-				
+		checkLevelUpgraded(users.get(1), false);
 	}
 	
-	private void checkLevel (User user , Level expectedLevel) {
-		User userUpdate = userDao.get(user .getDeptno());
-		assertThat(userUpdate.getLevel() , is(expectedLevel));
+	private void checkLevel (User user, Level expectedLevel) {
+		User userUpdate = userDao.get(user.getDeptno());
+		assertThat(userUpdate.getLevel(), is(expectedLevel));
 	}
 			
 	

@@ -1,12 +1,20 @@
 package springbook.chapter5;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import springbook.model.User;
 
 public class UserService {
 	UserDao userDao;
 	UserLevelUpgradePolicy userLevelUpgradePolicy;
+	private DataSource dataSource;
 	
 	public static final int MIN_LOGCOUNT_FOR_SILVER = 50;
 	public static final int MIN_RECCOMEND_FOR_GOLD = 30;
@@ -17,10 +25,30 @@ public class UserService {
 	public void setUserLevelUpgradePolicy(UserLevelUpgradePolicy userLevelUpgradePolicy) {
 		this.userLevelUpgradePolicy = userLevelUpgradePolicy;
 	}
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 	
-	protected void upgradeLevels(User user) {
-		if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
-			userLevelUpgradePolicy.upgradeLevel(user);
+	protected void upgradeLevels() throws SQLException {
+		TransactionSynchronizationManager.initSynchronization();
+		Connection c = DataSourceUtils.getConnection(dataSource);
+		c.setAutoCommit(false);
+		
+		try {
+			List<User> users = userDao.getAll();
+			for(User user : users) {
+			if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
+				userLevelUpgradePolicy.upgradeLevel(user);
+			}
+			}
+			c.commit () ;
+		} catch (Exception e) {
+			c.rollback();
+			throw e;
+		} finally {
+			DataSourceUtils.releaseConnection(c,dataSource);
+			TransactionSynchronizationManager.unbindResource(this.dataSource);
+			TransactionSynchronizationManager.clearSynchronization();
 		}
 	}
 	
@@ -36,14 +64,16 @@ public class UserService {
 			this.deptno = deptno;
 		}
 		
-		protected void upgradeLevels(User user) {
-			if (user.getDeptno() == this.deptno) throw new TestUserServiceException();
-			super.upgradeLevels(user);
+		protected void upgradeLevels() throws SQLException {
+			List<User> users = userDao.getAll();
+			for(User user : users) {
+				if (user.getDeptno() == this.deptno) throw new TestUserServiceException();
+				super.upgradeLevels();
+			}
 		}
 	}
 	
 	static class TestUserServiceException extends RuntimeException {
-		
 	}
 }
 
