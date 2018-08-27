@@ -61,7 +61,6 @@ public class UserServiceTest {
 		}
 		
 		List<User> getAll = userDao.getAll();
-		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------");
 		for(User aa : users) {
 			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
@@ -118,7 +117,6 @@ public class UserServiceTest {
 			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
-		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------");
 		checkLevelUpgraded(users.get(1),false);
 				
 	}
