@@ -9,12 +9,15 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import springbook.chapter5.UserService.TestUserService;
 import springbook.chapter5.UserService.TestUserServiceException;
@@ -29,6 +32,8 @@ public class UserServiceTest {
 	UserService userService;
 	@Autowired
 	private UserLevelUpgradePolicy userLevelUpgradePolicy;
+	@Autowired
+	PlatformTransactionManager transactionManager;
 	
 	List<User> users;
 	@Before
@@ -36,9 +41,9 @@ public class UserServiceTest {
 		//this.userDao = context.getBean("userDao", UserDao.class);
 			users = Arrays.asList(
 			new User(10, "박범진", "p1" , Level.BASIC, MIN_LOGCOUNT_FOR_SILVER-1, 0),
-			new User(20, "강명성", "p2", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER , 0),
+			new User(20, "강명성", "p2", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER, 0),
 			new User(30, "신승한 ", "p3", Level.SILVER, 60, MIN_RECCOMEND_FOR_GOLD-1),
-			new User(40, "이상호", "p4", Level.SILVER ,60 ,MIN_RECCOMEND_FOR_GOLD),
+			new User(40, "이상호", "p4", Level.SILVER, 60, MIN_RECCOMEND_FOR_GOLD),
 			new User(50, "오민큐 ", "p5", Level.GOLD, 100, Integer.MAX_VALUE)
 			);
 	}
@@ -81,11 +86,11 @@ public class UserServiceTest {
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 
-		checkLevel(users.get(0) , Level.BASIC);
-		checkLevel(users.get(1) , Level.SILVER);
-		checkLevel(users.get(2) , Level.SILVER);
-		checkLevel(users.get(3) , Level.GOLD);
-		checkLevel(users.get(4) , Level.GOLD);
+		checkLevel(users.get(0), Level.BASIC);
+		checkLevel(users.get(1), Level.SILVER);
+		checkLevel(users.get(2), Level.SILVER);
+		checkLevel(users.get(3), Level.GOLD);
+		checkLevel(users.get(4), Level.GOLD);
 	}
 	
 	private void checkLevelUpgraded(User user, boolean upgraded) {
@@ -101,6 +106,7 @@ public class UserServiceTest {
 	public void upgradeAIIOrNothing() throws SQLException {
 		UserService testUserService = new TestUserService(users.get(3).getDeptno());
 		testUserService.setUserDao(this.userDao);
+		testUserService.setTransactionManager(transactionManager);
 		testUserService.setUserLevelUpgradePolicy(this.userLevelUpgradePolicy);
 		
 		userDao.deleteAll();
@@ -119,7 +125,7 @@ public class UserServiceTest {
 			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
-		checkLevelUpgraded(users.get(1), false);
+		checkLevelUpgraded(users.get(1), true);
 	}
 	
 	private void checkLevel (User user, Level expectedLevel) {
