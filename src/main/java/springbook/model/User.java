@@ -2,8 +2,6 @@ package springbook.model;
 
 import java.util.Date;
 
-import springbook.chapter5.Level;
-
 public class User {
 	private int deptno;
 	private String dname;

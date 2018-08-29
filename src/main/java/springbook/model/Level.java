@@ -1,4 +1,4 @@
-package springbook.chapter5;
+package springbook.model;
 
 public enum Level {
 	GOLD(3, null), SILVER(2, GOLD), BASIC(1, SILVER);

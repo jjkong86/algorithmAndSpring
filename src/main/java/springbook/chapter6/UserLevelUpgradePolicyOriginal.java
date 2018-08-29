@@ -1,14 +1,12 @@
-package springbook.chapter5;
-
-import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
-import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;
+package springbook.chapter6;
 
 import springbook.model.Level;
 import springbook.model.User;
+import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
+import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;
 
-public class UserLevelUpgradePolicyEvent implements UserLevelUpgradePolicy {
-
-UserDao userDao;
+public class UserLevelUpgradePolicyOriginal implements UserLevelUpgradePolicy {
+	UserDao userDao;
 	
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -30,5 +28,4 @@ UserDao userDao;
 		user.upgradeLevel();
 		userDao.update(user);
 	}
-
 }

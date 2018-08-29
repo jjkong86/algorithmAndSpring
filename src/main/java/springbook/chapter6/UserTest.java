@@ -1,4 +1,4 @@
-package springbook.chapter5;
+package springbook.chapter6;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

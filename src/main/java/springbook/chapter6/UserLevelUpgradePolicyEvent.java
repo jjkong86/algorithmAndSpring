@@ -1,4 +1,4 @@
-package springbook.chapter5;
+package springbook.chapter6;
 
 import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;

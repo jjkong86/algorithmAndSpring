@@ -1,4 +1,4 @@
-package springbook.chapter5;
+package springbook.chapter6;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

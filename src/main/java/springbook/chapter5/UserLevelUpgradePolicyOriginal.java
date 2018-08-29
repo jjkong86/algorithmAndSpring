@@ -1,5 +1,6 @@
 package springbook.chapter5;
 
+import springbook.model.Level;
 import springbook.model.User;
 import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;

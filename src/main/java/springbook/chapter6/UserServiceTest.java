@@ -1,4 +1,4 @@
-package springbook.chapter5;
+package springbook.chapter6;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -19,8 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import springbook.chapter5.UserService.TestUserService;
-import springbook.chapter5.UserService.TestUserServiceException;
+import springbook.chapter6.UserService.TestUserService;
+import springbook.chapter6.UserService.TestUserServiceException;
 import springbook.model.Level;
 import springbook.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
