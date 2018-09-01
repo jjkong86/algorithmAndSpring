@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
 			List<User> users = userDao.getAll();
 			for(User user : users) {
 				if (user.getDeptno() == this.deptno) throw new TestUserServiceException();
-				super.upgradeLevels();
 				if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
 					userLevelUpgradePolicy.upgradeLevel(user);
 				}

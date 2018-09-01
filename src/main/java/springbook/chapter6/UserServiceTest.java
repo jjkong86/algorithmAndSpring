@@ -2,6 +2,7 @@ package springbook.chapter6;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;
 
@@ -102,10 +103,14 @@ public class UserServiceTest {
 	
 	@Test
 	public void upgradeAIIOrNothing() throws SQLException {
-		UserServiceImpl testUserService = new TestUserService(users.get(3).getDeptno());
+		TestUserService testUserService = new TestUserService(users.get(3).getDeptno());
 		testUserService.setUserDao(this.userDao);
 		testUserService.setTransactionManager(transactionManager);
 		testUserService.setUserLevelUpgradePolicy(this.userLevelUpgradePolicy);
+		
+		UserServiceTx txUserService = new UserServiceTx();
+		txUserService.setTransactionManager(transactionManager);
+		txUserService.setUserService(testUserService);
 		
 		List<User> copyUser = users;
 		
@@ -115,7 +120,8 @@ public class UserServiceTest {
 			userDao.add(user);
 		}
 		try {
-			testUserService.upgradeLevels();
+			txUserService.upgradeLevels();
+			fail("TestUserServiceException expected");
 		} catch (TestUserServiceException e) {
 			System.out.println(e.getMessage());
 		}
@@ -125,7 +131,7 @@ public class UserServiceTest {
 			System.out.println("3 : [ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
-		checkLevelUpgraded(users.get(1), true);
+		checkLevelUpgraded(getAll2.get(1), false);
 	}
 	
 	private void checkLevel (User user, Level expectedLevel) {
