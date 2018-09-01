@@ -1,22 +1,16 @@
-package springbook.chapter5;
+package springbook.chapter6;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import springbook.model.Level;
 import springbook.model.User;
 
-public class UserService {
+public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	UserLevelUpgradePolicy userLevelUpgradePolicy;
 	private PlatformTransactionManager transactionManager;
@@ -38,25 +32,8 @@ public class UserService {
 			this.transactionManager = transactionManager;
 	}
 	
-	protected void upgradeLevels() throws SQLException {
-//		TransactionSynchronizationManager.initSynchronization();
-//		Connection c = DataSourceUtils.getConnection(dataSource);
-//		c.setAutoCommit(false);
-		TransactionStatus status =
-				this.transactionManager.getTransaction(new DefaultTransactionDefinition());
-		
-		try {
-			upgradeLevelslnternal();
-			this.transactionManager.commit(status) ;
-		} catch (Exception e) {
-			this.transactionManager.rollback(status) ;
-			throw e;
-		}
-//			finally {
-//			DataSourceUtils.releaseConnection(c,dataSource);
-//			TransactionSynchronizationManager.unbindResource(this.dataSource);
-//			TransactionSynchronizationManager.clearSynchronization();
-//		}
+	public void upgradeLevels() throws SQLException {
+		upgradeLevelslnternal();
 	}
 	
 	private void upgradeLevelslnternal() {
@@ -73,18 +50,21 @@ public class UserService {
 		userDao.add(user);
 	}
 	
-	static class TestUserService extends UserService {
+	static class TestUserService extends UserServiceImpl {
 		private int deptno;
 		
 		TestUserService(int deptno) {
 			this.deptno = deptno;
 		}
 		
-		protected void upgradeLevels() throws SQLException {
+		public void upgradeLevels() throws SQLException {
 			List<User> users = userDao.getAll();
 			for(User user : users) {
 				if (user.getDeptno() == this.deptno) throw new TestUserServiceException();
 				super.upgradeLevels();
+				if(userLevelUpgradePolicy.canUpgradeLevel(user)) {
+					userLevelUpgradePolicy.upgradeLevel(user);
+				}
 			}
 		}
 	}

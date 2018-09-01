@@ -19,8 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import springbook.chapter6.UserService.TestUserService;
-import springbook.chapter6.UserService.TestUserServiceException;
+import springbook.chapter6.UserServiceImpl.TestUserService;
+import springbook.chapter6.UserServiceImpl.TestUserServiceException;
 import springbook.model.Level;
 import springbook.model.User;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -51,23 +51,21 @@ public class UserServiceTest {
 	@Test
 	public void upgradelevels() throws SQLException {
 		userDao.deleteAll();
-		System.out.println(userDao.getCount());
 
 		User userWithoutLevel = users.get(0);
 		userWithoutLevel.setLevel(null);
 		
 		userService.add(userWithoutLevel);
-		
-		for (User user : users) {
+		List<User> copyUser = users;
+		for (User user : copyUser) {
 			int result = userDao.update(user);
 			if(result != 1) {
 				userDao.add(user);
 			}
 		}
 		
-		List<User> getAll = userDao.getAll();
-		for(User aa : users) {
-			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
+		for(User aa : copyUser) {
+			System.out.println("1 : [ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 		
@@ -80,10 +78,9 @@ public class UserServiceTest {
 		checkLevelUpgraded(users.get(4), false);
 
 		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------"); 
-		
-		List<User> getAll2 = userDao.getAll();
-		for(User aa : getAll2) {
-			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
+		List<User> getAll = userDao.getAll();
+		for(User aa : getAll) {
+			System.out.println("2 : [ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 
@@ -105,14 +102,16 @@ public class UserServiceTest {
 	
 	@Test
 	public void upgradeAIIOrNothing() throws SQLException {
-		UserService testUserService = new TestUserService(users.get(3).getDeptno());
+		UserServiceImpl testUserService = new TestUserService(users.get(3).getDeptno());
 		testUserService.setUserDao(this.userDao);
 		testUserService.setTransactionManager(transactionManager);
 		testUserService.setUserLevelUpgradePolicy(this.userLevelUpgradePolicy);
 		
+		List<User> copyUser = users;
+		
 		userDao.deleteAll();
 		
-		for(User user : users) {
+		for(User user : copyUser) {
 			userDao.add(user);
 		}
 		try {
@@ -120,10 +119,10 @@ public class UserServiceTest {
 		} catch (TestUserServiceException e) {
 			System.out.println(e.getMessage());
 		}
-		
+		List<User> getAll2 = userDao.getAll();
 		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------");
-		for(User aa : users) {
-			System.out.println("[ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
+		for(User aa : getAll2) {
+			System.out.println("3 : [ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			
 		}
 		checkLevelUpgraded(users.get(1), true);

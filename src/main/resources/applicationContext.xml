@@ -17,13 +17,16 @@
 	<bean id="userLevelUpgradePolicy" class="springbook.chapter6.UserLevelUpgradePolicyOriginal">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	
-	<bean id="userService" class="springbook.chapter6.UserService">
+	<bean id="userServiceImpl" class="springbook.chapter6.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
-		<property name="transactionManager" ref="transactionManager"/>
-<!-- 		<property name="dataSource" ref="dataSource"></property> -->
 		<property name="userLevelUpgradePolicy" ref="userLevelUpgradePolicy"></property>
 	</bean>
+	
+	<bean id="userService" class="springbook.chapter6.UserServiceTx">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="userService" ref="userServiceImpl" />
+	</bean>
+
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource" />
 	</bean>
