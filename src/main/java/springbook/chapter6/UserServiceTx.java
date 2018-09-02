@@ -23,7 +23,7 @@ public class UserServiceTx implements UserService {
 	
 	@Override
 	public void add(User user) {
-		userService.add(user);
+		this.userService.add(user);
 	}
 
 	@Override
