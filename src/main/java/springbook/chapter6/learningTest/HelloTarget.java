@@ -3,6 +3,8 @@ package springbook.chapter6.learningTest;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.lang.reflect.Proxy;
+
 import org.junit.Test;
 
 public class HelloTarget implements Hello {
@@ -29,6 +31,5 @@ public class HelloTarget implements Hello {
 		assertThat(hello.sayHi("Toby"), is("Hi Toby"));
 		assertThat(hello.sayThankYou("Toby"), is("Thank You Toby"));
 	}
-			
-
+	
 }
