@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import static springbook.chapter5.UserService.MIN_LOGCOUNT_FOR_SILVER;
 import static springbook.chapter5.UserService.MIN_RECCOMEND_FOR_GOLD;
 
+import java.lang.reflect.Proxy;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -108,9 +109,16 @@ public class UserServiceTest {
 		testUserService.setTransactionManager(transactionManager);
 		testUserService.setUserLevelUpgradePolicy(this.userLevelUpgradePolicy);
 		
-		UserServiceTx txUserService = new UserServiceTx();
-		txUserService.setTransactionManager(transactionManager);
-		txUserService.setUserService(testUserService);
+		TransactionHandler txHandler = new TransactionHandler();
+		txHandler.setTarget(testUserService);
+		txHandler.setTransactionManager(transactionManager);
+		txHandler.setPattern("upgradeLevels");
+		UserService txUserService = (UserService)Proxy.newProxyInstance(
+				getClass().getClassLoader() ,new Class[] { UserService.class }, txHandler);
+				
+//		UserServiceTx txUserService = new UserServiceTx();
+//		txUserService.setTransactionManager(transactionManager);
+//		txUserService.setUserService(testUserService);
 		
 		List<User> copyUser = users;
 		
