@@ -47,7 +47,7 @@ public class UserServiceTest {
 			new User(20, "강명성", "p2", Level.BASIC, MIN_LOGCOUNT_FOR_SILVER, 0),
 			new User(30, "신승한 ", "p3", Level.SILVER, 60, MIN_RECCOMEND_FOR_GOLD-1),
 			new User(40, "이상호", "p4", Level.SILVER, 60, MIN_RECCOMEND_FOR_GOLD),
-			new User(50, "오민큐 ", "p5", Level.GOLD, 100, Integer.MAX_VALUE)
+			new User(50, "오민규 ", "p5", Level.GOLD, 100, Integer.MAX_VALUE)
 			);
 	}
 	@Test
