@@ -4,8 +4,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
@@ -29,7 +27,7 @@ public class UserDaoTest {
 	private ApplicationContext context;
 	
 	public static void main(String[] args){
-		JUnitCore.main("springbook.chapter5.UserDaoTest");
+		JUnitCore.main("springbook.chapter6.UserDaoTest");
 	}
 
 	private UserDao dao;

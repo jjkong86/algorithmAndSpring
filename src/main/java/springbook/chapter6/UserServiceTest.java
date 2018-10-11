@@ -65,7 +65,7 @@ public class UserServiceTest {
 				userDao.add(user);
 			}
 		}
-		
+		System.out.println("------------------------------------------------------------"+"\n"+"------------------------------------------------------------");
 		for(User aa : copyUser) {
 			System.out.println("1 : [ "+aa.getDeptno()+", " + aa.getDname()+ ", "  + aa.getLoc()+ ", "
 					+ aa.getLevel()+ ", "  + aa.getLogin()+ ", " + aa.getRecommend() + " ]");			

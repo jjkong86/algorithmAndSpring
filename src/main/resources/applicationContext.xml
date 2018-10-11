@@ -10,8 +10,9 @@
 		<property name="password" value="mytestSpring" />
 	</bean>
 	
-	<bean id="userDao" class="springbook.chapter6.UserDao">
+	<bean id="userDao" class="springbook.chapter6.UserDaoJdbc">
 		<property name="dataSource" ref="dataSource"></property>
+		<property name="sqlAdd" value="insert into dept values(?, ?, ?, ?, ?, ?)"></property>
 <!-- 		<property name="jdbcContext" ref="jdbcContext"></property> -->
 	</bean>
 	<bean id="userLevelUpgradePolicy" class="springbook.chapter6.UserLevelUpgradePolicyOriginal">
