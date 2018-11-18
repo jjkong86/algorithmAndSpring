@@ -2,41 +2,49 @@ package algorithms.Longest_Substring_Without_Repeating_Characters;
 
 public class Solution {
 	
-	public int lengthOfLongestSubstring(String s) {
-        String saveStr = "";
-        int sLen = s.length();
-        
-        for(int i=0; i<sLen; i++) {
-        	
+	public static int lengthOfLongestSubstring(String s) {
+		/*
+		 * 문제 : 주어진 문자열에 반복되지 않는 최대 문자열 개수
+		1. 주어진 문자열을 저장 - 이때 저장은 저장된 문자열에 주어진 n번째 문자열이 같은가를 비교 후 저장
+		2. 반복 되는 문자열 발견 - 최대 개수 저장 후 초기화
+		3. String a = "abcdeef"
+			- String b = "abcde" -> "abcdee" -> "e" -> "ef" 
+		 */
+		if("".equals(s) || s == null){
+            return 0;
         }
-		return sLen;
-    }
-
-	public static void main(String[] args) {
-		String s = "abcdabcbbabcdef";
 		String saveStr = s.substring(0,1);
         int sLen = s.length();
         int maxCount = 0;
-        Boolean flag = false;
-        String renStr = "";
+        String maxStr = "";
         for(int i=1; i<sLen; i++) {
             String tempStr = s.substring(i, i+1);
-            for(int j=0; j<saveStr.length(); j++) {
-                if(tempStr.equals(saveStr.substring(j, j+1))) {
-                    flag = true;                    
-                }
-            }
-            if(!flag) {
-                saveStr += tempStr;
-            } else {
-            	if(renStr.length() < saveStr.length()) {
-            		renStr = saveStr;
+            if(saveStr.contains(tempStr)) {
+            	if(maxCount < saveStr.length()) {
+            		maxStr = saveStr;
             	}
-                saveStr.substring(1);
+            	saveStr = saveStr.substring(saveStr.indexOf(tempStr)+1, saveStr.length());
             }
-            
+            saveStr += tempStr;
         }
-        System.out.println(renStr);
+        if(maxCount == 0) {
+        	maxCount = saveStr.length();
+        	maxStr = saveStr;
+        } else {
+        	if (maxCount < saveStr.length()) {
+            	maxCount = saveStr.length();
+            	maxStr = saveStr;
+			}
+        }
+        System.out.println(maxStr + "::"+maxCount);
+		return maxCount;
+    }
+
+	public static void main(String[] args) {
+		String s = "abcdabc";
+		int max = lengthOfLongestSubstring(s);
+		System.out.println(max);
+		
 	}
 
 }
