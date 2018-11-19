@@ -27,7 +27,7 @@ public class Solution {
 	
 	public static void main(String[] args) {
 		Solution so = new Solution();
-		int[] nums1 = {1, 3};
+		int[] nums1 = {1, 3,3,3,3,3};
 		int[] nums2 = {2};
 		double result = so.findMedianSortedArrays(nums1, nums2);
 		System.out.println(result);
