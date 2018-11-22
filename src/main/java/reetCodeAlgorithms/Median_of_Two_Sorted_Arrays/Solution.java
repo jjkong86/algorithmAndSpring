@@ -1,4 +1,4 @@
-package algorithms.Median_of_Two_Sorted_Arrays;
+package reetCodeAlgorithms.Median_of_Two_Sorted_Arrays;
 
 import java.util.Arrays;
 

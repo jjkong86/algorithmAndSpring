@@ -1,4 +1,4 @@
-package algorithms.Reverse_Integer;
+package reetCodeAlgorithms.Reverse_Integer;
 
 public class ReverseInteger {
 	public int reverse(int x) {
