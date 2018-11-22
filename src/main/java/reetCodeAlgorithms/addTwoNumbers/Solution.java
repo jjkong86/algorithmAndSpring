@@ -1,4 +1,4 @@
-package algorithms.addTwoNumbers;
+package reetCodeAlgorithms.addTwoNumbers;
 
 import java.util.ArrayList;
 import java.util.List;

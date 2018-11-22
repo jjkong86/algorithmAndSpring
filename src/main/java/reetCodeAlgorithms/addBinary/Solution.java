@@ -1,4 +1,4 @@
-package algorithms.addBinary;
+package reetCodeAlgorithms.addBinary;
 
 public class Solution {
 	public static String addBinary(String a, String b) {
