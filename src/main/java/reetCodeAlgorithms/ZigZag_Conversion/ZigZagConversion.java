@@ -1,4 +1,4 @@
-package algorithms.ZigZag_Conversion;
+package reetCodeAlgorithms.ZigZag_Conversion;
 
 public class ZigZagConversion {
 	
