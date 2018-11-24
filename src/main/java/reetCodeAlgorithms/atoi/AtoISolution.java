@@ -14,10 +14,6 @@ public class AtoISolution {
 		for (int i = 0; i < str.length(); i++) {
 			String tempStr = "";
 			tempStr = str.substring(i, i+1);
-			
-//			if(ret > 0 && tempStr.equals(" ")) {
-//				break;
-//			}
 			if (!tempStr.equals(" ") && !tempStr.equals("-")) {
 				
 				try {
@@ -29,8 +25,6 @@ public class AtoISolution {
 						break;
 					}
 					ret = ret*10 + Integer.valueOf(tempStr);
-					int tempI = ret;
-					System.out.println(tempI *= flag ? 1 : -1);
 				} catch (NumberFormatException e) {
 					break;
 				}
