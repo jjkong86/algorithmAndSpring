@@ -1,5 +1,12 @@
 package reetCodeAlgorithms.Integer_to_Roman;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+
 public class Solution {
 
 	public String intToRoman(int num) {
@@ -13,37 +20,56 @@ public class Solution {
 			return null;
 		}
 		
-		final int I = 1;
-		final int V = 5;
-		final int X = 10;
-		final int L = 50;
-		final int C = 100;
-		final int D = 500;
-		final int M = 1000;
-		// 1994 = MCMXCIV 
-		// 58 = LVIII
-		boolean dFlag = false;
+		Map<Integer, String> map = new HashMap<>();
+		map.put(1, "I");
+		map.put(4, "IV");
+		map.put(5, "V");
+		map.put(9, "IX");
+		map.put(10, "X");
+		map.put(50, "L");
+		map.put(100, "C");
+		map.put(500, "D");
+		map.put(1000, "M");
 		
-		
-		if (num < 10) {
-			return "";
+		if (map.get(num) != null) {
+			return map.get(num);
 		}
 		
-		int divide = 10;
-		while (num / divide > 0) {
+		String ret = "";
+		int saveNum = 1000;
+		while (num > 0) {
+			int multiNum = (int)num / saveNum;
 			
-			divide = 10;
+			if (multiNum == 9) {
+				int tempSaveNum = saveNum * 10;
+				ret += map.get(saveNum)+map.get(tempSaveNum);
+			} else if (multiNum == 4) {
+				int tempSaveNum = saveNum * 5;
+				ret += map.get(saveNum)+map.get(tempSaveNum);
+			} else if (multiNum >= 5) {
+				int tempSaveNum = saveNum * 5;
+				int lengthTemp = multiNum % 5;
+				ret += map.get(tempSaveNum);
+				for (int j = 0; j < lengthTemp; j++) {
+					ret += map.get(saveNum);
+				}
+			}else {
+				// 3 = III
+				for (int j = 0; j < multiNum; j++) {
+					ret += map.get(saveNum);
+				}
+			}
+			num = num % saveNum;
+			saveNum = saveNum / 10;
 		}
-        
 		
-		
-		
-		return null;
+		return ret;
 	}
 	
 	public static void main(String[] args) {
 		Solution s = new Solution();
-		System.out.println(s.intToRoman(1234));
+		System.out.println(s.intToRoman(4));
+//		System.out.println(1994%1000);
 	}
 
 }
