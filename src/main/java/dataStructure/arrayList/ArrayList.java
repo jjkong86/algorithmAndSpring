@@ -1,4 +1,4 @@
-package dataStructure;
+package dataStructure.arrayList;
 
 public class ArrayList {
 	private int size = 0;
