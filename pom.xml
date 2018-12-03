@@ -5,6 +5,7 @@
 	<groupId>com.co</groupId>
 	<artifactId>myTestSpring</artifactId>
 	<name>myTestSpring</name>
+	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.8</java-version>
@@ -82,7 +83,7 @@
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
-				</exclusion>
+				 </exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
