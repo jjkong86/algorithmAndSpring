@@ -1,5 +1,6 @@
 package dataStructure.SimpleLinkedList;
 
+
 public class SimpleLinkedList {
 	private Node header;
 	private int size;
@@ -30,6 +31,23 @@ public class SimpleLinkedList {
 		size++;
 	}
 	
+	public void add(int index, Object data) {
+		if(index==0){
+			addFirst(data);
+			return;
+		}
+		
+		Node previous = getNode(index-1);
+		Node next = previous.nextNode;
+		
+		Node newNode = new Node(data);
+		previous.nextNode = newNode;
+		newNode.nextNode = next;
+		size++;
+		System.out.println(size);
+		
+	}
+	
 	public Object get(int index) {
 		return getNode(index).data;
 	}
@@ -44,6 +62,13 @@ public class SimpleLinkedList {
 			node = node.nextNode;
 		}
 		return node;
+	}
+	
+	public Object removeFirst() {
+		Node firstNode = getNode(0);
+		header.nextNode = firstNode.nextNode;
+		size--;
+		return firstNode.data;
 	}
 	
 }
