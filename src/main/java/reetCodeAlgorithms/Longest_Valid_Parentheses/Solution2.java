@@ -9,11 +9,20 @@ public class Solution2 {
 		
 		Stack<Integer> stack = new Stack<>();
 		int maxCount = 0;
-		int tempCount = 0;
+		stack.push(-1);
 		for (int i = 0; i < s.length(); i++) {
-			stack.push(i);
+			if (s.charAt(i) == '(') {
+				stack.push(i);
+			} else {
+				stack.pop();
+				if (stack.isEmpty()) {
+					stack.push(i);
+				}
+				maxCount = Math.max(maxCount, i - stack.peek());
+			}
+			
 		}
-		System.out.println(stack.peek());
+		
 		return maxCount;
 	}
     
