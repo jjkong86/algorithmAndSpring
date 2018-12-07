@@ -9,7 +9,7 @@ public class Solution {
 		
 		 int maxans = 0;
 	        Stack<Integer> stack = new Stack<>();
-	        stack.push(0);
+	        stack.push(-1);
 	        for (int i = 0; i < s.length(); i++) {
 	            if (s.charAt(i) == '(') {
 	                stack.push(i);
@@ -18,7 +18,6 @@ public class Solution {
 	                if (stack.empty()) {
 	                    stack.push(i);
 	                } else {
-	                	int peek = stack.peek();
 	                    maxans = Math.max(maxans, i - stack.peek());
 	                }
 	            }
@@ -28,7 +27,7 @@ public class Solution {
     
 	public static void main(String[] args) {
 		Solution s = new Solution();
-		System.out.println(s.longestValidParentheses("())(())"));
+		System.out.println(s.longestValidParentheses(")))()"));
 	}
 
 }
