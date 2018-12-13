@@ -1,4 +1,4 @@
-package bookAlgorithms;
+package bookAlgorithms.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
