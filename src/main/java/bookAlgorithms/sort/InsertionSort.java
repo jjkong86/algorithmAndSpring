@@ -33,11 +33,14 @@ public class InsertionSort {
 			}
 		}
 		
-		StringBuilder print = new StringBuilder("[");
-		for (int j = 0; j < array.length; j++) {
-			print.append(array[j]+",");
+		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
+		for (int j = 1; j < array.length; j++) {
+			print.append(array[j]).append(j == array.length-1 ? "" : ", ");
+			if (array[j-1] > array[j]) {
+				System.out.println("오름차순 정렬 실패 : "+array[j]+", index : "+j);
+			}
 		}
-		System.out.println(print);
+		System.out.println(print+"]");
 	}
 
 }
