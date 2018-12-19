@@ -2,7 +2,7 @@ package bookAlgorithms.sort;
 
 import java.util.Random;
 
-public class MyHeadSort {
+public class HeadSort {
 	public static void main(String[] args) {
 		/*
 		 * 힙을 이용하여 오름차순 정렬
@@ -21,7 +21,7 @@ public class MyHeadSort {
 		}
 		System.out.println("정렬 전 : ["+print+"]");
 		
-		MyHeadSort s = new MyHeadSort();
+		HeadSort s = new HeadSort();
 		array = s.sort(array, array.length-1);
 		
 		for (int i = array.length-1; i >= 0 ; i--) {
