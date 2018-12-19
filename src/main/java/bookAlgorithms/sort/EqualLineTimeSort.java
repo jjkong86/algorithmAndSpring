@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class EqualLineTimeSort {
 
-	private int[] wArray;
-	private int wTarget;
+	private static int[] wArray;
+	private int wIndex;
 	
 	public EqualLineTimeSort(int[] array, int target) {
 		this.wArray = array;
-		this.wTarget = target;
+		this.wIndex = target;
 	}
 	
 	public static void main(String[] args) {
@@ -19,51 +19,56 @@ public class EqualLineTimeSort {
 			array[i] = gen.nextInt(100);
 		}
 //		int result = e.select(array, 0, array.length-1, array[4]);
-		
-		int[] arrayResult = quickSort(array, 0, array.length-1);
-		StringBuilder print = new StringBuilder("정렬 후 : ["+arrayResult[0]+", ");
-		for (int j = 1; j < arrayResult.length; j++) {
-			print.append(arrayResult[j]).append(j == arrayResult.length-1 ? "" : ", ");
-		}
-		System.out.println(print+"]");
+		wArray = array;
+		int[] arrayResult = quickSort(0, wArray.length-1);
+		print(arrayResult);
 	}
 	
 	public int select(int[] array, int start, int end, int target) {
 		if (start == end) return array[start];
 		
-		int[] q = quickSort(array, start, end);
+		int[] q = quickSort(start, end);
 		return 0;
 	}
 
-	private static int[] quickSort(int[] array, int start, int end) {
-		
+	private static int[] quickSort(int start, int end) {
 		if (start < end) {
-			EqualLineTimeSort result = partition(array, start, end);
-			System.out.println("targetIndex : "+result.wTarget);
-			quickSort(array, start, result.wTarget-1);
-			quickSort(array, result.wTarget+1, end);
+			int result = partition(start, end);
+			System.out.println("targetIndex : "+result);
+			quickSort(start, result-1);
+			quickSort(result+1, end);
 		}
-		return array;
+		return wArray;
 	}
 	
-	private static EqualLineTimeSort partition(int[] array, int start, int end) {
-		int target = array[end]; // 맨 끝의 원소를 기준원소로 함
+	private static int partition(int start, int end) {
+		// // 1구역 // target // 3구역 // 4구역(array 처음)
+		int target = wArray[end]; // 맨 끝의 원소를 기준원소로 함
 		System.out.println(target);
-		int firstIndex = -1;
-		int thirdIndex = 0;
-		for (thirdIndex = start; thirdIndex < end; thirdIndex++) { // i : 3구역의 시작 지점
-			if (target >= array[thirdIndex]) {
+		int firstIndex = start;
+		int thirdIndex = start;
+		for (thirdIndex = start; thirdIndex < end; thirdIndex++) { // thirdIndex : 3구역의 시작 지점
+			if (target >= wArray[thirdIndex]) {
+				int temp = wArray[thirdIndex];
+				wArray[thirdIndex] = wArray[firstIndex];
+				wArray[firstIndex] = temp;
 				firstIndex++;
-				int temp = array[thirdIndex];
-				array[thirdIndex] = array[firstIndex];
-				array[firstIndex] = temp;
 			}
 		}
-		int temp = array[firstIndex];
-		array[firstIndex] = array[thirdIndex];
-		array[thirdIndex] = temp;
+		int temp = wArray[firstIndex];
+		wArray[firstIndex] = wArray[thirdIndex];
+		wArray[thirdIndex] = temp;
 		
-		return new EqualLineTimeSort(array, firstIndex);
+		print(wArray);
+		return  firstIndex;
+	}
+	
+	public static void print(int[] array) {
+		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
+		for (int j = 1; j < array.length; j++) {
+			print.append(array[j]).append(j == array.length-1 ? "" : ", ");
+		}
+		System.out.println(print+"]");
 	}
 
 }
