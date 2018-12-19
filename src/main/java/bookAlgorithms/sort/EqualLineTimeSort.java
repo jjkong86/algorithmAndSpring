@@ -15,11 +15,15 @@ public class EqualLineTimeSort {
 	public static void main(String[] args) {
 		Random gen =  new Random();
 		int[] array = new int[10];
+		int target = 0;
 		for (int i = 0; i < 10; i++) {
 			array[i] = gen.nextInt(100);
+			target = target != 0? target : gen.nextInt(10);
 		}
 		wArray = array;
-		int result = select(0, array.length-1, array[4]);
+		System.out.println("target index :"+target);
+		int result = select(0, array.length-1, target);
+		
 //		System.out.println(result);
 //		int[] arrayResult = quickSort(0, wArray.length-1);
 //		print(arrayResult);
@@ -30,7 +34,17 @@ public class EqualLineTimeSort {
 		
 		int q = partition(start, end);
 		System.out.println(q);
-		return 0;
+		
+		if (q == target) {
+			return wArray[q];
+		} else if (q > target){
+			// 1,2,3 / 4 / 5,6,7 -> 5, 2
+			select(start, q-1, target);
+		} else if (q < target) {
+			select(q+1, end, target);
+		}
+		
+		return wArray[q];
 	}
 
 	private static int[] quickSort(int start, int end) {
