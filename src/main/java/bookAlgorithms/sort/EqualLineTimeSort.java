@@ -18,16 +18,18 @@ public class EqualLineTimeSort {
 		for (int i = 0; i < 10; i++) {
 			array[i] = gen.nextInt(100);
 		}
-//		int result = e.select(array, 0, array.length-1, array[4]);
 		wArray = array;
-		int[] arrayResult = quickSort(0, wArray.length-1);
-		print(arrayResult);
+		int result = select(0, array.length-1, array[4]);
+//		System.out.println(result);
+//		int[] arrayResult = quickSort(0, wArray.length-1);
+//		print(arrayResult);
 	}
 	
-	public int select(int[] array, int start, int end, int target) {
-		if (start == end) return array[start];
+	public static int select(int start, int end, int target) {
+		if (start == end) return wArray[start];
 		
-		int[] q = quickSort(start, end);
+		int q = partition(start, end);
+		System.out.println(q);
 		return 0;
 	}
 
