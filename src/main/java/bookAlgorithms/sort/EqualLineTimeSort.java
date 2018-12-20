@@ -5,12 +5,6 @@ import java.util.Random;
 public class EqualLineTimeSort {
 
 	private static int[] wArray;
-	private int wIndex;
-	
-	public EqualLineTimeSort(int[] array, int target) {
-		this.wArray = array;
-		this.wIndex = target;
-	}
 	
 	public static void main(String[] args) {
 		Random gen =  new Random();
@@ -23,7 +17,7 @@ public class EqualLineTimeSort {
 		wArray = array;
 		System.out.println("target index :"+target);
 		int result = select(0, array.length-1, target);
-		
+		System.out.println("result : "+result);
 //		System.out.println(result);
 //		int[] arrayResult = quickSort(0, wArray.length-1);
 //		print(arrayResult);
@@ -36,7 +30,7 @@ public class EqualLineTimeSort {
 		System.out.println(q);
 		
 		if (q == target) {
-			return wArray[q];
+			return wArray[target];
 		} else if (q > target){
 			// 1,2,3 / 4 / 5,6,7 -> 5, 2
 			select(start, q-1, target);
@@ -44,7 +38,7 @@ public class EqualLineTimeSort {
 			select(q+1, end, target);
 		}
 		
-		return wArray[q];
+		return wArray[target];
 	}
 
 	private static int[] quickSort(int start, int end) {
