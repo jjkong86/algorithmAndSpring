@@ -33,8 +33,9 @@ public class worstBestLinearSelect {
 	}
 	
 	public int middleFind(int start, int end) {
+		
 		for (int i = 1; i < wArray.length; i*=5) {
-			
+			int subMiddle = select(i, i*5, i*5/2);
 		}
 		
 		return 0;
