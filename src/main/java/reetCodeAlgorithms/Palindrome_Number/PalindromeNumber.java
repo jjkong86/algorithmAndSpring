@@ -1,4 +1,4 @@
-package Palindrome_Number;
+package reetCodeAlgorithms.Palindrome_Number;
 
 public class PalindromeNumber {
 	
