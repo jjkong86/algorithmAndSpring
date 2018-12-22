@@ -67,7 +67,7 @@ public class BinaryTreeNode {
 		return tree;
 	}
 	
-	public static Tree deleteTree(Tree tree, int value) {
+	public static Tree deleteTree(Tree tree, int target) {
 		/*
 		 * leaf노드 : 그냥 삭제 하면됨
 		 * 자식 노드가 하나인 root 노드는 root 노드를 삭제 하고 root 노드의 부모 노드와 root 노드의 자식노드를 연결해 주면 됨
@@ -76,13 +76,13 @@ public class BinaryTreeNode {
 		 *  - 그 원소를 삭제한 노드 자리에 옮김(b -> a의 자리로 이동) -> 오른쪽 자식을 부모노드에 붙임
 		 */
 		if (tree != null) {
-			if (tree.val > value) {
+			if (tree.val > target) {
 				System.out.println("smaller than "+tree.val);
-				tree.left = findTreeNode(tree.left, value);
-			} else if (tree.val < value) {
+				tree.left = findTreeNode(tree.left, target);
+			} else if (tree.val < target) {
 				System.out.println("bigger than "+tree.val);
-				tree.right = findTreeNode(tree.right, value);
-			} else if (tree.val == value) {
+				tree.right = findTreeNode(tree.right, target);
+			} else if (tree.val == target) {
 				System.out.println("find value : "+tree.val);
 				tree = deleteTreeNode(tree); 
 				
@@ -158,12 +158,12 @@ public class BinaryTreeNode {
 //        findTreeValue(node1, 20);
         
         Random gen =  new Random();
-		int[] array = new int[10];
+		int[] array = {14, 19, 36, 37, 38, 48, 52, 82, 94, 95};
 		int target = 0;
-		for (int i = 0; i < 10; i++) {
-			array[i] = gen.nextInt(100);
-			target = target != 0? target : array[i];
-		}
+//		for (int i = 0; i < 10; i++) {
+//			array[i] = gen.nextInt(100);
+//			target = target != 0? target : array[i];
+//		}
 		wArray = array;
 		quickSort(0, wArray.length-1);
 //		print(wArray);
@@ -177,8 +177,10 @@ public class BinaryTreeNode {
 //		int insertValue = gen.nextInt(100);
 //		insertTreeNode(resultTree, insertValue);
 //		findTreeValue(resultTree, insertValue);
-		System.out.println("target : "+target);
-//		deleteTreeNode(resultTree, target);
+		target = 14;
+ 		System.out.println("target : "+target);
+		Tree deleteTree = deleteTree(resultTree, target);
+		findTreeValue(deleteTree, target);
 
 	}
 	
