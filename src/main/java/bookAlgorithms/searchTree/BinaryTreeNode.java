@@ -107,9 +107,9 @@ public class BinaryTreeNode {
 			
 			//root 노드의 원소를 삭제 하고 직후 원소를 그 자리에 넣음
 			tree.val = findRightValueTree.left == null ? findRightValueTree.val : findRightValueTree.left.val;
-			System.out.println("새로운 root 노드 : "+tree.val);
+			System.out.println("기존 원소 삭제 후 새로운 root 노드 : "+tree.val);
 			//직후 원소를 삭제하고 직후 원소의 부모 노드와 자식노드를 연결
-			if (findRightValueTree.left.right != null) {
+			if (findRightValueTree.left != null && findRightValueTree.left.right != null) {
 				findRightValueTree.left = findRightValueTree.left.right;
 			}
 			return tree;
@@ -121,7 +121,7 @@ public class BinaryTreeNode {
 	}
 	
 	public static Tree findNotHaveLeftNode(Tree tree) {
-		if (tree.left.left == null) {
+		if (tree.left == null || tree.left.left == null) {
 			return tree;
 		} else {
 			tree = findNotHaveLeftNode(tree.left);
@@ -200,7 +200,7 @@ public class BinaryTreeNode {
 //		int insertValue = gen.nextInt(100);
 //		insertTreeNode(resultTree, insertValue);
 //		findTreeValue(resultTree, insertValue);
-		target = 38;
+		target = 94;
  		System.out.println("target : "+target);
 		Tree deleteTree = deleteTree(resultTree, target);
 		findTreeValue(deleteTree, target);
