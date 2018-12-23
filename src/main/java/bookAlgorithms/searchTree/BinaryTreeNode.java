@@ -78,14 +78,14 @@ public class BinaryTreeNode {
 		if (tree != null) {
 			if (tree.val > target) {
 				System.out.println("smaller than "+tree.val);
-				tree.left = findTreeNode(tree.left, target);
+				tree.left = deleteTree(tree.left, target);
 			} else if (tree.val < target) {
 				System.out.println("bigger than "+tree.val);
-				tree.right = findTreeNode(tree.right, target);
+				tree.right = deleteTree(tree.right, target);
 			} else if (tree.val == target) {
 				System.out.println("find value : "+tree.val);
-				tree = deleteTreeNode(tree); 
-				
+				System.out.println("target 삭제 시작 ");
+				tree = deleteTreeNode(tree);
 				return tree;
 			}
 		} else {
@@ -97,11 +97,34 @@ public class BinaryTreeNode {
 	
 	public static Tree deleteTreeNode(Tree tree) {
 		if (tree.left == null && tree.right == null) {		//단말 노드
+			System.out.println("leaf node 삭제");
 			return null;
 		} else if (tree.left != null && tree.right != null) {		//자식 둘다 있음
+			System.out.println("left, right 자식 있음");
+			//먼저 삭제하려는 root 노드의 직후 원소를 찾자
+			Tree rightChildrenNode = tree.right;
+			Tree findRightValueTree = findNotHaveLeftNode(rightChildrenNode);
+			
+			//root 노드의 원소를 삭제 하고 직후 원소를 그 자리에 넣음
+			tree.val = findRightValueTree.left == null ? findRightValueTree.val : findRightValueTree.left.val;
+			System.out.println("새로운 root 노드 : "+tree.val);
+			//직후 원소를 삭제하고 직후 원소의 부모 노드와 자식노드를 연결
+			if (findRightValueTree.left.right != null) {
+				findRightValueTree.left = findRightValueTree.left.right;
+			}
+			return tree;
 			
 		} else {		//한쪽 자식만 있음
+			System.out.println("한쪽 자식만 있음 > 삭제");
 			return tree.right == null ? tree.left : tree.right;
+		}
+	}
+	
+	public static Tree findNotHaveLeftNode(Tree tree) {
+		if (tree.left.left == null) {
+			return tree;
+		} else {
+			tree = findNotHaveLeftNode(tree.left);
 		}
 		return tree;
 	}
@@ -177,7 +200,7 @@ public class BinaryTreeNode {
 //		int insertValue = gen.nextInt(100);
 //		insertTreeNode(resultTree, insertValue);
 //		findTreeValue(resultTree, insertValue);
-		target = 14;
+		target = 38;
  		System.out.println("target : "+target);
 		Tree deleteTree = deleteTree(resultTree, target);
 		findTreeValue(deleteTree, target);
