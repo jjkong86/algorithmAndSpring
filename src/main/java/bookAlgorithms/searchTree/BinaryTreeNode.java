@@ -3,8 +3,8 @@ package bookAlgorithms.searchTree;
 import java.util.Random;
 
 public class BinaryTreeNode {
-	
 	private static int[] wArray;
+	static Tree root;
 	
 	public static class Tree {
 		int val;
@@ -12,7 +12,6 @@ public class BinaryTreeNode {
 		Tree right;
 		Tree(int x) { this.val = x; }
 	}
-	static Tree root;
 	
 	public static Tree treeBuild(int[] array, int start, int end) {
 		root = treeBuildR(array, start, end);
@@ -148,16 +147,6 @@ public class BinaryTreeNode {
 		return tree;
 	}
 	
-	
-	public static void print(int[] array) {
-		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
-		for (int j = 1; j < array.length; j++) {
-			print.append(array[j]).append(j == array.length-1 ? "" : ", ");
-		}
-		System.out.println(print+"]");
-	}
-	
-	
 	public static void main(String[] args) {
 		// 노드 생성
 		Tree node1 = new Tree(10);
@@ -239,5 +228,13 @@ public class BinaryTreeNode {
 		
 		print(wArray);
 		return  firstIndex;
+	}
+
+	public static void print(int[] array) {
+		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
+		for (int j = 1; j < array.length; j++) {
+			print.append(array[j]).append(j == array.length-1 ? "" : ", ");
+		}
+		System.out.println(print+"]");
 	}
 }
