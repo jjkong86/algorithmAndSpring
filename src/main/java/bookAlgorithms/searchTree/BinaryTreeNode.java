@@ -2,6 +2,8 @@ package bookAlgorithms.searchTree;
 
 import java.util.Random;
 
+import bookAlgorithms.searchTree.RedBlackTree.Tree;
+
 public class BinaryTreeNode {
 	private static int[] wArray;
 	static Tree root;
@@ -128,14 +130,14 @@ public class BinaryTreeNode {
 		return tree;
 	}
 	
-	public static Tree findTreeNode(Tree tree, int value) {
+	public static Tree findTreeNode1(Tree tree, int value) {
 		if (tree != null) {
 			if (tree.val > value) {
 				System.out.println("smaller than "+tree.val);
-				tree.left = findTreeNode(tree.left, value);
+				tree.left = findTreeNode1(tree.left, value);
 			} else if (tree.val < value) {
 				System.out.println("bigger than "+tree.val);
-				tree.right = findTreeNode(tree.right, value);
+				tree.right = findTreeNode1(tree.right, value);
 			} else if (tree.val == value) {
 				System.out.println("find value : "+tree.val);
 				return tree;
@@ -177,11 +179,12 @@ public class BinaryTreeNode {
 //			target = target != 0? target : array[i];
 //		}
 		wArray = array;
-		quickSort(0, wArray.length-1);
+//		quickSort(0, wArray.length-1);
 //		print(wArray);
 		array = wArray;
 		Tree resultTree = treeBuild(array, 0, wArray.length-1);
-		
+		Tree findParentNode = findParentTreeNode(resultTree, 14);
+		System.out.println(findParentNode.val);
 //		System.out.println("target : "+target);
 //		findTreeValue(resultTree, target);
 		System.out.println("====================================");
@@ -189,11 +192,29 @@ public class BinaryTreeNode {
 //		int insertValue = gen.nextInt(100);
 //		insertTreeNode(resultTree, insertValue);
 //		findTreeValue(resultTree, insertValue);
-		target = 94;
- 		System.out.println("target : "+target);
-		Tree deleteTree = deleteTree(resultTree, target);
-		findTreeValue(deleteTree, target);
+//		target = 94;
+// 		System.out.println("target : "+target);
+//		Tree deleteTree = deleteTree(resultTree, target);
+//		findTreeValue(deleteTree, target);
 
+	}
+	
+	public static Tree findParentTreeNode(Tree tree, int findVal) {
+		if (tree.left == null || tree.right == null) {
+			System.out.println("찾을 수 없음 !");
+			return tree;
+		}
+		if (tree.val > findVal) {
+			System.out.println("smaller than "+tree.val);
+			tree = findParentTreeNode(tree.left, findVal);
+		} else if (tree.val < findVal) {
+			System.out.println("bigger than "+tree.val);
+			tree = findParentTreeNode(tree.right, findVal);
+		} else if (tree.left.val == findVal || tree.right.val == findVal) {
+			System.out.println(tree.left.val + "::" + tree.right.val);
+			return tree;
+		}
+		return tree;
 	}
 	
 	private static int[] quickSort(int start, int end) {
