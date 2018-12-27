@@ -12,42 +12,61 @@ public class RedBlackTree {
 	static Tree root;
 	static String black;
 	static String red;
+	static Tree nullNode = new Tree(0, black);
 	public static class Tree {
-		Map<String, Object> map = new HashMap<>();
+		int val;
+		String color;
 		Tree left;
 		Tree right;
-		Tree(int x, String color) {
-			this.map.put("val", x);
-			this.map.put("color", color);
+		
+		Tree(int x, String c) {
+			this.val = x;
+			this.color = c;
 		}
 	}
 	
 	public static Tree treeBuild(int[] array, int start, int end) {
 		/*
 		 *root 노드를 검정색으로 넣어줌, 이진 트리의 법칙에 따라서 ~
-		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> restructuring, recoloring 
-		 * - restructuring
-		 * - recoloring
+		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> 부모의 형제 노드 색깔에 따라 restructuring, recoloring  
+		 * - restructuring : 부모 형제노드가 검정
+		 * - recoloring : 레드
 		 */
 		// [14, 19, 36, 37, 38, 48, 52, 82, 94, 95]
 		root = new Tree(start, black);
-		if(Integer.parseInt((String) root.map.get("val")) > end) {
-			root.left = treeBuildR(root, root.left, start, end);
+		if(root.val > end) {
+			root.left = treeBuildR(root, root.left, end);
 		} else {
-			root.right = treeBuildR(root, root.right, start, end);
+			root.right = treeBuildR(root, root.right, end);
 		}
 		
 		return root;
 	}
 	
-	public static Tree treeBuildR(Tree parentNode, Tree tree, int start, int end) {
-		if (parentNode.map.get("color").equals(black)) {
+	public static Tree treeBuildR(Tree parentNode, Tree tree, int end) {
+		if (parentNode.color.equals(black)) {
+			tree = new Tree(end, red);
+			tree.left = new Tree(0, black);
+			tree.right = new Tree(0, black);
+			
+			//case 1 : 부모의 형제가 레드
+		} else if(parentNode.color.equals(red)){
 			
 		}
-		tree = new Tree(end, red);
-		tree.left = new Tree(0, black);
-		tree.right = new Tree(0, black);
 		return tree;
+	}
+	
+	public static Tree findNode(Tree parentNode, Tree tree, int findVal) {
+		if (tree.val > findVal) {
+			findNode(tree, tree.left, findVal);
+		} else if (tree.val < findVal) {
+			findNode(tree, tree.right, findVal);
+		} else if (tree.val == findVal){
+			return parentNode;
+		} else {
+			System.out.println("찾는 숫자가 없음 ->" + findVal);
+		}
+		return parentNode;
 	}
 	
 	public static void main(String[] args) {
