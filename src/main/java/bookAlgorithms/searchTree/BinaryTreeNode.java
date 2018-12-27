@@ -199,6 +199,7 @@ public class BinaryTreeNode {
 	}
 
 	public static Tree findParentTreeNode(Tree tree, int findVal) {
+		//
 		if (tree.left == null || tree.right == null) {
 			System.out.println("찾을 수 없음 !");
 			return tree;
