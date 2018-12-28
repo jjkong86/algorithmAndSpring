@@ -19,7 +19,7 @@ public class Solution {
 		if(num == 0) {
 			return null;
 		}
-		
+
 		Map<Integer, String> map = new HashMap<>();
 		map.put(1, "I");
 		map.put(4, "IV");
@@ -30,16 +30,16 @@ public class Solution {
 		map.put(100, "C");
 		map.put(500, "D");
 		map.put(1000, "M");
-		
+
 		if (map.get(num) != null) {
 			return map.get(num);
 		}
-		
+
 		String ret = "";
 		int saveNum = 1000;
 		while (num > 0) {
 			int multiNum = (int)num / saveNum;
-			
+
 			if (multiNum == 9) {
 				int tempSaveNum = saveNum * 10;
 				ret += map.get(saveNum)+map.get(tempSaveNum);
@@ -62,10 +62,10 @@ public class Solution {
 			num = num % saveNum;
 			saveNum = saveNum / 10;
 		}
-		
+
 		return ret;
 	}
-	
+
 	public static void main(String[] args) {
 		Solution s = new Solution();
 		System.out.println(s.intToRoman(4));
