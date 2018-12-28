@@ -10,7 +10,7 @@ public class TreeSeach {
 		TreeNode right;
 		TreeNode(int x) {val = x; }
 	}
-	
+
 	public static void main(String[] args) {
 		Random gen =  new Random();
 		int[] array = new int[10];
@@ -23,22 +23,22 @@ public class TreeSeach {
 		int[] result = treeInsert(treeArray, 0);
 		print(result);
 	}
-	
+
 	public static int[] treeInsert(int[] treeArray, int left) {
 		int len = treeArray.length-1;
 		int middle = len/2;
-		
+
 		if (left == treeArray.length-1) return treeArray;
-		
+
 		int temp = treeArray[middle];
 		treeArray[middle] = treeArray[left];
 		treeArray[left] = temp;
-		
+
 		treeInsert(treeArray, left++);
-		
+
 		return treeArray;
 	}
-	
+
 	public static void print(int[] array) {
 		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
 		for (int j = 1; j < array.length; j++) {
