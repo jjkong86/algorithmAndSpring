@@ -2,8 +2,6 @@ package bookAlgorithms.searchTree;
 
 import java.util.Random;
 
-import bookAlgorithms.searchTree.RedBlackTree.Tree;
-
 public class BinaryTreeNode {
 	private static int[] wArray;
 	static Tree root;
