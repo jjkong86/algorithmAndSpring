@@ -3,7 +3,7 @@ package reetCodeAlgorithms.Valid_Parentheses;
 import java.util.Stack;
 
 public class Solution {
-	
+
 	public boolean isValid(String s) {
 		//stack 이용
 		//
@@ -20,7 +20,7 @@ public class Solution {
 			}
 		}
 		return stack.isEmpty();
-		
+
     }
 
 	public static void main(String[] args) {
