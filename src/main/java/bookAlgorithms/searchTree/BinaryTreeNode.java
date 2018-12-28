@@ -7,14 +7,14 @@ import bookAlgorithms.searchTree.RedBlackTree.Tree;
 public class BinaryTreeNode {
 	private static int[] wArray;
 	static Tree root;
-	
+
 	public static class Tree {
 		int val;
 		Tree left;
 		Tree right;
 		Tree(int x) { this.val = x; }
 	}
-	
+
 	public static Tree treeBuild(int[] array, int start, int end) {
 		root = treeBuildR(array, start, end);
 		return root;
@@ -27,10 +27,10 @@ public class BinaryTreeNode {
 		Tree tree = new Tree(array[middle]);
 		tree.left = treeBuildR(array, start, middle-1);
 		tree.right = treeBuildR(array, middle+1, end);
-		
+
 		return tree;
 	}
-	
+
 	public static void findTreeValue(Tree tree, int value) {
 		if (tree != null) {
 			if (tree.val > value) {
@@ -46,7 +46,7 @@ public class BinaryTreeNode {
 			System.out.println("찾지 못함");
 		}
 	}
-	
+
 	public static Tree insertTreeNode(Tree tree, int value) {
 		//같은 숫자면 트리의 규칙에 위배 됨으로 return
 		//트리의 규칙에 따라서 leaf 노드까지  들어가서 insert함
@@ -66,7 +66,7 @@ public class BinaryTreeNode {
 		}
 		return tree;
 	}
-	
+
 	public static Tree deleteTree(Tree tree, int target) {
 		/*
 		 * leaf노드 : 그냥 삭제 하면됨
@@ -94,7 +94,7 @@ public class BinaryTreeNode {
 		}
 		return tree;
 	}
-	
+
 	public static Tree deleteTreeNode(Tree tree) {
 		if (tree.left == null && tree.right == null) {		//단말 노드
 			System.out.println("leaf node 삭제");
@@ -104,7 +104,7 @@ public class BinaryTreeNode {
 			//먼저 삭제하려는 root 노드의 직후 원소를 찾자
 			Tree rightChildrenNode = tree.right;
 			Tree findRightValueTree = findNotHaveLeftNode(rightChildrenNode);
-			
+
 			//root 노드의 원소를 삭제 하고 직후 원소를 그 자리에 넣음
 			tree.val = findRightValueTree.left == null ? findRightValueTree.val : findRightValueTree.left.val;
 			System.out.println("기존 원소 삭제 후 새로운 root 노드 : "+tree.val);
@@ -113,13 +113,13 @@ public class BinaryTreeNode {
 				findRightValueTree.left = findRightValueTree.left.right;
 			}
 			return tree;
-			
+
 		} else {		//한쪽 자식만 있음
 			System.out.println("한쪽 자식만 있음 > 삭제");
 			return tree.right == null ? tree.left : tree.right;
 		}
 	}
-	
+
 	public static Tree findNotHaveLeftNode(Tree tree) {
 		if (tree.left == null || tree.left.left == null) {
 			return tree;
@@ -128,7 +128,7 @@ public class BinaryTreeNode {
 		}
 		return tree;
 	}
-	
+
 	public static Tree findTreeNode1(Tree tree, int value) {
 		if (tree != null) {
 			if (tree.val > value) {
@@ -147,7 +147,7 @@ public class BinaryTreeNode {
 		}
 		return tree;
 	}
-	
+
 	public static void main(String[] args) {
 		// 노드 생성
 		Tree node1 = new Tree(10);
@@ -158,7 +158,7 @@ public class BinaryTreeNode {
 		Tree node6 = new Tree(13);
 		Tree node7 = new Tree(17);
 		Tree node8 = new Tree(20);
-        
+
         // 트리에 노드 추가
         node1.left = node2;
         node1.right = node3;
@@ -167,9 +167,9 @@ public class BinaryTreeNode {
         node3.left = node6;
         node3.right = node7;
         node7.right = node8;
-        
+
 //        findTreeValue(node1, 20);
-        
+
         Random gen =  new Random();
 		int[] array = {14, 19, 36, 37, 38, 48, 52, 82, 94, 95};
 		int target = 0;
@@ -197,9 +197,8 @@ public class BinaryTreeNode {
 //		findTreeValue(deleteTree, target);
 
 	}
-	
+
 	public static Tree findParentTreeNode(Tree tree, int findVal) {
-		//
 		if (tree.left == null || tree.right == null) {
 			System.out.println("찾을 수 없음 !");
 			return tree;
@@ -216,7 +215,7 @@ public class BinaryTreeNode {
 		}
 		return tree;
 	}
-	
+
 	private static int[] quickSort(int start, int end) {
 		if (start < end) {
 			int result = partition(start, end);
@@ -228,7 +227,7 @@ public class BinaryTreeNode {
 		}
 		return wArray;
 	}
-	
+
 	private static int partition(int start, int end) {
 		// // 1구역 // target // 3구역 // 4구역(array 처음)
 		int target = wArray[end]; // 맨 끝의 원소를 기준원소로 함
@@ -246,7 +245,7 @@ public class BinaryTreeNode {
 		int temp = wArray[firstIndex];
 		wArray[firstIndex] = wArray[thirdIndex];
 		wArray[thirdIndex] = temp;
-		
+
 		print(wArray);
 		return  firstIndex;
 	}
