@@ -1,4 +1,4 @@
-package reetCodeAlgorithms.twoSum;
+package algorithms.twoSum;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package reetCodeAlgorithms.addTwoNumbers;
+package algorithms.addTwoNumbers;
 
 public class ListNode {
 	int val;

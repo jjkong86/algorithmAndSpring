@@ -1,4 +1,4 @@
-package algorithms.Longest_Palindromic_Substring;
+package reetCodeAlgorithms.Longest_Palindromic_Substring;
 
 public class Solution {
 	private int lo, maxLen;
