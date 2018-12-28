@@ -17,9 +17,9 @@ public class InsertionSort {
 
 	private void sort(int[] array) {
 		int len = array.length-1;
-		
+
 		for (int i = 1; i <= len; i++) {
-			
+
 			if (array[i] > array[i-1]) {
 				continue;
 			}
@@ -32,7 +32,7 @@ public class InsertionSort {
 				array[j-1] = temp;
 			}
 		}
-		
+
 		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
 		for (int j = 1; j < array.length; j++) {
 			print.append(array[j]).append(j == array.length-1 ? "" : ", ");

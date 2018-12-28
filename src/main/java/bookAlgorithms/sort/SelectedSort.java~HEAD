@@ -1,4 +1,4 @@
-package bookAlgorithms;
+package bookAlgorithms.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +35,25 @@ public class SelectedSort {
 		return null;
 	}
 	
+	public int[] sort(int[] array, int len) {
+		if (len < 0) return array;
+		int max = 0;
+		int index = 0;
+		for (int i = 0; i < len; i++) {
+			if (array[i] > max) {
+				max = array[i];
+				index = i;
+			}
+		}
+		int temp = array[index];
+		array[index] = array[len];
+		array[len] = temp;
+		
+		sort(array, len -1);
+		
+		return array;
+	}
+	
 	public static void main(String[] args) {
 		Random gen =  new Random();
 		int[] array = new int[50];
@@ -42,7 +61,14 @@ public class SelectedSort {
 			array[i] = gen.nextInt(100);
 		}
 		SelectedSort s = new SelectedSort();
-		s.selSort(array);
+//		s.selSort(array);
+		int[] result = s.sort(array, array.length-1);
+		
+		StringBuilder print = new StringBuilder("정렬 후 : ["+result[0]+", ");
+		for (int j = 1; j < result.length; j++) {
+			print.append(result[j]).append(j == result.length-1 ? "" : ", ");
+		}
+		System.out.println(print+"]");
 		
 	}
 }

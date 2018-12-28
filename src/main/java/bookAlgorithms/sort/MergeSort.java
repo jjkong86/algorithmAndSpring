@@ -30,7 +30,7 @@ public class MergeSort {
 			}
 			if(!flag) break;
 		}
-		
+
 		int len = array.length -1;
 		for (int i = middle+2; i <= len; i++) {
 			boolean flag = false;
@@ -44,7 +44,7 @@ public class MergeSort {
 			}
 			if(!flag) break;
 		}
-		
+
 		int left = 0;
 		int right = middle+1;
 		int index = 0;
@@ -55,15 +55,15 @@ public class MergeSort {
 				ret[index++] = array[left++];
 			}
 		}
-		
+
 		while (left <= middle) {
 			ret[index++] = array[left++];
 		}
-		
+
 		while (right <= len) {
 			ret[index++] = array[right++];
 		}
-		
+
 		StringBuilder print = new StringBuilder("정렬 후 : ["+array[0]+", ");
 		for (int j = 1; j < array.length; j++) {
 			print.append(array[j]).append(j == array.length-1 ? "" : ", ");
@@ -72,7 +72,7 @@ public class MergeSort {
 			}
 		}
 		System.out.println(print+"]");
-		
+
 	}
 
 }

@@ -3,7 +3,7 @@ package bookAlgorithms.sort;
 import java.util.Random;
 
 public class BubbleSort {
-	
+
 	public static void main(String[] args) {
 		Random gen =  new Random();
 		int[] array = new int[50];
@@ -18,7 +18,7 @@ public class BubbleSort {
 		boolean sorted = false;
 		int len = array.length -1;
 		for (int i = 0; i < len; i++) {
-			
+
 			for (int j = 1; j < len -i; j++) {
 				if (array[j-1] > array[j]) {
 					int temp = array[j];
@@ -27,7 +27,7 @@ public class BubbleSort {
 					sorted = true;
 				}
 			}
-			
+
 			if (!sorted) {
 				break;
 			}
