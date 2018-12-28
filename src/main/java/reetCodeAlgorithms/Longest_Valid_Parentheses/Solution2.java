@@ -3,10 +3,10 @@ package reetCodeAlgorithms.Longest_Valid_Parentheses;
 import java.util.Stack;
 
 public class Solution2 {
-	
+
 	public int longestValidParentheses(String s) {
 		if(s.length() < 1) return 0;
-		
+
 		Stack<Integer> stack = new Stack<>();
 		int maxCount = 0;
 		stack.push(-1);
@@ -20,12 +20,12 @@ public class Solution2 {
 				}
 				maxCount = Math.max(maxCount, i - stack.peek());
 			}
-			
+
 		}
-		
+
 		return maxCount;
 	}
-    
+
 	public static void main(String[] args) {
 		Solution2 s = new Solution2();
 		System.out.println(s.longestValidParentheses("()(()("));
