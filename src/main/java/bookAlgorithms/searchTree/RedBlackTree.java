@@ -10,7 +10,7 @@ public class RedBlackTree {
 	static String black;
 	static String red;
 	static Tree nullNode = new Tree(0, black);
-	
+
 	public static class Tree {
 		int val, depth;
 		String color;
@@ -29,11 +29,11 @@ public class RedBlackTree {
 			this.depth = depth;
 		}
 	}
-	
+
 	public static Tree redBlackTreeBuild(int[] array, int start, int end) {
 		/*
 		 *root 노드를 검정색으로 넣어줌, 이진 트리의 법칙에 따라서 ~
-		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> 부모의 형제 노드 색깔에 따라 restructuring, recoloring  
+		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> 부모의 형제 노드 색깔에 따라 restructuring, recoloring
 		 * - case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
 		 * - case2 : 블랙
 		 */
@@ -42,7 +42,7 @@ public class RedBlackTree {
 		Tree tree = redBlackTreeBuildR(array, start, end, depth);
 		return tree;
 	}
-	
+
 	public static Tree redBlackTreeBuildR(int[] array, int start, int end, int depth) {
 		if (start > end) {
 			return null;
@@ -51,13 +51,13 @@ public class RedBlackTree {
 		String color = depth == 1? black : red;
 		Tree tree = new Tree(array[middle], color, depth);
 		treeColorChange(tree, array[middle]);
-		
+
 		tree.left = redBlackTreeBuildR(array, start, middle--, depth++);
 		tree.right = redBlackTreeBuildR(array, middle++, end, depth++);
-		
+
 		return tree;
 	}
-	
+
 	public static Tree treeColorChange(Tree tree, int value) {
 		Tree parentNode = findParentNode(tree, value, 1);
 		if (parentNode != null & parentNode.color.equals(red)) {
@@ -67,10 +67,10 @@ public class RedBlackTree {
 				parentParentNode.right.color = black;
 				System.out.println("color - "+parentParentNode.right.color + "::"+parentParentNode.left.color);
 			} else if (parentParentNode != null & parentParentNode.color.equals(black)) {
-				
+
 			}
 		}
-		
+
 		return tree;
 	}
 
@@ -79,11 +79,11 @@ public class RedBlackTree {
 			System.out.println("찾으려는 숫자가 없음 !");
 			return null;
 		}
-		
+
 		if ((tree.left != null && tree.left.val == findVal) || (tree.right != null && tree.right.val == findVal)) {
 			return tree;
 		}
-		
+
 		if (tree.val > findVal) {
 			tree = findParentNode(tree.left, findVal, depth++);
 		} else if (tree.val < findVal ) {
@@ -91,15 +91,15 @@ public class RedBlackTree {
 		} else if (tree.val == findVal) {
 			System.out.println("찾는 숫자는 root 노드임!");
 		}
-		
+
 		return tree;
 	}
-	
+
 	public static Tree treeBuild(int[] array, int start, int end) {
 		Tree tree = treeBuildR(array, start, end, 1);
 		return tree;
 	}
-	
+
 	public static Tree treeBuildR(int[] array, int start, int end, int depth) {
 		if (start > end) {
 			return null;
@@ -109,10 +109,10 @@ public class RedBlackTree {
 		Tree tree = new Tree(array[middle], depth++);
 		tree.left = treeBuildR(array, start, middle-1, depth);
 		tree.right = treeBuildR(array, middle+1, end, depth);
-		
+
 		return tree;
 	}
-	
+
 	public static void findTreeValue(Tree tree, int value) {
 		if (tree != null) {
 			if (tree.val > value) {
@@ -128,7 +128,7 @@ public class RedBlackTree {
 			System.out.println("찾지 못함");
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Random gen =  new Random();
 		int[] array = new int[10];
@@ -147,9 +147,9 @@ public class RedBlackTree {
 //		}
 //		wArray = array;
 //		quickSort(0, wArray.length-1);
-		
+
 		int[] array1 = {14, 19, 36, 37, 38, 48, 52, 82, 94, 95};
-		
+
 		Tree tree = treeBuild(array1, 0, array1.length-1);
 		System.out.println("====================================");
 		System.out.println("====================================");
@@ -159,7 +159,7 @@ public class RedBlackTree {
 		Tree parentNode = findParentNode(tree, 38, 1);
 		if (parentNode != null) System.out.println("parentNode : " + parentNode.val + ", dpeth : "+parentNode.depth);
 	}
-	
+
 	private static boolean dupleChk(List<Integer> list, int value) {
 		if (list.contains(value)) {
 			return false;
@@ -178,7 +178,7 @@ public class RedBlackTree {
 		}
 		return wArray;
 	}
-	
+
 	private static int partition(int start, int end) {
 		// // 1구역 // target // 3구역 // 4구역(array 처음)
 		int target = wArray[end]; // 맨 끝의 원소를 기준원소로 함
@@ -196,7 +196,7 @@ public class RedBlackTree {
 		int temp = wArray[firstIndex];
 		wArray[firstIndex] = wArray[thirdIndex];
 		wArray[thirdIndex] = temp;
-		
+
 		print(wArray);
 		return  firstIndex;
 	}
