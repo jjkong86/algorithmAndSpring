@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Solution {
-	
+
 	public List<List<Integer>> threeSum(int[] nums) {
 		List<Object> ret = new ArrayList<>();
 //		List<Integer> numsList = Arrays.stream(nums).boxed().collect(Collectors.toList());
@@ -17,7 +17,7 @@ public class Solution {
 			String numStr = String.valueOf(integer);
 			numsMap.put(numStr, integer);
 		}
-		
+
 		for (int i = 0; i < nums.length; i++) {
 			int firstNum = nums[i];
 			for (int j = i+1; j < nums.length; j++) {
@@ -36,13 +36,13 @@ public class Solution {
 					tempRet.add((firstNum + SeNum)*(-1));
 					ret.add(tempRet);
 				}
-				
+
 			}
 		}
 		System.out.println(ret);
 		return null;
     }
-	
+
 	public static void main(String[] args) {
 		Solution s = new Solution();
 		int[] nums = {-1, 0, 1, 2, -1, -4};
@@ -53,7 +53,7 @@ public class Solution {
 			numsMap.put(numStr, integer);
 		}
 //		System.out.println(numsMap.get("5"));
-		
+
 	}
 
 }
