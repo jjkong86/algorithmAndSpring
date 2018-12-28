@@ -28,8 +28,7 @@ public class BinaryTreeNode {
 		tree.left = treeBuildR(array, start, middle-1);
 		tree.right = treeBuildR(array, middle+1, end);
 		
-		return tree; 
-		
+		return tree;
 	}
 	
 	public static void findTreeValue(Tree tree, int value) {
