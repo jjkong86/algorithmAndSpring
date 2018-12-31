@@ -50,10 +50,12 @@ public class RedBlackTree {
 		}
 		int middle = (start+end)/2;
 		String color = depth == 1? black : red;
+		
 		System.out.println("노드 삽입 :" + array[middle] + ", dpeth : "+depth+", color : "+color);
 		
 		tree = new Tree(array[middle], color, depth);
-		treeColorChange(tree, array[middle]);
+		root = tree.depth == 1? tree : root;
+		treeColorChange(root, array[middle]);
 
 		tree.left = redBlackTreeBuildR(tree, array, start, middle-1, depth+1);
 		tree.right = redBlackTreeBuildR(tree, array, middle+1, end, depth+1);
@@ -63,11 +65,11 @@ public class RedBlackTree {
 
 	public static Tree treeColorChange(Tree tree, int value) {
 		//case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
-		Tree parentNode = findParentNode(root, value, 1); //tree 전체를 넘겨야함
+		Tree parentNode = findParentNode(tree, value, 1); //tree 전체를 넘겨야함
 		if (parentNode == null) return null;
 		if (parentNode.color.equals(red)) {
 			System.out.println("p : red");
-			Tree grandParentNode = findParentNode(root, parentNode.val, 1);
+			Tree grandParentNode = findParentNode(tree, parentNode.val, 1);
 			if (grandParentNode == null) return null;
 			if (grandParentNode.color.equals(red)) {
 				grandParentNode.color = grandParentNode.depth == 1 ? black : red;
@@ -77,7 +79,7 @@ public class RedBlackTree {
 			}
 			
 			//p2의 부모가 레드이면 색 바꾸기 재귀로 이용
-			Tree ancestorNode = findParentNode(root, grandParentNode.val, 1);
+			Tree ancestorNode = findParentNode(tree, grandParentNode.val, 1);
 			if (ancestorNode == null) return null;
 			if (ancestorNode.color.equals(red)) {
 				treeColorChange(tree, ancestorNode.val);
