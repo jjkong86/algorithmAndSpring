@@ -41,7 +41,9 @@ public class RedBlackTree {
 		// x : 대상, p : x의 부모, s : p의 형제, p2 = p의 부모 
 		int depth = 1;
 		Tree tree = redBlackTreeBuildR(array, start, end, depth);
-		
+		root = tree;
+		System.out.println("================color 변경 시작====================");
+		tree = colorChange(root);
 		return tree;
 	}
 
@@ -58,7 +60,17 @@ public class RedBlackTree {
 
 		tree.left = redBlackTreeBuildR(array, start, middle-1, depth+1);
 		tree.right = redBlackTreeBuildR(array, middle+1, end, depth+1);
-
+		
+		return tree;
+	}
+	
+	public static Tree colorChange(Tree tree) {
+		if (tree != null) {
+			System.out.println("tree.val : "+tree.val + ", tree.color : "+tree.color+", tree.depth : "+tree.depth);
+			treeColorChange(tree.val);
+			colorChange(tree.left);
+			colorChange(tree.right);
+		}
 		return tree;
 	}
 	
@@ -91,6 +103,39 @@ public class RedBlackTree {
 		}
 
 		return tree;
+	}
+	
+	public static Tree treeColorChange(int value) {
+		System.out.println("====================================");
+		// x : 대상, p : x의 부모, s : p의 형제, p2 = p의 부모
+		//case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
+		Tree parentNode = findParentNode(root, value, 1); //tree 전체를 넘겨야함
+		if (parentNode == null) {
+			System.out.println("부모 노드 없음 !!");
+			return null;
+		}
+		if (parentNode.color.equals(red)) {
+			System.out.println("p : red");
+			Tree grandParentNode = findParentNode(root, parentNode.val, 1);
+			if (grandParentNode == null) return null;
+			if (grandParentNode.color.equals(red)) {
+				grandParentNode.color = grandParentNode.depth == 1 ? black : red;
+				grandParentNode.left.color = black;
+				grandParentNode.right.color = black;
+				System.out.println("color - "+grandParentNode.right.color + "::"+grandParentNode.left.color);
+			}
+			
+			//p2의 부모가 레드이면 색 바꾸기 재귀로 이용
+			Tree ancestorNode = findParentNode(root, grandParentNode.val, 1);
+			if (ancestorNode == null) return null;
+			if (ancestorNode.color.equals(red)) {
+				treeColorChange(ancestorNode.val);
+			}
+		} else if (parentNode.color.equals(black)) {
+			System.out.println("p : black");
+		}
+
+		return root;
 	}
 
 	public static Tree findParentNode(Tree tree, int findVal, int depth) {
@@ -213,7 +258,7 @@ public class RedBlackTree {
 	}
 	
 	public static void printNode(Tree tree) {
-		System.out.println("tree.val : "+tree.val + ", tree.color"+tree.color+", tree.depth : "+tree.depth);
+		System.out.println("tree.val : "+tree.val + ", tree.color : "+tree.color+", tree.depth : "+tree.depth);
 	}
 
 	private static boolean dupleChk(List<Integer> list, int value) {
