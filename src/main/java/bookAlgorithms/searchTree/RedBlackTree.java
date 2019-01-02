@@ -40,11 +40,12 @@ public class RedBlackTree {
 		// [14, 19, 36, 37, 38, 48, 52, 82, 94, 95]
 		// x : 대상, p : x의 부모, s : p의 형제, p2 = p의 부모 
 		int depth = 1;
-		root = redBlackTreeBuildR(root, array, start, end, depth);
-		return root;
+		Tree tree = redBlackTreeBuildR(array, start, end, depth);
+		
+		return tree;
 	}
 
-	public static Tree redBlackTreeBuildR(Tree tree, int[] array, int start, int end, int depth) {
+	public static Tree redBlackTreeBuildR(int[] array, int start, int end, int depth) {
 		if (start > end) {
 			return null;
 		}
@@ -53,20 +54,21 @@ public class RedBlackTree {
 		
 		System.out.println("노드 삽입 :" + array[middle] + ", dpeth : "+depth+", color : "+color);
 		
-		tree = new Tree(array[middle], color, depth);
-		root = tree.depth == 1? tree : root;
-		treeColorChange(root, array[middle]);
+		Tree tree = new Tree(array[middle], color, depth);
 
-		tree.left = redBlackTreeBuildR(tree, array, start, middle-1, depth+1);
-		tree.right = redBlackTreeBuildR(tree, array, middle+1, end, depth+1);
+		tree.left = redBlackTreeBuildR(array, start, middle-1, depth+1);
+		tree.right = redBlackTreeBuildR(array, middle+1, end, depth+1);
 
 		return tree;
 	}
-
+	
 	public static Tree treeColorChange(Tree tree, int value) {
 		//case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
 		Tree parentNode = findParentNode(tree, value, 1); //tree 전체를 넘겨야함
-		if (parentNode == null) return null;
+		if (parentNode == null) {
+			System.out.println("부모 노드 없음 !!");
+			return null;
+		}
 		if (parentNode.color.equals(red)) {
 			System.out.println("p : red");
 			Tree grandParentNode = findParentNode(tree, parentNode.val, 1);
@@ -95,15 +97,30 @@ public class RedBlackTree {
 		if (tree == null) {
 			System.out.println("찾으려는 숫자가 없음 !");
 			return null;
+		} else {
+			System.out.println("tree value :" + tree.val + ", findval :"+findVal);
 		}
-
+		
+		if (tree.left != null) {
+			System.out.println("tree.left value : " + tree.left.val);
+			
+		}
+		if (tree.right != null) {
+			System.out.println("tree.right value : " + tree.right.val);
+			
+		} 
+		if (tree.left == null && tree.right == null) {
+			System.out.println("자식 없음 !");
+		}
 		if ((tree.left != null && tree.left.val == findVal) || (tree.right != null && tree.right.val == findVal)) {
 			return tree;
 		}
 
 		if (tree.val > findVal) {
+			System.out.println("smaller than "+tree.val + ", depth : "+tree.depth);
 			tree = findParentNode(tree.left, findVal, depth++);
 		} else if (tree.val < findVal ) {
+			System.out.println("bigger than "+tree.val + ", depth : "+tree.depth);
 			tree = findParentNode(tree.right, findVal, depth++);
 		} else if (tree.val == findVal) {
 			System.out.println("찾는 숫자는 root 노드임!");
@@ -174,17 +191,17 @@ public class RedBlackTree {
 		findTreeValue(tree, 95);
 		System.out.println("====================================");
 		System.out.println("====================================");
-		Tree parentNode = findParentNode(tree, 37, 1);
-		if (parentNode != null) System.out.println("findParentNode : " + parentNode.val + ", dpeth : "+parentNode.depth);
+//		Tree parentNode = findParentNode(tree, 37, 1);
+//		if (parentNode != null) System.out.println("findParentNode : " + parentNode.val + ", dpeth : "+parentNode.depth);
 		System.out.println("====================================");
 		System.out.println("===========레드블랙트리 빌드===========");
 		Tree redBlackTree = redBlackTreeBuild(array1, 0, array1.length-1);
 		System.out.println("====================================");
 		System.out.println("===========전역 root 빌드 체크===========");
-		printSetting(root);
+//		printSetting(root);
 		System.out.println("====================================");
 		System.out.println("===========레드블랙트리 빌드 체크===========");
-//		printSetting(redBlackTree);
+		printSetting(redBlackTree);
 	}
 	
 	public static void printSetting(Tree tree) {
@@ -196,7 +213,7 @@ public class RedBlackTree {
 	}
 	
 	public static void printNode(Tree tree) {
-		System.out.println(tree.val + ":::"+tree.color+":::"+tree.depth);
+		System.out.println("tree.val : "+tree.val + ", tree.color"+tree.color+", tree.depth : "+tree.depth);
 	}
 
 	private static boolean dupleChk(List<Integer> list, int value) {
