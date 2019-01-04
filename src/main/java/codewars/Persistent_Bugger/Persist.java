@@ -6,16 +6,16 @@ public class Persist {
 		int count = 0;
 		long temp = 1;
 		if (n < 10) {
-			return 0;
+			return count;
 		}
 		while (n > 0) {
-			temp *= n%10;
-			n = n/10;
+			temp *= n % 10;
+			n = n / 10;
 		}
-		count ++;
-		
+		count++;
+
 		if (temp > 10) {
-			System.out.println(temp);
+			System.out.println("temp : " + temp + ", count + " + count);
 			count = persistence(temp, count);
 		} else {
 			return count;
@@ -23,15 +23,15 @@ public class Persist {
 		System.out.println(count);
 		return count;
 	}
-	
+
 	public static int persistence(long n, int count) {
 		long temp = 1;
 		while (n > 0) {
-			temp *= n%10;
-			n = n/10;
+			temp *= n % 10;
+			n = n / 10;
 		}
-		count ++;
-		
+		count++;
+
 		if (temp > 10) {
 			count = persistence(temp, count);
 		} else {
