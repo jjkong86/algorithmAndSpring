@@ -1,12 +1,11 @@
 package etc;
 
+import java.util.Collections;
+
 public class test {
 
 	public static void main(String[] args) {
-		String a = "abcd";
-		char[] c = a.toCharArray();
-		String result = new String(c);
-		System.out.println(result);
+		System.out.println(String.join("A", Collections.nCopies(3, "a")));
 	}
 
 }
