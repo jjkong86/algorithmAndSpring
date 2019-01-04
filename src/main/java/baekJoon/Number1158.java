@@ -36,7 +36,6 @@ public class Number1158 {
 				rear.nextNode = node;
 				rear = rear.nextNode;
 				rear.nextNode = front;
-				System.out.println("rear.nextNode : "+rear.val + " - > " + (rear.nextNode.val == front.val ? rear.nextNode.val + "연결 됨" : "front와 rear 연결 안됨"));
 			}
 		}
 		
@@ -60,19 +59,18 @@ public class Number1158 {
 		//insert 상황 -> rear.nextNode = node; rear = rear.nextNode; rear.nextNode = front;
 		//delete 상황 -> front = front.nextNode; rear.nextNode = front;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int len = Integer.parseInt(br.readLine());
+		String[] array = br.readLine().split(" ");
+		int insertNum = Integer.parseInt(array[0]);
 		ListQueue lq = new ListQueue();
-		for (int i = 1; i <= len; i++) {
+		for (int i = 1; i <= insertNum; i++) {
 			lq.push(i);
 		}
-		int nums = Integer.parseInt(br.readLine());
 		
+		int nums = Integer.parseInt(array[1]);
 		StringBuilder sb = new StringBuilder("<");
-		while (lq.front != null) {
-			sb.append(lq.numsPop(nums)+", ");
+		while (insertNum -- > 0) {
+			sb.append(insertNum == 0 ? lq.numsPop(nums) : lq.numsPop(nums)+", ");
 		}
-		sb.deleteCharAt(sb.length()-1);
-		sb.deleteCharAt(sb.length()-1);
 		sb.append(">");
 		System.out.println(sb);
 	}
