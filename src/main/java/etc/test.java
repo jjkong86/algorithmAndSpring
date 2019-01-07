@@ -12,11 +12,8 @@ public class test {
 //        System.out.println(input.length());
 //        br.close();
 
-        for (int i = 97; i < 122; i++) {
-			int val = (i+1)%97;
-			System.out.println((char)((val > 26 ? val%26 : val)+96));
-//        	System.out.println((char)i);
-		}
-        System.out.println(Math.pow(10, 12)*9 > Integer.MAX_VALUE ? Math.pow(10, 12)*9 > Long.MAX_VALUE ? "Long < x" : "int < x < Long" : "int > x");
+//        System.out.println(Math.pow(10, 12)*9 > Integer.MAX_VALUE ? Math.pow(10, 12)*9 > Long.MAX_VALUE ? "Long < x" : "int < x < Long" : "int > x");
+        int[][] array = new int[2][2*5];
+        System.out.println(array[0].length);
 	}
 }
