@@ -17,6 +17,6 @@ public class test {
 			System.out.println((char)((val > 26 ? val%26 : val)+96));
 //        	System.out.println((char)i);
 		}
-//        System.out.println(26%26);
+        System.out.println(Math.pow(10, 12)*9 > Integer.MAX_VALUE ? Math.pow(10, 12)*9 > Long.MAX_VALUE ? "Long < x" : "int < x < Long" : "int > x");
 	}
 }
