@@ -15,6 +15,8 @@ public class HashTable {
 	}
 	
 	public static Node[] buildHashTable(int[] arrays) {
+		//해시값은 값들을 배열의 크기로 나눈 나머지로함
+		//해시테이블은 노드의 배열로 구성하여 중복된 해시 값이 발생하면 노드를 연결하여 넣는다(같은 해시에서 마지막에 들어오는 수가 앞으로 감)
 		int len = arrays.length;
 		Node[] hashTable = new Node[len];
 		for (int i = 0; i < len; i++) {
