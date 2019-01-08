@@ -33,7 +33,7 @@ public class RedBlackTree {
 	public static Tree redBlackTreeBuild(int[] array, int start, int end) {
 		/*
 		 *root 노드를 검정색으로 넣어줌, 이진 트리의 법칙에 따라서 ~
-		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> 부모의 형제 노드 색깔에 따라 restructuring, recoloring
+		 *다음 삽입되는 노드의 색깔은 무조건 레드 -> double red 발생 ? -> 부모의 형제 노드 색깔에 따라 변경이 필요함
 		 * - case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
 		 * - case2 : 블랙
 		 */
@@ -66,8 +66,13 @@ public class RedBlackTree {
 	
 	public static Tree colorChange(Tree tree) {
 		if (tree != null) {
+			System.out.println("====================================");
 			System.out.println("tree.val : "+tree.val + ", tree.color : "+tree.color+", tree.depth : "+tree.depth);
-			treeColorChange(tree.val);
+			if (tree.left != null ) {
+				treeColorChange(tree.left.val);
+			} else if (tree.right != null) {
+				treeColorChange(tree.right.val);
+			}
 			colorChange(tree.left);
 			colorChange(tree.right);
 		}
@@ -75,7 +80,7 @@ public class RedBlackTree {
 	}
 	
 	public static Tree treeColorChange(Tree tree, int value) {
-		//case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
+		//case1 : 부모가 레드 -> 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
 		Tree parentNode = findParentNode(tree, value, 1); //tree 전체를 넘겨야함
 		if (parentNode == null) {
 			System.out.println("부모 노드 없음 !!");
@@ -106,7 +111,6 @@ public class RedBlackTree {
 	}
 	
 	public static Tree treeColorChange(int value) {
-		System.out.println("====================================");
 		// x : 대상, p : x의 부모, s : p의 형제, p2 = p의 부모
 		//case1 : 부모 형제노드가 레드 -> 부모와 부모 형제를 블랙으로 바꾸고 부모의 부모를 레드로(root 노드면 다시 블랙으로)
 		Tree parentNode = findParentNode(root, value, 1); //tree 전체를 넘겨야함

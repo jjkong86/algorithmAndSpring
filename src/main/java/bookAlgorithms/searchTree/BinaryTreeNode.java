@@ -180,15 +180,15 @@ public class BinaryTreeNode {
 //		print(wArray);
 		array = wArray;
 		Tree resultTree = treeBuild(array, 0, wArray.length-1);
-		Tree findParentNode = findParentTreeNode(resultTree, 14);
-		System.out.println(findParentNode.val);
+		Tree findParentNode = findParentTreeNode(resultTree, 37);
+		System.out.println("parentNode.val : "+findParentNode.val);
 //		System.out.println("target : "+target);
 //		findTreeValue(resultTree, target);
 		System.out.println("====================================");
 		System.out.println("====================================");
-//		int insertValue = gen.nextInt(100);
-//		insertTreeNode(resultTree, insertValue);
-//		findTreeValue(resultTree, insertValue);
+		int insertValue = 100;
+		insertTreeNode(resultTree, insertValue);
+		findTreeValue(resultTree, insertValue);
 //		target = 94;
 // 		System.out.println("target : "+target);
 //		Tree deleteTree = deleteTree(resultTree, target);
@@ -198,19 +198,20 @@ public class BinaryTreeNode {
 
 	public static Tree findParentTreeNode(Tree tree, int findVal) {
 		//
-		if (tree.left == null || tree.right == null) {
+		if (tree == null) {
 			System.out.println("찾을 수 없음 !");
 			return tree;
 		}
-		if (tree.val > findVal) {
+		
+		if (tree.left != null && tree.left.val == findVal || tree.right != null && tree.right.val == findVal) {
+				System.out.println("tree.left : "+(tree.left != null ? tree.left.val : "null") + ", tree.right : " + (tree.right != null ? tree.right.val : "null"));
+				return tree;
+		} else if (tree.val > findVal) {
 			System.out.println("smaller than "+tree.val);
 			tree = findParentTreeNode(tree.left, findVal);
 		} else if (tree.val < findVal) {
 			System.out.println("bigger than "+tree.val);
 			tree = findParentTreeNode(tree.right, findVal);
-		} else if (tree.left.val == findVal || tree.right.val == findVal) {
-			System.out.println(tree.left.val + "::" + tree.right.val);
-			return tree;
 		}
 		return tree;
 	}

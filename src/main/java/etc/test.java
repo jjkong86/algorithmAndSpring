@@ -1,19 +1,26 @@
 package etc;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class test {
 
 	public static void main(String[] args) throws IOException {
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String input = br.readLine();
-//        System.out.println(input.length());
-//        br.close();
+		Node n = new Node();
+		n.val = 3;
+		System.out.println(n.val);
+		int val = 10;
+		change(n, val);
+		System.out.println(n.val);
+	}
+	String a = "13";
+	
+	private static void change(Node n, int val) {
+		n.val = val;
+	}
 
-//        System.out.println(Math.pow(10, 12)*9 > Integer.MAX_VALUE ? Math.pow(10, 12)*9 > Long.MAX_VALUE ? "Long < x" : "int < x < Long" : "int > x");
-        int[][] array = new int[2][2*5];
-        System.out.println(array[0].length);
+	static class Node {
+		int val;
+		Node(){
+			this.val = 0;
+		}
 	}
 }

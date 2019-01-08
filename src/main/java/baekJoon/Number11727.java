@@ -15,9 +15,8 @@ public class Number11727 {
 		array[0] = 0;
 		array[1] = 1;
 		array[2] = 3;
-		array[3] = 5;
-		for (int i = 4; i <= input; i++) {
-			array[i] = (array[i-1] + array[i-2])%10007;
+		for (int i = 3; i <= input; i++) {
+			array[i] = (array[i-1] +2* array[i-2])%10007;
 		}
 		System.out.println(array[input]);
 	}
