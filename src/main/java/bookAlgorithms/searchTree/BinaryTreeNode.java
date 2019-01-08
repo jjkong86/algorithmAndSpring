@@ -14,8 +14,8 @@ public class BinaryTreeNode {
 	}
 
 	public static Tree treeBuild(int[] array, int start, int end) {
-		root = treeBuildR(array, start, end);
-		return root;
+		Tree tree = treeBuildR(array, start, end);
+		return tree;
 	}
 	public static Tree treeBuildR(int[] array, int start, int end) {
 		if (start > end) {
@@ -175,11 +175,11 @@ public class BinaryTreeNode {
 //			array[i] = gen.nextInt(100);
 //			target = target != 0? target : array[i];
 //		}
-		wArray = array;
+//		wArray = array;
 //		quickSort(0, wArray.length-1);
 //		print(wArray);
-		array = wArray;
-		Tree resultTree = treeBuild(array, 0, wArray.length-1);
+//		array = wArray;
+		Tree resultTree = treeBuild(array, 0, array.length-1);
 		Tree findParentNode = findParentTreeNode(resultTree, 37);
 		System.out.println("parentNode.val : "+findParentNode.val);
 //		System.out.println("target : "+target);

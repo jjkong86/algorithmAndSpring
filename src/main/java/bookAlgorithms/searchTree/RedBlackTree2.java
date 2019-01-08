@@ -1,7 +1,6 @@
 package bookAlgorithms.searchTree;
 
 public class RedBlackTree2 {
-	static Tree root;
 	static String black = "black";
 	static String red = "red";
 	static Tree nullNode = new Tree(0, black);
@@ -45,8 +44,9 @@ public class RedBlackTree2 {
 		} else {
 			tree = insertTreeNode(tree, value, depth);
 		}
+		Tree cholorChangeTree = tree;
 		System.out.println("================color 변경 시작====================");
-		tree = treeColorChange(tree, value);
+		tree = treeColorChange(cholorChangeTree, value);
 		
 		return tree;
 	}
@@ -57,10 +57,10 @@ public class RedBlackTree2 {
 		if (tree != null && tree.val != value) {
 			if (tree.val > value) {
 				System.out.println("smaller than "+tree.val);
-				insertTreeNode(tree.left, value, depth+1);
+				tree.left = insertTreeNode(tree.left, value, depth+1);
 			} else {
 				System.out.println("bigger than "+tree.val);
-				insertTreeNode(tree.right, value, depth+1);
+				tree.right = insertTreeNode(tree.right, value, depth+1);
 			}
 		} else if (tree == null){
 			System.out.println("insert value : "+value);
@@ -80,25 +80,25 @@ public class RedBlackTree2 {
 		}
 		if (parentNode.color.equals(red)) {
 			System.out.println("p : red");
-			Tree grandParentNode = findParentNode(tree, parentNode.val, 1);
+			Tree grandParentNode = findParentNode(tree, parentNode.val, 1); // p2 node
 			if (grandParentNode == null) return null;
 			if (grandParentNode.color.equals(red)) {
 				grandParentNode.color = grandParentNode.depth == 1 ? black : red;
 				grandParentNode.left.color = black;
 				grandParentNode.right.color = black;
 				System.out.println("color - "+grandParentNode.right.color + "::"+grandParentNode.left.color);
+				
+				//p2의 부모가 레드이면 색 바꾸기 재귀로 이용
+				Tree ancestorNode = findParentNode(tree, grandParentNode.val, 1);
+				if (ancestorNode == null) return null;
+				if (ancestorNode.color.equals(red)) {
+					treeColorChange(tree, ancestorNode.val);
+				}
 			}
 			
-			//p2의 부모가 레드이면 색 바꾸기 재귀로 이용
-			Tree ancestorNode = findParentNode(tree, grandParentNode.val, 1);
-			if (ancestorNode == null) return null;
-			if (ancestorNode.color.equals(red)) {
-				treeColorChange(tree, ancestorNode.val);
-			}
 		} else if (parentNode.color.equals(black)) {
 			System.out.println("p : black");
 		}
-
 		return tree;
 	}
 	
@@ -110,14 +110,6 @@ public class RedBlackTree2 {
 			System.out.println("tree value :" + tree.val + ", findval :"+findVal);
 		}
 		
-		if (tree.left != null) {
-			System.out.println("tree.left value : " + tree.left.val);
-			
-		}
-		if (tree.right != null) {
-			System.out.println("tree.right value : " + tree.right.val);
-			
-		} 
 		if (tree.left == null && tree.right == null) {
 			System.out.println("자식 없음 !");
 		}
@@ -141,12 +133,14 @@ public class RedBlackTree2 {
 	
 	public static void main(String[] args) {
 		int[] array = {38, 19, 82, 14, 36, 48, 94, 37, 52, 95};
+		Tree tree = null;
 		for (int i = 0; i < array.length; i++) {
-			redBlackTreeBuild(root, array[i]);
+			tree = redBlackTreeBuild(tree, array[i]);
 		}
 		System.out.println("====================================");
 		System.out.println("====================================");
-		printSetting(root);
+		printSetting(tree);
+		
 	}
 	
 	public static void printSetting(Tree tree) {
