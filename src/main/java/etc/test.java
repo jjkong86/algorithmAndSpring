@@ -1,6 +1,7 @@
 package etc;
 
 import java.io.IOException;
+import java.util.HashMap;
 public class test {
 
 	public static void main(String[] args) throws IOException {
@@ -10,8 +11,9 @@ public class test {
 		int val = 10;
 		change(n, val);
 		System.out.println(n.val);
+		
+		HashMap<String, Integer> map = new HashMap<>();
 	}
-	String a = "13";
 	
 	private static void change(Node n, int val) {
 		n.val = val;
