@@ -52,8 +52,8 @@ public class HashTable {
 	public static void main(String[] args) {
 		int[] arrays = {55, 13, 42, 70, 43, 44, 3, 94, 47, 72, 39, 86, 76, 40};
 		Node[] hashTable = buildHashTable(arrays);
-		int index = isExsitValueIndex(hashTable, 3);
-		System.out.println("find value index : "+index);
+		int index = isExsitValueIndex(hashTable, 12);
+		System.out.println("find value index : "+(index == -1 ? "찾는 숫자는 없음" : index));
 		printHash(hashTable);
 	}
 	
