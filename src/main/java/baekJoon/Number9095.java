@@ -6,12 +6,11 @@ import java.io.InputStreamReader;
 import java.util.StringJoiner;
 
 public class Number9095 {
-	private static int[] arrays;
-	public static void sumCountCase(int value) {
+	public static int[] sumCountCase(int value) {
 		// 정수 n을 1,2,3의 합으로 나타내는 방법의 수
 		// 1<= n < 11
 		// value : 0 -> 0, value : 1 -> 1, value = 2 -> 2, value = 3 -> 4, value = 4 -> 7
-		arrays = new int[(value + 1) < 4 ? 4 : (value +1)];
+		int[] arrays = new int[(value + 1) < 4 ? 4 : (value +1)];
 		arrays[0] = 0;
 		arrays[1] = 1;
 		arrays[2] = 2;
@@ -19,6 +18,7 @@ public class Number9095 {
 		for (int i = 4; i <= value; i++) {
 			arrays[i] = arrays[i - 1] + arrays[i - 2] + arrays[i - 3];
 		}
+		return arrays;
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -37,7 +37,7 @@ public class Number9095 {
 				maxNum = num;
 			}
 		}
-		sumCountCase(maxNum); //가장 큰수 까지 배열 채움
+		int[] arrays = sumCountCase(maxNum); //가장 큰수 까지 배열 채움
 		for (int i = 0; i < answer.length; i++) {
 			int index = answer[i];
 			if (index > 0) {
