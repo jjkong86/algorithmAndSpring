@@ -1,6 +1,7 @@
 package etc;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.HashMap;
 public class test {
 
@@ -13,6 +14,10 @@ public class test {
 		System.out.println(n.val);
 		
 		HashMap<String, Integer> map = new HashMap<>();
+		
+		BigInteger b = new BigInteger("10");
+		b = b.add(BigInteger.ONE);
+		System.out.println(b);
 	}
 	
 	private static void change(Node n, int val) {
