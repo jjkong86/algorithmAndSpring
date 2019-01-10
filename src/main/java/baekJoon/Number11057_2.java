@@ -4,27 +4,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Number11057 {
+public class Number11057_2 {
 	
 	public static int numberClimbs(int num) {
-		int[][] arrays = new int[num+1][10];
+		//dp[i] = sum(dp[i-1]) - sum(dp[i-2])
+		int[] arrays = new int[10];
+		int[] savedArrays = new int[10];
+		int initSum = 0;
 		for (int i = 0; i < 10; i++) {
-			arrays[1][i] = 1;
+			arrays[i] = 1;
+			initSum += 1;
 		}
-		
+		int sum = initSum;
 		for (int i = 2; i <= num; i++) {
 			for (int j = 0; j < 10; j++) {
-				int sum = 0;
-				for (int j2 = j; j2 < 10; j2++) {
-					sum = (sum + arrays[i-1][j2])%10007;
+				if (j == 0) {
+					savedArrays[j] = sum;
+					sum = 0;
+				} else {
+					savedArrays[j] = ((savedArrays[j-1]+10007) - arrays[j-1])%10007;
+					arrays[j-1] = savedArrays[j-1];
 				}
-				arrays[i][j] = sum;
+				sum = (sum + savedArrays[j])%10007;
 			}
-		}
-		
-		int sum=0;
-		for (int i = 0; i < 10; i++) {
-			sum = (sum + arrays[num][i])%10007;
 		}
 		return sum;
 	}

@@ -103,5 +103,6 @@ public class Number1991 {
 		sj.add(inorder(tree));
 		sj.add(postorder(tree));
 		System.out.println(sj);
+		br.close();
 	}
 }
