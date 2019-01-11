@@ -7,7 +7,8 @@ import java.util.StringJoiner;
 
 public class Number9465 {
 
-	public static int maxScore(String[] str, int cardNum) {
+	public static int maxScore(String[][] str, int cardNum) {
+		//최대값 위주로 때면 될까?
 		
 		
 		return 0;
@@ -18,11 +19,13 @@ public class Number9465 {
 		int len = Integer.parseInt(br.readLine());
 		StringJoiner sj = new StringJoiner("\n");
 		for (int i = 0; i < len; i++) {
-			String[] scoreBundle = new String[2];
 			int cardNum = Integer.parseInt(br.readLine());
+			String[][] scoreBundle = new String[2][cardNum];
 			for (int j = 0; j < scoreBundle.length; j++) {
-				scoreBundle[j] = br.readLine();
-				System.out.println(scoreBundle[j]);
+				String[] split = br.readLine().split(" ");
+				for (int k = 0; k < split.length; k++) {
+					scoreBundle[j][k] = split[k];
+				}
 			}
 			sj.add(String.valueOf(maxScore(scoreBundle, cardNum)));
 		}
