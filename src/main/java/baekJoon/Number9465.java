@@ -3,7 +3,10 @@ package baekJoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.StringJoiner;
+import java.util.stream.Stream;
 
 public class Number9465 {
 
@@ -26,6 +29,7 @@ public class Number9465 {
 				for (int k = 0; k < split.length; k++) {
 					scoreBundle[j][k] = split[k];
 				}
+				Optional<String> max = Stream.of(scoreBundle[j]).max(Comparator.comparing(Integer::valueOf));
 			}
 			sj.add(String.valueOf(maxScore(scoreBundle, cardNum)));
 		}
