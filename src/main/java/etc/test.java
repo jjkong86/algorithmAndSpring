@@ -18,6 +18,9 @@ public class test {
 		BigInteger b = new BigInteger("10");
 		b = b.add(BigInteger.ONE);
 		System.out.println(b);
+		
+		int[][] ss = new int[3][4];
+		System.out.println(ss.length);
 	}
 	
 	private static void change(Node n, int val) {

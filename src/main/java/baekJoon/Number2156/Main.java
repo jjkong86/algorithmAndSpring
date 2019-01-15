@@ -1,10 +1,10 @@
-package baekJoon;
+package baekJoon.Number2156;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Number2156 {
+public class Main {
 	
 	private static int maxAmount(int[] amount) {
 		//3잔 이상 연속은 안됨
@@ -25,6 +25,7 @@ public class Number2156 {
 		}
 		System.out.println(maxAmount(amount));
 		br.close();
+		
 	}
 
 }
