@@ -35,7 +35,6 @@ public class Main {
 		String[] input = br.readLine().split(" ");
 		int[] array = Stream.of(input).mapToInt(Integer::parseInt).toArray();
 		System.out.println(maxLen(array));
-		
 		br.close();
 	}
 }
