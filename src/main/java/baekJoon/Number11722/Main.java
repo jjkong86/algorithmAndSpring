@@ -1,32 +1,34 @@
-package baekJoon.Number11055;
+package baekJoon.Number11722;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
-	public static int maxSum(int[] array) {
+	
+	public static int decreaseMaxLen(int[] array) {
 		int len = array.length;
-		int[] sumArray = new int[len];
-		sumArray[0] = array[0];
+		int[] lenArray = new int[len];
+		Arrays.fill(lenArray, 1);
 		for (int i = 1; i < len; i++) {
-			sumArray[i] = array[i];
 			for (int j = 0; j < i; j++) {
-				if (array[i] > array[j] && sumArray[i] < sumArray[j]+array[i]) {
-					sumArray[i] = sumArray[j]+array[i];
+				if (array[i] < array[j] && lenArray[i] < lenArray[j]+1) {
+					lenArray[i] = lenArray[j] + 1;
 				}
 			}
 		}
-		return IntStream.of(sumArray).max().getAsInt();
+		return IntStream.of(lenArray).max().getAsInt();
 	}
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int len = Integer.parseInt(br.readLine());
 		String[] input = br.readLine().split(" ");
 		int[] array = Stream.of(input).mapToInt(Integer::parseInt).toArray();
-		System.out.println(maxSum(array));
+		System.out.println(decreaseMaxLen(array));
 		br.close();
 	}
 }
