@@ -8,6 +8,10 @@
 > - array[i] > array[j] && lenArray[j]+1 > lenArray[i]
 > ```
 
+## 예제 입력
+6  
+10 20 10 30 20 50
+
 ## Link
 https://www.acmicpc.net/problem/11053
 

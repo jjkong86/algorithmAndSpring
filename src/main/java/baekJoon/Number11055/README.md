@@ -8,6 +8,10 @@
 > - array[i] > array[j] && sumArray[i] < sumArray[j]+array[i]
 > ```
 
+## 예제 입력
+10  
+1 100 2 50 60 3 5 6 7 8
+
 ## Link
 https://www.acmicpc.net/problem/11055
 
