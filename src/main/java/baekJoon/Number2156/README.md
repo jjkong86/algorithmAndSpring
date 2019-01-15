@@ -11,7 +11,7 @@
 https://www.acmicpc.net/problem/2156
 
 ## MyAccount
-https://www.acmicpc.net/user/jjkong86"\n"
+https://www.acmicpc.net/user/jjkong86 \n
 https://leetcode.com/jjkong86/
 
 
