@@ -29,7 +29,7 @@ public class Main {
 		return max;
 	}
 	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] a) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int len = Integer.parseInt(br.readLine());
 		String[] input = br.readLine().split(" ");
