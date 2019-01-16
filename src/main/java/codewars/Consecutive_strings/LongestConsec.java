@@ -10,10 +10,10 @@ public class LongestConsec {
 		String maxString = "";
 		outerloop: for (int i = 0; i < strarr.length; i++) {
 			StringBuilder sb = new StringBuilder();
+			if (i + k > strarr.length) {
+				break outerloop;
+			}
 			for (int j = 0; j < k; j++) {
-				if (i + j > strarr.length-1) {
-					break outerloop;
-				}
 				sb.append(strarr[i + j]);
 			}
 			if (sb.length() > maxString.length()) {
