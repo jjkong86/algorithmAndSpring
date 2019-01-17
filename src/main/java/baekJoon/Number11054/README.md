@@ -1,19 +1,13 @@
 ## 문제풀이
- 1. 숫자 감소가 연속적이지 않아도 됨
- 2. 새로운 배열을 생성하고 index가 증가함에 따라 최대 길이를 채워나감
-
-> ```
-> 입력된 숫자의 배열 array, lenth저장용 lenArray
-> - 조건 : 이중 포문에서 i와 j가 잇다고 가정
-> - array[i] < array[j] && sumArray[i] < sumArray[j]+array[i]
-> ```
+ 1. 바이토닉 수열 : 수열 S가 어떤 수 Sk를 기준으로 S[1] < S[2] < ... S[k-1] < S[k] > S[k+1] > ... S[N-1] > S[N]을 만족는 수열
+![Alt text](/path/to/img.jpg)
 
 ## 예제 입력
-6  
-10 30 10 20 20 10
+10
+1 5 2 1 4 3 4 5 2 1
 
 ## Link
-https://www.acmicpc.net/problem/11722
+https://www.acmicpc.net/problem/11054
 
 ## MyAccount
 
