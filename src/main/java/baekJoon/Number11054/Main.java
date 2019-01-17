@@ -46,7 +46,8 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int len = Integer.parseInt(br.readLine());
 		String[] input = br.readLine().split(" ");
-		int[] array = Stream.of(input).mapToInt(Integer::parseInt).toArray();
+//		int[] array = Stream.of(input).mapToInt(Integer::parseInt).toArray();
+		int[] array = Stream.of(input).mapToInt(i -> Integer.parseInt(i)).toArray();
 		System.out.println(vitonicSequence(array));
 		br.close();
 	}
