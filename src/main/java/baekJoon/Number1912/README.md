@@ -4,11 +4,11 @@
  3. 하나씩 더해서 1보다 크면 계속 더해감, 0보다 작으면 dp에 들어온 숫자를 넣어준다.
  
 > ```
-if (dp[i - 1] > 0 ) {
-	dp[i] = dp[i - 1] + array[i];
-} else {
-	dp[i] = array[i];
-}
+> if (dp[i - 1] > 0 ) {
+> 	dp[i] = dp[i - 1] + array[i];
+> } else {
+> 	dp[i] = array[i];
+> }
 > ```
 
 ## 예제 입력
