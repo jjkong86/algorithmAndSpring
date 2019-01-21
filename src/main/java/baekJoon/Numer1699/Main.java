@@ -4,20 +4,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class Main {
     public static int sumOfSquare(int num) {
+    	//제곱수의 합
+    	//제곱수 항의 최소 개수
         int[] dp = new int[num+1];
         dp[0] = 0;
         dp[1] = 1;
-        dp[2] = 2;
-        dp[3] = 3;
-        dp[4] = 1;
-        int index = 1;
-        while (true) {
+        
+        for (int i = 2; i <= num; i++) {
+        	dp[i] = dp[i-1]+1;
+			int square = findSquare(i);
+			for (int j = 2; j <= square; j++) {
+				dp[i] = Math.min(dp[i], dp[i-j*j]+1);
+			}
+		}
+        return dp[num];
+    }
+    
+    public static int findSquare(int num) {
+    	int index = 1;
+    	while (true) {
         	int temp = (int) Math.pow(index, 2);
         	if (temp > num) {
         		index --;
@@ -26,14 +33,9 @@ public class Main {
 				index++;
 			}
 		}
-        
-        for (int i = 2; i < num; i++) {
-			int temp = num - (index*index);
-			dp[i] = dp[temp] +1;
-		}
-        
-        return dp[num];
+    	return index;
     }
+    
 	public static void main(String[] a) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int input = Integer.parseInt(br.readLine());
@@ -41,4 +43,3 @@ public class Main {
 		br.close();
 	}
 }
-
