@@ -5,22 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 public class test {
 
-	public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int input = Integer.parseInt(br.readLine());
-        StringBuilder sb = new StringBuilder();
-        StringBuilder space = new StringBuilder();
-        for (int i = 0; i < input; i++) {
-			space.append(" ");
-		}
-        for (int i=1; i<=input; i++) {
-            space.setCharAt(input - i, '*');
-            sb.append(space + "\n");
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = br.readLine();
+        if (input.charAt(0) == ' ') {
+        	input = input.substring(1);
         }
-        System.out.println(sb);
-        System.out.println(Integer.MAX_VALUE);
-        br.close();
-		
+        if (input.charAt(input.length()-1) == ' ') {
+        	input = input.substring(0, input.length()-1);
+        }
+        
+        System.out.println(input);
+        
+		br.close();
 	}
 	
 	private static void change(Node n, int val) {

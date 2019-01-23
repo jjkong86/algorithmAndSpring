@@ -33,7 +33,7 @@ public class Main {
 		return height;
 	}
 	
-	public static void main(String[] a) throws NumberFormatException, IOException {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int[] input = Stream.of(br.readLine().split(" ")).mapToInt(i -> Integer.parseInt(i)).toArray();
 		int[] intArray = Stream.of(br.readLine().split(" ")).mapToInt(i -> Integer.parseInt(i)).toArray();
