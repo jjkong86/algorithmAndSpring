@@ -3,6 +3,8 @@ package baekJoon.Number4344;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public class Main {
@@ -12,14 +14,8 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<len; i++) {
             String input = br.readLine();
-            String ret = String.valueOf(avgRatio(input));
-            String[] split = ret.split(".");
-            if (split[1].length() != 4) {
-				for (int j = split[1].length()-1; j < 4; j++) {
-					
-				}
-			}
-            sb.append(avgRatio(input)+"\n");
+            NumberFormat formatter = new DecimalFormat("#0.000");  
+            sb.append(formatter.format(avgRatio(input))+"%"+"\n");
         }
         System.out.println(sb);
         br.close();
@@ -43,7 +39,6 @@ public class Main {
 				break;
 			}
 		}
-        
         double ratio = Math.round((count/num) * 100 * 1000);
         return ratio / 1000;
     }
