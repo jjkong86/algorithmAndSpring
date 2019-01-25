@@ -1,20 +1,19 @@
 ## 문제풀이
- 1. 최대공약수 -> 두 정수의 약수 중 최대값, f(a, b) -> f(b, a%b)
- 2. 최소공배수 -> 두 정수가 공통적으로 가지는 배수 중 가장 작은 값, a ,b -> a * b/최대공약수
+ 1. 진법 변환 2
+ 2. 진법에서 나머지가 10 이상이면 char 타입으로 변환 해줘야함
  
  
 > ```
->  f(a, b) -> f(b, a%b)
->  (num1 * num2) / minMax
+>  sb.append((char)(remainder - 10 + 'A'));
 > ```
 
 ## 예제 입력
 > ```
-24 18
+> 60466175 36
 > ```
 
 ## Link
-https://www.acmicpc.net/problem/2609
+https://www.acmicpc.net/problem/11005
 
 ## MyAccount
 
