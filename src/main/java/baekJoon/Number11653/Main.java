@@ -7,6 +7,12 @@ import java.io.InputStreamReader;
 public class Main {
 
 	public static String factorizationPrimeFactor(String str) {
+		try {
+			
+			System.out.println(str.charAt(100));
+		} catch (Exception e) {
+			System.out.println("안됨");
+		}
 		return "";
 	}
     
