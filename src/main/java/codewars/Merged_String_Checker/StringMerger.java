@@ -3,6 +3,8 @@ package codewars.Merged_String_Checker;
 public class StringMerger {
 
     public static boolean isMerge(String s, String part1, String part2) {
+    	
+    	if (s  == null) return false;
       int len = s.length();
       int part1Index = 0;
       int part2Index = 0;
