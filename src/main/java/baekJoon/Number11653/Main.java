@@ -7,13 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
 
 	public static String factorizationPrimeFactor(String str) {
-		try {
+		int num = Integer.parseInt(str);
+		StringBuilder sb = new StringBuilder();
+		
+		while (num != 0) {
 			
-			System.out.println(str.charAt(100));
-		} catch (Exception e) {
-			System.out.println("안됨");
 		}
-		return "";
+		
+		return sb.toString();
 	}
     
 	public static void main(String[] args) throws NumberFormatException, IOException {

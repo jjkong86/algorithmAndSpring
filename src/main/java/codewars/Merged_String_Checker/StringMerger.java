@@ -11,15 +11,21 @@ public class StringMerger {
 		int part1Index = 0;
 		int part2Index = 0;
 		int sucessFlag = 0;
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < len; i++) {
 			char c = s.charAt(i);
-			if (part1.length() > part1Index && c == part1.charAt(part1Index)) {
+			if (c == ' ' && part1.charAt(part1Index) == ' ' && part2.charAt(part2Index) == ' ') {
+				part1Index++;
+				part2Index++;
+			}else if (part1.length() > part1Index && c == part1.charAt(part1Index)) {
 				part1Index++;
 			} else if (part2.length() > part2Index && c == part2.charAt(part2Index)) {
 				part2Index++;
 			} else {
 				return false;
 			}
+			sb.append(c);
+			System.out.println(sb);
 			sucessFlag++;
 		}
 		System.out.println(sucessFlag + "::" + len);
