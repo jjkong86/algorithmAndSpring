@@ -9,8 +9,8 @@ public class test {
 
 	public static void main(String[] args) throws NumberFormatException, IOException, ParseException {
 		String test = null;
-		String test1 = "";
-		System.out.println(test.length() + "::"+test1.length());
+		String test1 = "123456";
+		System.out.println(test1.substring(2));
 		
 
 	}

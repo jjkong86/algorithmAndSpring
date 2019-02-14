@@ -32,7 +32,7 @@ public class Main {
 				}
 			}
 		}
-		
+		System.out.println(Number2Count +":::"+Number5Count);
 		return Math.min(Number2Count, Number5Count);
 	}
     
