@@ -11,8 +11,17 @@ public class Main {
         // nPr = n! / (n-r)! -> ex) 5P3 = 5! / 2!
         // nCr = nPr / r! = n! / (n-r)! * r! -> 5C3 = 5P3 / 3! = 5! / 2! * 3!
         // 0의 개수 -> Math.min(number2Count, number5Count) /  Math.max(number2Count, number5Count)
-        
-        return 0;
+		// 2의 배수, 5의 배수를 각각 구하면??
+    	
+        return Math.min(calculate(a, 2) - (calculate(b, 2) + calculate(a-b, 2)), calculate(a, 5) - (calculate(b, 5) + calculate(a-b, 5)));
+    }
+    
+    public static int calculate(int num, int type) {
+    	int ret = 0;
+    	for (long i = type; i <= num; i*=type) {
+    		ret += num/i;
+		}
+    	return ret;
     }
     
     public static void main(String[] args) throws IOException, NumberFormatException{
