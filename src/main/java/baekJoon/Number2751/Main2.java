@@ -1,10 +1,10 @@
-package baekJoon;
+package baekJoon.Number2751;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Number2751 {
+public class Main2 {
 	public static void main(String[] args) {
 		int len;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
