@@ -8,9 +8,15 @@ import java.util.Locale;
 public class test {
 
 	public static void main(String[] args) throws NumberFormatException, IOException, ParseException {
-		String test = null;
-		String test1 = "123456";
-		System.out.println(test1.substring(2));
+		
+		int[][] array = new int[5][2];
+		array[1][0] = 1;
+		array[1][1] = 2;
+		array[2][0] = 3;
+		array[2][1] = 4;
+		
+		System.out.println(array[1]);
+		
 		
 
 	}
