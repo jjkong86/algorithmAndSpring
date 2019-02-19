@@ -8,7 +8,7 @@ class Main {
     
     public static String print(int[][] array) {
         //좌표정렬 -> x먼저 오름차순으로 정렬하고, x가 같을때 y를 다시 오름차순으로 정렬
-        coordinateSort(array, 0, array[0].length-1);
+        coordinateSort(array, 0, array.length-1);
         StringBuilder sb = new StringBuilder();
         return "";
     }

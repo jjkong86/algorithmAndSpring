@@ -18,7 +18,7 @@ public class Main2 {
 		int middle = array[(left + right) / 2];
 		while (left < right) {
 			
-			while (array[left] < middle && left < right)	{
+			while (array[left] < middle && left < right) {
 				left++;
 			}
 			while (array[right] > middle && left < right) {

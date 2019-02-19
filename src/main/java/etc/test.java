@@ -17,7 +17,7 @@ public class test {
 		
 		System.out.println(array[1]);
 		
-		
+		System.out.println((double)13424/100000);
 
 	}
 	
