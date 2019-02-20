@@ -15,13 +15,14 @@ public class Main2 {
 	
 	public static int partition(int array[], int left, int right) {
 		//기준이 되는 수를 정하여 왼쪽보다 크면 left++, 기준이 되는 수의 오른쪽이 기준수보다 크면 right--
-		int middle = array[(left + right) / 2];
+		int middleIndex = (left + right) / 2;
+		int middle = array[middleIndex];
 		while (left < right) {
 			
-			while (array[left] < middle && left < right) {
+			while (array[left] <= middle && left < right && middleIndex >= left) {
 				left++;
 			}
-			while (array[right] > middle && left < right) {
+			while (array[right] >= middle && left < right && middleIndex <= right) {
 				right--;
 			}
 			

@@ -3,6 +3,7 @@ package baekJoon.Number11650;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collections;
 
 class Main {
     
@@ -25,8 +26,8 @@ class Main {
         //퀵 정렬로 하고, x의 좌표가 같을 때 로직 추가해야할듯
         while (right > left) {
             int middleValue = array[(left + right)/2][0];
-            while (array[left][0] > middleValue && right > left) left++;
-            while (array[right][0] < middleValue && right > left) right--;
+            while (array[left][0] >= middleValue && right > left) left++;
+            while (array[right][0] <= middleValue && right > left) right--;
             
             if (right > left) {
                 int tempX = array[left][0];
@@ -41,16 +42,17 @@ class Main {
     }
     
     public static void main(String[] args) throws IOException, NumberFormatException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int number = Integer.parseInt(br.readLine());
-        int[][] array = new int[5][2];
-        
-        for (int i=0; i<number; i++) {
-            String[] split = br.readLine().split(" ");
-            array[i][0] = Integer.parseInt(split[0]);
-            array[i][1] = Integer.parseInt(split[1]);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+	        int number = Integer.parseInt(br.readLine());
+	        int[][] array = new int[5][2];
+	        
+	        for (int i=0; i<number; i++) {
+	            String[] split = br.readLine().split(" ");
+	            array[i][0] = Integer.parseInt(split[0]);
+	            array[i][1] = Integer.parseInt(split[1]);
+	        }
+	        System.out.println(print(array));
+//        br.close();
         }
-        System.out.println(print(array));
-        br.close();
     }
 }
