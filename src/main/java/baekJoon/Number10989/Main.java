@@ -4,27 +4,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class Main {
 	
-    static int[] array;
-    
-    public static void sort(int[] array) {
-    	IntStream.of(array).sorted().forEach(System.out::println);
+    public static StringBuilder sort(int[] array, int number) {
+    	Arrays.sort(array);
+    	StringBuilder sb = new StringBuilder();
+    	for (int i=0; i<number; i++) {
+    		sb.append(array[i]).append("\n");
+    	}
+    	return sb;
     }
-    public static void main(String[] args) throws IOException, NumberFormatException{
+    public static void main(String[] args) throws IOException, NumberFormatException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
             int number = Integer.parseInt(br.readLine());
-            array = new int[number];
-            IntStream.range(0, number).forEach(i -> {
-				try {
-					array[i] = Integer.parseInt(br.readLine());
-				} catch (NumberFormatException | IOException e) {
-					e.printStackTrace();
-				}
-			});
-            sort(array);
+            int[] array = new int[number];
+            for (int i = 0; i < number; i++) {
+				array[i] = Integer.parseInt(br.readLine());
+			}
+            System.out.println(sort(array, number));
         }
     }
 }

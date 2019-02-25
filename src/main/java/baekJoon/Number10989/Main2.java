@@ -20,7 +20,7 @@ public class Main2 {
 	public static int partition(int[] array, int left, int right) {
 		int middle = array[left+right/2];
 		while (right > left) {
-			while (array[left] > middle && right > left) left++;
+			while (array[left] < middle && right > left) left++;
 			while (array[right] > middle && right > left) right--;
 			
 			while (right > left) {

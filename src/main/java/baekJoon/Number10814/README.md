@@ -22,10 +22,10 @@
 > ```
 
 ## 예제 입력
-3
-21 Junkyu
-21 Dohyun
-20 Sunyoung
+3  
+21 Junkyu  
+21 Dohyun  
+20 Sunyoung  
 
 ## Link
 https://www.acmicpc.net/problem/10814
