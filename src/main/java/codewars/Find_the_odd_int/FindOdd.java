@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class FindOdd {
 	public static int findIt(int[] array) {
@@ -14,6 +13,6 @@ public class FindOdd {
 		Map<Integer, Integer> hMap = new HashMap<>();
 		IntStream.of(array).forEach(i -> hMap.put(i, !hMap.containsKey(i) ? 1 : hMap.get(i) + 1));
 		List<Integer> list = new ArrayList<>(hMap.keySet());
-		return (int) list.stream().filter(i -> hMap.get(i) % 2 != 0).toArray()[0];
+		return list.stream().filter(i -> hMap.get(i) % 2 != 0).findFirst().get();
 	}
 }
