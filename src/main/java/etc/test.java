@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import junit.framework.TestListener;
+import com.mysql.jdbc.StringUtils;
 public class test {
 
 	public static void main(String[] args) throws NumberFormatException, IOException, ParseException {
@@ -25,6 +27,16 @@ public class test {
 		String[] str = "0.13424".split("\\.");
 		
 		System.out.println(str);
+		
+		Map<String, String> map1 = new HashMap<>();
+		map1.put("aa", "aa");
+		
+		if (StringUtils.isNullOrEmpty(map1.get("bb"))) {
+			System.out.println("없음!");
+		}
+			
+		String test1 = "1234567";
+		System.out.println(test1.substring(2));
 		
 		
 	}
