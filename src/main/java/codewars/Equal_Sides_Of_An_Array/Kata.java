@@ -1,8 +1,7 @@
 package codewars.Equal_Sides_Of_An_Array;
 
-import java.util.stream.*;
-import java.util.concurrent.atomic.LongAdder;
-import java.util.*;
+import java.util.StringJoiner;
+import java.util.stream.IntStream;
 
 public class Kata {
 	public static int findEvenIndex(int[] arr) {
@@ -12,21 +11,24 @@ public class Kata {
 		// 일단 o(n2) 복잡도로 풀고 생각
 		print(arr);
 		int len = arr.length;
-		for (int i = 0; i < len; i++) {
-			LongAdder leftSum = new LongAdder();
-			LongAdder rightSum = new LongAdder();
-			IntStream.range(0, i).forEach(leftSum::add);
-			IntStream.range(i, len).forEach(rightSum::add);
+		int leftSum = 0;
+		int rightSum = IntStream.of(arr).sum() - arr[0];
 
-			if (leftSum == rightSum)
+		for (int i = 1; i < len; i++) {
+			leftSum += arr[i - 1];
+			rightSum -= arr[i];
+
+			if (leftSum == rightSum) {
 				return i;
+			}
 		}
+
 		return -1;
 	}
 
 	public static void print(int[] arr) {
 		StringJoiner sj = new StringJoiner(", ");
-		IntStream.range(0, 5).forEach(i -> sj.add(String.valueOf(arr[i])));
+		IntStream.range(0, arr.length).forEach(i -> sj.add(String.valueOf(arr[i])));
 		System.out.println(sj);
 	}
 }
