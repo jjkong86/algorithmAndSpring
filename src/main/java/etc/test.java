@@ -29,6 +29,11 @@ public class test {
 		System.out.println(a);
 		StringJoiner sj = new StringJoiner(", ");
 		IntStream.range(0, 5).forEach(i -> sj.add(String.valueOf(array[i])));
+		
+		String[] arr = new String[]{"a", "b", "c"};
+		StringJoiner sj2 = new StringJoiner(", ");
+		IntStream.range(0, arr.length).forEach(i -> sj2.add(arr[i]));
+		System.out.println(sj2);
 	}
 	
 	@Override
