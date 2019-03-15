@@ -58,6 +58,13 @@ public class test {
 		System.out.println(linkedList.getFirst());
 		
 		Arrays.sort(arr);
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("abcvd");
+		sb.delete(0, 1);
+		System.out.println(sb);
+		
+		
 	}
 
 	@Override
