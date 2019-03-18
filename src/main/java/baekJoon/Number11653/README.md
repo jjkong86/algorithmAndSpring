@@ -7,12 +7,10 @@
 > ```
 
 ## 예제 입력
-> ```
 > 8
 > 20
 > 42
 > 0
-> ```
 
 ## Link
 https://www.acmicpc.net/problem/6588

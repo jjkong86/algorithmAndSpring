@@ -12,9 +12,7 @@
 > ```
 
 ## 예제 입력
-> ```
 > 11001100
-> ```
 
 ## Link
 https://www.acmicpc.net/problem/1373
@@ -22,4 +20,5 @@ https://www.acmicpc.net/problem/1373
 ## MyAccount
 
 > backjoon : <https://www.acmicpc.net/user/jjkong86>  
-> leetCode : <https://leetcode.com/jjkong86/>
+> leetCode : <https://leetcode.com/jjkong86/>  
+> codewars : https://www.codewars.com/users/jeongjeagong/stats

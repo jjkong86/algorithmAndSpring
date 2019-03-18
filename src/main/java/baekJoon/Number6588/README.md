@@ -7,12 +7,10 @@
 > ```
 
 ## 예제 입력
-> ```
 > 8
 > 20
 > 42
 > 0
-> ```
 
 ## Link
 https://www.acmicpc.net/problem/6588
@@ -20,4 +18,5 @@ https://www.acmicpc.net/problem/6588
 ## MyAccount
 
 > backjoon : <https://www.acmicpc.net/user/jjkong86>  
-> leetCode : <https://leetcode.com/jjkong86/>
+> leetCode : <https://leetcode.com/jjkong86/>  
+> codewars : https://www.codewars.com/users/jeongjeagong/stats

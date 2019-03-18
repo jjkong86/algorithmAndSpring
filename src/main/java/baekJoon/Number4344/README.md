@@ -11,14 +11,12 @@
 > ```
 
 ## 예제 입력
-> ```
 5
 5 50 50 70 80 100
 7 100 95 90 80 70 60 50
 3 70 90 80
 3 70 90 81
 9 100 99 98 97 96 95 94 93 91
-> ```
 
 ## Link
 https://www.acmicpc.net/problem/4344
@@ -26,4 +24,5 @@ https://www.acmicpc.net/problem/4344
 ## MyAccount
 
 > backjoon : <https://www.acmicpc.net/user/jjkong86>  
-> leetCode : <https://leetcode.com/jjkong86/>
+> leetCode : <https://leetcode.com/jjkong86/>  
+> codewars : https://www.codewars.com/users/jeongjeagong/stats

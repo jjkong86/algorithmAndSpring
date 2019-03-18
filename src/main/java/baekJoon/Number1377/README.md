@@ -14,14 +14,12 @@
 > ```
 
 ## 예제 입력
-> ```
 5  
 10  
 1  
 5  
 2  
 3  
-> ```
 
 ## Link
 https://www.acmicpc.net/problem/1377
