@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class Main2 {
@@ -42,8 +43,11 @@ public class Main2 {
 
 		@Override
 		public int compareTo(Person person) {
-			if(this.age == person.age) return this.index - person.index;
-			else return this.age - person.age;
+			int result = Integer.compare(this.age, person.age);
+			if (result == 0) Integer.compare(this.index, person.index);
+			return result;
+//			if(this.age == person.age) return this.index - person.index;
+//			else return this.age - person.age;
 		}
 	}
 }

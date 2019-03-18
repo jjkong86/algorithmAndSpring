@@ -57,7 +57,12 @@ public class User {
 
 	public int rankFormula(int incProgress) throws Exception {
 		if (incProgress < -8 || incProgress > 8 || incProgress == 0) throw new Exception("incProgress는 8보다 작거나 -8보다 커야하고 0이 아니어야함");
-		int d = incProgress - this.rank;
+		int d = 0;
+	    if (this.rank < 0 && incProgress > 0) {
+	      d = incProgress - this.rank - 1;
+	    } else {
+	      d = incProgress - this.rank;
+	    }
 		return d <= 0 ? (d <= -2 ? 0 : d * 2 + 3) : 10 * d * d;
 	}
 

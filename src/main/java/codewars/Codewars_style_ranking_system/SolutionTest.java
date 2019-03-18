@@ -7,7 +7,7 @@ import org.junit.Test;
 // TODO: Replace examples and use TDD development by writing your own tests
 
 public class SolutionTest {
-    @Test(expected=Exception.class)
+    @Test
     public void testSomething() {
     	User user = new User.Builder(-8).build();
     	assertEquals(-8, user.rank);
@@ -18,17 +18,17 @@ public class SolutionTest {
         user.incProgress(-6);
         assertEquals(53, user.progress);
         user.incProgress(-5);
-        try {
-        	user.incProgress(-9);
-		} catch (Exception e) {
-			assertEquals(Exception.class, e.getClass());
-		}
     }
     
     @Test
     public void testSomething2() {
     	User user = new User.Builder(-8).build();
-    	user.incProgress(-9);
+    	try {
+    		user.incProgress(-9);	
+		} catch (Exception e) {
+			assertEquals(Exception.class, e.getClass());
+		}
+    	
     }
 }
 
