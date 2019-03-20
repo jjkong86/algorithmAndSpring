@@ -16,7 +16,7 @@ public class Main {
 		});
 		return print(intArray, strArray);
 	}
-
+	
 	public static String print(int[][] intArray, String[][] strArray) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < intArray.length; i++) {
