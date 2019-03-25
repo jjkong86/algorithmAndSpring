@@ -1,4 +1,4 @@
-package baekJoon.Numer1699;
+package baekJoon.Number1699;
 
 import java.io.BufferedReader;
 import java.io.IOException;
