@@ -3,7 +3,6 @@
  2. 가중치는 각 자리들의 숫자를 더한값
  3. 가중치가 같다면 앞자리 부터 작은 수
  
-> ```
 		@Override
 		public int compareTo(Weight w) {
 			if (this.weight != w.weight) return Integer.compare(this.weight, w.weight);
@@ -21,7 +20,6 @@
 			}
 			return Integer.compare(thisLen, wLen);
 		}
-> ```
 
 ## Link
 https://www.codewars.com/kata/55c6126177c9441a570000cc
