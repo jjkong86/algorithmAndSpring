@@ -57,6 +57,7 @@ public class Test3 {
 			String result = df.format(big.doubleValue());
 			System.out.println(result);
 		}
+		System.out.println(df.format(big.divide(BigDecimal.TEN.pow(16))));
 		
 		
 	

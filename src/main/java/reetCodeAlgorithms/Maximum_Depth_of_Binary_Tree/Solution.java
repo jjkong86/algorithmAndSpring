@@ -1,5 +1,9 @@
 package reetCodeAlgorithms.Maximum_Depth_of_Binary_Tree;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 class Solution {
 	public int maxDepth(TreeNode root) {
 		if (root == null) {
@@ -21,6 +25,20 @@ class Solution {
 
 		TreeNode(int x) {
 			val = x;
+		}
+	}
+	
+	public static void main(String[] args) {
+		char[] c = new char[]{'h','e','l','l','o'};
+		int end = c.length-1;
+		List<Integer> list = new ArrayList<>();
+		Collections.reverse(list);
+		for (int i = 0; i < c.length; i++) {
+			if (i < end) {
+				char temp = c[end];
+				c[end--] = c[i];
+				c[i] = temp;
+			}
 		}
 	}
 }
