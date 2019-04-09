@@ -1,6 +1,8 @@
 package codewars.Double_Cola;
 
-import java.util.PriorityQueue;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.stream.IntStream;
 
 public class Line {
@@ -8,8 +10,8 @@ public class Line {
 		// Your code is here...
 		// 선입선출로 줄을 서고 있음(1,2,3,4,5) -> pop -> 2,3,4,5,1,1 - > pop -> 3,4,5,1,1,2,2
 		// 1 <= n <= 10000000000
-		PriorityQueue<String> que = new PriorityQueue<>();
-		IntStream.range(0, names.length).forEach(i -> que.add(names[i]));
+		Deque<String> que = new ArrayDeque<>();
+		que.addAll(Arrays.asList(names));
 		String ret = "";
 		while (n > 0) {
 			String str = que.poll();
