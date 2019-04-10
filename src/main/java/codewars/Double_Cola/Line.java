@@ -5,21 +5,16 @@ public class Line {
 		// Your code is here...
 		// 선입선출로 줄을 서고 있음(1,2,3,4,5) -> pop -> 2,3,4,5,1,1 - > pop -> 3,4,5,1,1,2,2
 		// 1 <= n <= 10000000000
-		String ret = "";
 		int index = 0;
 		int len = names.length;
 		int findIndex = 1;
 		int prevIndex = index;
 		while (index < n) {
 			prevIndex = index;
-			index += len*findIndex + findIndex;
+			index += len*findIndex;
 			findIndex *= 2;
 		}
 		findIndex /= 2;
-		while (prevIndex != n) {
-			prevIndex++;
-		}
-		
-		return ret;
+		return names[((n-prevIndex)/findIndex)-1];
 	}
 }
