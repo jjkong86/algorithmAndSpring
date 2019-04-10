@@ -15,6 +15,6 @@ public class Line {
 			findIndex *= 2;
 		}
 		findIndex /= 2;
-		return names[((n-prevIndex)/findIndex)-1];
+		return names[((n-prevIndex -1)/findIndex)];
 	}
 }

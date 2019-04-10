@@ -15,14 +15,7 @@ public class ListTests {
 	@Test
 	public void test2() {
 		String[] names = new String[] { "Sheldon", "Leonard", "Penny", "Rajesh", "Howard" };
-		int n = 20;
+		int n = 6;
 		assertEquals("Sheldon", new Line().WhoIsNext(names, n));
 	}
-	
-//	@Test
-//	public void test3() {
-//		String[] names = new String[] { "Sheldon", "Leonard", "Penny", "Rajesh", "Howard" };
-//		int n = Integer.MAX_VALUE;
-//		assertEquals("Sheldon", new Line().WhoIsNext(names, n));
-//	}
 }
