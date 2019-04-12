@@ -23,6 +23,14 @@ public class test4 {
 		BigDecimal cal = gasAmount.multiply(gasPrice).divide(BigDecimal.TEN.pow(9));
 		System.out.println(new BigDecimal("0.4921562").subtract(cal));
 		
-		
+		for (int i = 1; i < 100; i++) {
+			int index = 0;
+			int chkInt = 0;
+			while (chkInt <= i) {
+				chkInt = (int)Math.pow(2, ++index);
+			}
+			System.out.println(i+"::"+index);
+			
+		}
 	}
 }
