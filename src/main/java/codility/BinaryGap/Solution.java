@@ -2,7 +2,7 @@ package codility.BinaryGap;
 
 // https://app.codility.com/c/run/trainingXC3EAS-BVH/
 class Solution {
-	public int solution(int N) {
+	public static int solution(int N) {
 		// write your code in Java SE 8
 		// 2진수로 변환 후 1과 1사이 간격이 가장 큰 수를 반환, 1이 하나 이하이면 0을 반환
 		int index = 0;
@@ -14,7 +14,6 @@ class Solution {
 		int[] array = new int[index];
 		index --;
 		int max = 0;
-		int tempMax = 0;
 		while (N > 0) {
 			int remainder = N % 2;
 			array[index--] = remainder;
