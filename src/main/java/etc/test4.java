@@ -18,5 +18,11 @@ public class test4 {
 		List<String> list = new ArrayList<>();
 		Map<String, String> map = new HashMap<>();
 		
+		BigDecimal gasAmount = new BigDecimal("21000");
+		BigDecimal gasPrice = new BigDecimal("30");
+		BigDecimal cal = gasAmount.multiply(gasPrice).divide(BigDecimal.TEN.pow(9));
+		System.out.println(new BigDecimal("0.4921562").subtract(cal));
+		
+		
 	}
 }

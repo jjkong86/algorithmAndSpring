@@ -2,8 +2,8 @@ package bookAlgorithms.dynamicPrograming;
 
 public class Fibonazzi {
 	// 1, 1, 2, 3, 5, 8, 13
-	static int[] cache;
-	public static int fibonazzi(int[] cache, int number) {
+	static long[] cache;
+	public static long fibonazzi(long[] cache, int number) {
 		if (number == 1 || number == 2) {
 			cache[number] = 1;
 			return cache[number];
@@ -16,7 +16,7 @@ public class Fibonazzi {
 	
 	public static void main(String[] args) {
 		int number = 1000;
-		cache = new int[number+1];
+		cache = new long[number+1];
 		for (int i = 3; i < 1000; i++) {
 			System.out.println("index : "+i+", result : "+fibonazzi(cache, i));
 		}
