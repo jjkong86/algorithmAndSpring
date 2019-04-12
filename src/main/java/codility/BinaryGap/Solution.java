@@ -1,4 +1,4 @@
-package codility.task01;
+package codility.BinaryGap;
 
 // https://app.codility.com/c/run/trainingXC3EAS-BVH/
 class Solution {
