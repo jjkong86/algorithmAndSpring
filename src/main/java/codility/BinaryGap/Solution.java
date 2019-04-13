@@ -1,6 +1,7 @@
 package codility.BinaryGap;
 
 // https://app.codility.com/c/run/trainingXC3EAS-BVH/
+
 class Solution {
 	public static int solution(int N) {
 		// write your code in Java SE 8
@@ -10,31 +11,24 @@ class Solution {
 		while (chkInt <= N) {
 		    chkInt = (int)Math.pow(2, ++index);
 		}
-		
 		int[] array = new int[index];
-		index --;
+	    int saveIndex = 0;
+	    int count = 0;
 		int max = 0;
 		while (N > 0) {
 			int remainder = N % 2;
-			array[index--] = remainder;
 			N /= 2;
-		}
-
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] == 1) {
-				int count = 0;
-				for (int j = i + 1; j < array.length; j++) {
-					if (array[j] == 1) {
-						if (count > max) {
-							max = count;
-						}
-						break;
-					}
-					count++;
-				}
-
+			if (remainder == 1) {
+			    array[saveIndex++] = count;
 			}
-
+			count ++;
+		}
+		
+		for (int i=1; i < saveIndex; i++) {
+		    int temp = array[i] - array[i-1] -1;
+		    if (temp > max) {
+		        max = temp;
+		    }
 		}
      return max;
 	}
