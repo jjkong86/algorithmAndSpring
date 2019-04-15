@@ -11,5 +11,7 @@ public class test {
 		assertEquals(5, Solution.solution(1041));
 		assertEquals(0, Solution.solution(15));
 		assertEquals(0, Solution.solution(32));
+		assertEquals(2, Solution.solution(328));
+		assertEquals(2, Solution.solution(51712));
 	}
 }
