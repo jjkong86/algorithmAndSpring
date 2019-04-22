@@ -1,5 +1,6 @@
 package etc;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
@@ -13,6 +14,8 @@ public class Test5 {
 		int[] array = new int[5];
 		
 		Arrays.fill(array, 5);
+		
+		System.out.println(new BigInteger("0x5208".replaceAll("0x", ""), 16));
 		
 	}
 	
