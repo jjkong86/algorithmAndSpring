@@ -14,33 +14,24 @@ class Solution {
 		int addMax = 0;
 		boolean maxChangeFlag = false;
 		
-		for (int i = 0; i < len; i++) {
-			int temp = A[i] - 1;
-			if (temp >= 0 && temp < N) {
-				int save = counter[temp];
-				counter[temp] = Math.max(save, addMax) + 1;
-				if (++save > max) {
-					max = save;
-					maxChangeFlag = true;
-				}
-			} else if (temp == N && maxChangeFlag) {
+//		System.out.println("=================================");
+//		System.out.println("start : "+Arrays.toString(A));
+		for (int k = 0; k < len; k++) {
+			if (A[k] >= 1 && A[k] <= N) {
+				int saveInt = A[k] - 1;
+				counter[saveInt] = Math.max(counter[saveInt], addMax) + 1;
+				max = Math.max(max, counter[saveInt]);
+			} else if (A[k] == N + 1) {
 				addMax = max;
-				maxChangeFlag = false;
 			}
-//			print(counter);
 		}
 		
 		for (int i=0; i<counter.length; i++) {
-			    counter[i] = Math.max(counter[i], addMax);
+		    counter[i] = Math.max(counter[i], addMax);
 		}
-//		print(counter);
+//		System.out.println(Arrays.toString(counter));
+//		System.out.println("=================================");
 		return counter;
-	}
-
-	public static void print(int[] array) {
-		StringJoiner sj = new StringJoiner(", ");
-		IntStream.range(0, array.length).forEach(i -> sj.add(String.valueOf(array[i])));
-		System.out.println(sj);
 	}
 	
 	public int[] solution2(int N, int[] A) {
@@ -71,9 +62,11 @@ class Solution {
 		System.out.println(Arrays.toString(s.solution(5, new int[] { 3, 4, 4, 6, 1, 4, 4 })));
 		System.out.println(Arrays.toString(s.solution(5, new int[] { 3, 4, 4, 6, 1, 4, 4, 6 })));
 		System.out.println(Arrays.toString(s.solution(1, new int[] { 2, 1, 1, 2, 1 })));
+		System.out.println(Arrays.toString(s.solution(1, new int[] { 5, 5, 5, 2, 5 })));
+		System.out.println(Arrays.toString(s.solution(4, new int[] { 1, 2, 1, 1, 1 })));
 		
-		System.out.println(Arrays.toString(s.solution2(5, new int[] { 3, 4, 4, 6, 1, 4, 4 })));
-		System.out.println(Arrays.toString(s.solution2(5, new int[] { 3, 4, 4, 6, 1, 4, 4, 6 })));
-		System.out.println(Arrays.toString(s.solution2(1, new int[] { 2, 1, 1, 2, 1 })));
+//		System.out.println(Arrays.toString(s.solution2(5, new int[] { 3, 4, 4, 6, 1, 4, 4 })));
+//		System.out.println(Arrays.toString(s.solution2(5, new int[] { 3, 4, 4, 6, 1, 4, 4, 6 })));
+//		System.out.println(Arrays.toString(s.solution2(1, new int[] { 2, 1, 1, 2, 1 })));
 	}
 }
