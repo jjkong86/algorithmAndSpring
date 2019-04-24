@@ -75,19 +75,23 @@ public class Main2 {
 	}
 
 	public static void main(String[] args) throws java.io.IOException {
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-
-		String[] strs = bf.readLine().split(" ");
-		int N = Integer.parseInt(strs[0]);
-		int k = Integer.parseInt(strs[1]);
-
-		// create the array
-		int[] arr = new int[N];
-		StringTokenizer st = new StringTokenizer(bf.readLine());
-		for (int n = 0; n < N; n++) {
-			arr[n] = Integer.parseInt(st.nextToken());
-		}
-
-		System.out.println(kthNum(arr, k - 1, 0, arr.length - 1));
+//		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+//
+//		String[] strs = bf.readLine().split(" ");
+//		int N = Integer.parseInt(strs[0]);
+//		int k = Integer.parseInt(strs[1]);
+//
+//		// create the array
+//		int[] arr = new int[N];
+//		StringTokenizer st = new StringTokenizer(bf.readLine());
+//		for (int n = 0; n < N; n++) {
+//			arr[n] = Integer.parseInt(st.nextToken());
+//		}
+//
+//		System.out.println(kthNum(arr, k - 1, 0, arr.length - 1));
+		int[] array = new int[]{1, 3, 6, 4, 7, 2};
+		System.out.println(Arrays.toString(array));
+		System.out.println(kthNum(array, 5, 0, 5));
+		System.out.println(Arrays.toString(array));
 	}
 }

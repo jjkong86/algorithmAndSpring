@@ -1,51 +1,59 @@
 package baekJoon.Number10989;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Random;
 
 public class Main2 {
 	
 	static int[] array;
 	
-	private static void sort(int[] array, int left, int right) {
+	private static void sort(int left, int right) {
 		if (right > left) {
 			int partition = partition(array, left, right);
-			sort(array, 0, partition -1);
-			sort(array, partition +1, right);
+			sort(0, partition -1);
+			sort(partition +1, right);
 		}
 	}
 	
 	public static int partition(int[] array, int left, int right) {
-		int middle = array[left+right/2];
+		int midIndex = (left+right)/2;
+		System.out.println(array[midIndex]);
 		while (right > left) {
-			while (array[left] < middle && right > left) left++;
-			while (array[right] > middle && right > left) right--;
+			while (array[left] < array[midIndex] && right > left) {
+				left++;
+			}
+			while (array[right] > array[midIndex] && right > left) {
+				right--;
+			}
 			
-			while (right > left) {
-				int temp = array[left];
-				array[left] = array[right];
-				array[right] = temp;
+			if (right > left) {
+				swap(array, left, right);
 			}
 		}
+		
+		swap(array, left, midIndex);
 		
 		return left;
 	}
 	
+	public static void swap(int[] array, int left, int right) {
+		int temp = array[left];
+		array[left] = array[right];
+		array[right] = temp;
+	}
+	
 	
 	public static void main(String[] args) throws IOException, NumberFormatException{
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
-            int number = Integer.parseInt(br.readLine());
-            array = new int[number];
-            IntStream.range(0, number).forEach(i -> {
-				try {
-					array[i] = Integer.parseInt(br.readLine());
-				} catch (NumberFormatException | IOException e) {
-					e.printStackTrace();
-				}
-			});
-            sort(array, 0, number -1);
-        }
+        int number = 10;
+        array = new int[number];
+        Random ran = new Random();
+        for (int i = 0; i < number; i++) {
+			array[i] = ran.nextInt(100);
+		}
+        System.out.println(Arrays.toString(array));
+        System.out.println("=========================");
+        sort(0, number -1);
+        System.out.println(Arrays.toString(array));
     }
 }
