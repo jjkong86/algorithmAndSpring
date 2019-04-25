@@ -35,7 +35,7 @@ class Solution {
 		// 선정된 숫자를 기준으로 왼쪽으로 작은숫자, 오른쪽으로 큰 숫자를 배치
 		// left == right 되면 기준 숫자와 left숫자 자리를 변경해줌
 		int pivot = array[(left + right) / 2];
-		System.out.println("pivot : "+pivot);
+		System.out.println(++index+"index"+", pivot : "+pivot);
 		while (left < right) {
 			System.out.println("left : "+left+", right : "+right);
 			while (array[left] < pivot && left < right)
