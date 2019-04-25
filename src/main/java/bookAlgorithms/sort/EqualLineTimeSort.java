@@ -11,13 +11,14 @@ public class EqualLineTimeSort {
 		int[] array = new int[10];
 		int target = 0;
 		for (int i = 0; i < 10; i++) {
-			array[i] = gen.nextInt(100);
+			array[i] = gen.nextInt(10);
 			target = target != 0? target : gen.nextInt(10);
 		}
 		wArray = array;
-		System.out.println("target index :"+target);
-		int result = select(0, array.length-1, target);
-		System.out.println("result : "+result);
+		quickSort(0, array.length-1);
+//		System.out.println("target index :"+target);
+//		int result = select(0, array.length-1, target);
+//		System.out.println("result : "+result);
 //		System.out.println(result);
 //		int[] arrayResult = quickSort(0, wArray.length-1);
 //		print(arrayResult);
@@ -59,18 +60,19 @@ public class EqualLineTimeSort {
 		int thirdIndex = start;
 		for (thirdIndex = start; thirdIndex < end; thirdIndex++) { // thirdIndex : 3구역의 시작 지점
 			if (target >= wArray[thirdIndex]) {
-				int temp = wArray[thirdIndex];
-				wArray[thirdIndex] = wArray[firstIndex];
-				wArray[firstIndex] = temp;
-				firstIndex++;
+				swap(firstIndex++, thirdIndex);
 			}
 		}
-		int temp = wArray[firstIndex];
-		wArray[firstIndex] = wArray[thirdIndex];
-		wArray[thirdIndex] = temp;
+		swap(firstIndex, thirdIndex);
 
 		print(wArray);
 		return  firstIndex;
+	}
+	
+	public static void swap(int start, int end) {
+		int temp = wArray[start];
+		wArray[start] = wArray[end];
+		wArray[end] = temp;
 	}
 
 	public static void print(int[] array) {
