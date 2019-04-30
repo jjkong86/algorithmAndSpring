@@ -10,8 +10,6 @@ import java.util.Random;
 //System.out.println("this is a debug message");
 
 class Solution1 {
-	int index = 0;
-
 	public int solution(int[] A) {
 		// write your code in Java SE 8
 		// 주어진 배열 요소 중 존재 하지 않은 최소값(0보다 큼)
@@ -34,25 +32,18 @@ class Solution1 {
 	}
 
 	public int partition(int[] array, int left, int right) {
-		// 선정된 숫자를 기준으로 왼쪽으로 작은숫자, 오른쪽으로 큰 숫자를 배치
-		// left == right 되면 기준 숫자와 left숫자 자리를 변경해줌
-		// // 1구역 // 2구역(target) // 3구역 // 
-		int pivot = array[(left + right) / 2];
-		System.out.println(++index+"index"+", pivot : "+pivot);
-		while (left < right) {
-			System.out.println("left : "+left+", right : "+right);
-			while (array[left] < pivot && left < right)
-				left++;
-			while (array[right] > pivot && left < right)
-				right--;
-
-			if (left < right) {
-				System.out.println(Arrays.toString(array));
-				swap(array, left, right);
-				System.out.println(Arrays.toString(array));
+		// // 1구역 // target // 3구역 // 4구역(array 처음)
+		int target = array[right]; // 맨 끝의 원소를 기준원소로 함
+		System.out.println(target);
+		int firstIndex = left;
+		int thirdIndex = left;
+		for (thirdIndex = left; thirdIndex < right; thirdIndex++) { // thirdIndex : 3구역의 시작 지점
+			if (target >= array[thirdIndex]) {
+				swap(array, firstIndex++, thirdIndex);
 			}
 		}
-		return left;
+		swap(array, firstIndex, thirdIndex);
+		return  firstIndex;
 	}
 
 	public static void swap(int[] array, int left, int right) {
