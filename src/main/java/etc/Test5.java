@@ -17,6 +17,17 @@ public class Test5 {
 		
 		System.out.println(new BigInteger("0x5208".replaceAll("0x", ""), 16));
 		
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(i);
+		}
+		int le = 0;
+		
+		while (array.length-1 > le && array[le] == array[le+1]) {
+			le++;
+		}
+		System.out.println(le);
+		
+		
 	}
 	
 }

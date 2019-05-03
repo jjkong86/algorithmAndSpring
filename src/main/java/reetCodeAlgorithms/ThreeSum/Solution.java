@@ -3,6 +3,7 @@ package reetCodeAlgorithms.ThreeSum;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,49 +11,37 @@ import java.util.stream.Collectors;
 public class Solution {
 
 	public List<List<Integer>> threeSum(int[] nums) {
-		List<Object> ret = new ArrayList<>();
-//		List<Integer> numsList = Arrays.stream(nums).boxed().collect(Collectors.toList());
-		Map<String, Integer> numsMap = new HashMap<>();
-		for (Integer integer : nums) {
-			String numStr = String.valueOf(integer);
-			numsMap.put(numStr, integer);
-		}
-
-		for (int i = 0; i < nums.length; i++) {
-			int firstNum = nums[i];
-			for (int j = i+1; j < nums.length; j++) {
-				int SeNum = nums[j];
-				String key = String.valueOf((firstNum + SeNum)*(-1));
-				System.out.println(key);
-				if (key == null) {
-					System.out.println("key null");
-					continue;
-				}
-				int sol = numsMap.get(key);
-				if (firstNum + SeNum == sol) {
-					List<Integer> tempRet = new ArrayList<>();
-					tempRet.add(firstNum);
-					tempRet.add(SeNum);
-					tempRet.add((firstNum + SeNum)*(-1));
-					ret.add(tempRet);
-				}
-
-			}
-		}
-		System.out.println(ret);
-		return null;
+		// 세 숫자의 합이 0이 되는 경우를 찾아서 리턴
+        // 배열을 정렬 후 차례대로 숫자를 선정
+        // 두 수는 배열의 양쪽을 초기값으로 하고 0보다 작으면 왼쪽 index ++, 0보다 크면 오른쪽 index --
+        // 찾았으면 list에 넣어주고 같은 숫자가 있는지 찾아서 건너뛰게해줌. 
+        List<List<Integer>> list = new LinkedList<>();
+        int len = nums.length;
+        Arrays.sort(nums);
+        for (int i=0; i<len-1; i++) {
+            int le = i+1;
+            int ri = len -1;
+            while (ri > le) {
+                int sum = nums[i] + nums[le] + nums[ri];
+                if (sum == 0) {
+                    list.add(Arrays.asList(nums[i], nums[le], nums[ri]));
+                    while (ri > le && nums[le] == nums[le+1]) le++;
+                    while (ri > le && nums[ri] == nums[ri-1]) ri--;
+                    le++; ri--;
+                } 
+                else if (sum < 0) le++;
+                else ri--;
+            }
+            
+            while (len-1 > i && nums[i] == nums[i+1]) i++;
+        }
+        return list;
     }
 
 	public static void main(String[] args) {
 		Solution s = new Solution();
 		int[] nums = {-1, 0, 1, 2, -1, -4};
-		s.threeSum(nums);
-		Map<String, Integer> numsMap = new HashMap<>();
-		for (Integer integer : nums) {
-			String numStr = String.valueOf(integer);
-			numsMap.put(numStr, integer);
-		}
-//		System.out.println(numsMap.get("5"));
+		System.out.println(s.threeSum(nums).toString());
 
 	}
 

@@ -20,7 +20,7 @@ public class test {
 		
 		int sum2 = Arrays.asList(1,2,3).stream().mapToInt(i -> i*i).max().getAsInt();
 		System.out.println(sum2);
-		
+		Arrays.stream(new int[] {1,2,3}).mapToLong(i -> i*i).max().getAsLong();
 		Arrays.asList(1,2,3).stream()
 		.filter(i-> 2>=i)
 		.forEach(System.out::println); // 1,2
