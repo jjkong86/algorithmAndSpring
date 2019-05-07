@@ -24,6 +24,8 @@ class Solution {
 	}
 
 	public int kthSmallest(TreeNode root, int k) {
+		// root.val을 기준으로 왼쪽의 노드 개수를 구해봄.
+        // k<=count면 왼쪽에 원하는 k번째 숫자가 있음, 반대면 k-1-count번째가 오른쪽에 있음
 		int count = countNodes(root.left);
 		if (k <= count) {
 			return kthSmallest(root.left, k);
