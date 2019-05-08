@@ -2,6 +2,8 @@ package etc;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -13,9 +15,8 @@ public class Test5 {
 		char[] c = str.toCharArray();
 		System.out.println(Integer.parseInt(new String(c)));
 		
-		for (int i = 1; i < 10; i++) {
-			
-		}
+		Map<String, Integer> map = new HashMap<>();
+		char[] array = Arrays.copyOf(c, 3);
 	}
 	
 	public static void primerize(int[][] array, int num) {
