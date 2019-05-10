@@ -1,12 +1,8 @@
 package etc;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Test5 {
 	
@@ -16,7 +12,7 @@ public class Test5 {
 		System.out.println(Integer.parseInt(new String(c)));
 		
 		Map<String, Integer> map = new HashMap<>();
-		char[] array = Arrays.copyOf(c, 3);
+		System.out.println(new String(c));
 	}
 	
 	public static void primerize(int[][] array, int num) {
