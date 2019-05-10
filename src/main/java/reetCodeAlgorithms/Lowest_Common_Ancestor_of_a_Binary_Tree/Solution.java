@@ -1,6 +1,7 @@
 package reetCodeAlgorithms.Lowest_Common_Ancestor_of_a_Binary_Tree;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class Solution {
 	
@@ -13,39 +14,50 @@ class Solution {
 		}
 	}
 	
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+	public static TreeNode buildTreeNode(Integer[] array) {
+		// 원소가 빌드되는 순서대로 온다고 가정함
+		// root 노드를 queue에 재귀적으로 넣어놓고 index에 따라 빌드하면 될듯
+		
+		TreeNode node = new TreeNode(array[0]);
+		int index = 0;
+		Queue<TreeNode> queueNode = new LinkedList<>();
+		queueNode.add(node);
+		
+		while (!queueNode.isEmpty()) {
+			if (index >= array.length-1) break;
+			System.out.println(index + "::"+array[index]);
+			TreeNode rootNode = queueNode.remove();
+			if (array[++index] != null) {
+				rootNode.left = new TreeNode(array[index]);
+				queueNode.add(rootNode.left);
+			}
+			
+			if (array[++index] != null) {
+				rootNode.right = new TreeNode(array[index]);
+				queueNode.add(rootNode.right);
+			}
+		}
+		System.out.println("root node val : "+node.val);
+		return node;
+	}
+
+	
+    public static TreeNode lowestCommonAncestor(TreeNode root, int p, int q) {
         // 두 수의 조상을 구해야됨
         // p, q가 조상이 될 수 있음(p=5, q=4 -> output = 5)
-        // 각각 루트 노드에서 p와 q를 탐색 -> 탐색이 안되는 루트의 부모값을 리턴
-        TreeNode parentNode = root;
-        return searchTree(root, parentNode, p.val, q.val);
+        // root.left 탐색 -> p,q,null 이면 return root
+    	// root.right 탐색 -> p,q,null 이면 return root
+    	// left == null -> root 노드의 오른쪽에 p,q가 있는것임
+    	if (root == null || root.val == p || root.val == q) return root;
+    	root.left = lowestCommonAncestor(root.left, p, q);
+    	root.right = lowestCommonAncestor(root.right, p, q);
+        return root.left == null ? root.right : root.right == null ? root.left : root;
     }
     
-    public TreeNode searchTree(TreeNode node, TreeNode parentNode, int p, int q) {
-        while (node != null) {
-            boolean findElement = searchTreeNode(node, parentNode, p, false, q, false);
-            if (!findElement) {
-                return parentNode;
-            } else {
-                
-            }
-        }
-        return parentNode;
-    }
-    
-    public boolean searchTreeNode(TreeNode node, TreeNode parentNode, 
-        int p, boolean pFlag, int q, boolean qFlag) {
-        while (node != null) {
-            if (node.val == p) {
-                pFlag = true;
-            } else if (node.val == q) {
-                qFlag = true;
-            }
-            searchTreeNode(node.left, parentNode, p, pFlag, q, qFlag);
-            searchTreeNode(node.right, parentNode, p, pFlag, q, qFlag);
-            
-        }
-		return qFlag;
-    }
-    
+    public static void main(String[] args) {
+		Integer[] array = new Integer[] {3,5,1,6,2,0,8,null,null,7,4};
+		TreeNode node = buildTreeNode(array);
+		System.out.println(lowestCommonAncestor(node, 6, 2).val);
+		
+	}
 }
