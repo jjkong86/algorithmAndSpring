@@ -24,17 +24,20 @@ class Solution {
                     setVertical.add(board[j][i]);
                     countVertical++;
                 }
-                int index = i + j/3;
-                j = j%3;
+                int index = (i*3)%9 + j/3;
+                j = (i*3)%9 + j%3;
                 if (board[index][j] != '.') {
                     setThree.add(board[index][j]);
                     countThree++;
                 }
+                
             }
             
             if (setHorizontal.size() != countHorizontal || setVertical.size() != countVertical || setThree.size() != countThree) {
                 return false;
             }
+            
+            
         }
         
         return true;
