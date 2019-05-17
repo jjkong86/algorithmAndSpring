@@ -1,8 +1,8 @@
 package baekJoon.Number1920;
 
-import java.io.*;
 import java.util.*;
 import java.util.stream.*;
+import java.io.*;
 
 public class Main {
     
@@ -16,7 +16,6 @@ public class Main {
     }
     
     public static int partition(int[] array, int left, int right) {
-        if (left > right) return left;
         int midIdx = (left + right)/2;
         int pivot = array[midIdx];
         
@@ -26,6 +25,7 @@ public class Main {
             
             if (right > left) {
                 swap(array, left, right);
+                System.out.println(Arrays.toString(array));
             }
         }
         
@@ -40,7 +40,12 @@ public class Main {
     
     public static String findNumber(int[] array, int[] ansArray) {
         StringBuilder sb = new StringBuilder();
+        sort(array, 0, array.length-1);
+        sort(ansArray, 0, ansArray.length-1);
+        System.out.println("array > "+Arrays.toString(array));
+        System.out.println("ansArray > "+Arrays.toString(ansArray));
         
+        int idx = 0;
         
         return sb.toString();
     }
@@ -55,11 +60,11 @@ public class Main {
             String[] ansSplit = br.readLine().split(" ");
             int[] ansArray = new int[ansLen];
             makeIntArray(ansSplit, ansArray);
+            System.out.println(findNumber(array, ansArray));
         }
     }
     
     public static void makeIntArray(String[] strArray, int[] array) {
-        IntStream.range(0, array.length)
-            .forEach(i -> array[i] = Integer.parseInt(strArray[i]));
+        IntStream.range(0, array.length).forEach(i -> array[i] = Integer.parseInt(strArray[i]));
     }
 }
