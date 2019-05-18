@@ -45,7 +45,6 @@ public class Main {
             
             if (right > left) {
                 swap(array, left, right);
-                System.out.println(Arrays.toString(array));
             }
         }
         return left;
@@ -59,32 +58,32 @@ public class Main {
     
     public static String findNumber(int[] array, IndexAndNumber[] ansArray) {
         StringBuilder sb = new StringBuilder();
-        sort(array, 0, array.length-1);
-//        sort(ansArray, 0, ansArray.length-1);
+//        sort(array, 0, array.length-1);
+        Arrays.sort(array);
         Arrays.sort(ansArray);
-        System.out.println("array > "+Arrays.toString(array));
-        System.out.println("ansArray > "+Arrays.toString(ansArray));
         
         int idx = 0;
         int idxAns = 0;
         int[] retArray = new int[ansArray.length];
-        loop : while (idxAns <= ansArray.length) {
+        while (idxAns <= ansArray.length) {
             if (array[idx] == ansArray[idxAns].number) {
-            	retArray[idxAns++] = 1;
+            	retArray[ansArray[idxAns++].index] = 1;
+                if (idxAns <= ansArray.length) {
+					break;
+				} 
             } else {
-                if (idx <= array.length) break loop;
+                if (idx >= array.length-1) break;
                 while (idx <= array.length) {
-                    if (array[idx++] == array[idxAns]) {
-                        idx--;
+                    if (array[idx++] == ansArray[idxAns].number) {
+                    	idx--;
                         break;
                     }
                 }
             }
         }
         
-        for (int i=idxAns; i<ansArray.length; i++) {
-        	retArray[i] = 0;
-            sb.append("0").append("\n");
+        for (int i=0; i<ansArray.length; i++) {
+            sb.append(retArray[i]).append("\n");
         }
         
         return sb.toString();
@@ -92,22 +91,17 @@ public class Main {
     
     public static void main(String[] args) throws NumberFormatException, IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            int arrayLen = Integer.parseInt(br.readLine());
+            int len = Integer.parseInt(br.readLine());
             String[] split = br.readLine().split(" ");
-            int[] array = new int[arrayLen];
-            makeIntArray(split, array);
+            int[] array = new int[len];
+            IntStream.range(0, len).forEach(i -> array[i] = Integer.parseInt(split[i]));
+            
             int ansLen = Integer.parseInt(br.readLine());
             String[] ansSplit = br.readLine().split(" ");
             IndexAndNumber[] ansArray = new IndexAndNumber[ansLen];
-//            makeIntArray(ansSplit, ansArray);
-            for (int i = 0; i < ansLen; i++) {
-				ansArray[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i]));
-			}
+            IntStream.range(0, ansLen).forEach(i -> ansArray[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i])));
+            
             System.out.println(findNumber(array, ansArray));
         }
-    }
-    
-    public static void makeIntArray(String[] strArray, int[] array) {
-        IntStream.range(0, array.length).forEach(i -> array[i] = Integer.parseInt(strArray[i]));
     }
 }
