@@ -6,6 +6,26 @@ import java.io.*;
 
 public class Main {
     
+	public static class IndexAndNumber implements Comparable<IndexAndNumber>{
+		int index;
+		int number;
+		
+		public IndexAndNumber(int i, int n) {
+			this.index = i;
+			this.number = n;
+		}
+		
+		@Override
+		public int compareTo(IndexAndNumber o) {
+			return Integer.compare(this.number, o.number);
+		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(this.number);
+		}
+	}
+	
     public static void sort(int[] array, int left, int right) {
         //quick sort
         if (left > right) return;
@@ -28,7 +48,6 @@ public class Main {
                 System.out.println(Arrays.toString(array));
             }
         }
-        
         return left;
     }
     
@@ -38,14 +57,35 @@ public class Main {
         array[right] = temp;
     }
     
-    public static String findNumber(int[] array, int[] ansArray) {
+    public static String findNumber(int[] array, IndexAndNumber[] ansArray) {
         StringBuilder sb = new StringBuilder();
         sort(array, 0, array.length-1);
-        sort(ansArray, 0, ansArray.length-1);
+//        sort(ansArray, 0, ansArray.length-1);
+        Arrays.sort(ansArray);
         System.out.println("array > "+Arrays.toString(array));
         System.out.println("ansArray > "+Arrays.toString(ansArray));
         
         int idx = 0;
+        int idxAns = 0;
+        int[] retArray = new int[ansArray.length];
+        loop : while (idxAns <= ansArray.length) {
+            if (array[idx] == ansArray[idxAns].number) {
+            	retArray[idxAns++] = 1;
+            } else {
+                if (idx <= array.length) break loop;
+                while (idx <= array.length) {
+                    if (array[idx++] == array[idxAns]) {
+                        idx--;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        for (int i=idxAns; i<ansArray.length; i++) {
+        	retArray[i] = 0;
+            sb.append("0").append("\n");
+        }
         
         return sb.toString();
     }
@@ -58,8 +98,11 @@ public class Main {
             makeIntArray(split, array);
             int ansLen = Integer.parseInt(br.readLine());
             String[] ansSplit = br.readLine().split(" ");
-            int[] ansArray = new int[ansLen];
-            makeIntArray(ansSplit, ansArray);
+            IndexAndNumber[] ansArray = new IndexAndNumber[ansLen];
+//            makeIntArray(ansSplit, ansArray);
+            for (int i = 0; i < ansLen; i++) {
+				ansArray[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i]));
+			}
             System.out.println(findNumber(array, ansArray));
         }
     }
