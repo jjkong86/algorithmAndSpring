@@ -75,6 +75,7 @@ public class Main {
                 if (idx >= array.length-1) break;
                 while (idx <= array.length-1) {
                     if (array[idx++] == arrayAns[idxAns].number) {
+                    	idx--;
                         break;
                     }
                 }
@@ -99,8 +100,9 @@ public class Main {
             String[] ansSplit = br.readLine().split(" ");
             IndexAndNumber[] arrayAns = new IndexAndNumber[ansLen];
             IntStream.range(0, ansLen).forEach(i -> arrayAns[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i])));
-            
-            System.out.println(findNumber(array, arrayAns));
+            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
+            	bw.write(findNumber(array, arrayAns));
+            }
         }
     }
 }
