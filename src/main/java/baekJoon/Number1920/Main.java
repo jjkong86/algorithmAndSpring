@@ -56,33 +56,32 @@ public class Main {
         array[right] = temp;
     }
     
-    public static String findNumber(int[] array, IndexAndNumber[] ansArray) {
+    public static String findNumber(int[] array, IndexAndNumber[] arrayAns) {
         StringBuilder sb = new StringBuilder();
 //        sort(array, 0, array.length-1);
         Arrays.sort(array);
-        Arrays.sort(ansArray);
+        Arrays.sort(arrayAns);
         
         int idx = 0;
         int idxAns = 0;
-        int[] retArray = new int[ansArray.length];
-        while (idxAns <= ansArray.length) {
-            if (array[idx] == ansArray[idxAns].number) {
-            	retArray[ansArray[idxAns++].index] = 1;
-                if (idxAns <= ansArray.length) {
+        int[] retArray = new int[arrayAns.length];
+        while (idxAns <= arrayAns.length) {
+            if (array[idx] == arrayAns[idxAns].number) {
+            	retArray[arrayAns[idxAns++].index] = 1;
+                if (idxAns >= arrayAns.length) {
 					break;
-				} 
+				}
             } else {
                 if (idx >= array.length-1) break;
-                while (idx <= array.length) {
-                    if (array[idx++] == ansArray[idxAns].number) {
-                    	idx--;
+                while (idx <= array.length-1) {
+                    if (array[idx++] == arrayAns[idxAns].number) {
                         break;
                     }
                 }
             }
         }
         
-        for (int i=0; i<ansArray.length; i++) {
+        for (int i=0; i<arrayAns.length; i++) {
             sb.append(retArray[i]).append("\n");
         }
         
@@ -98,10 +97,10 @@ public class Main {
             
             int ansLen = Integer.parseInt(br.readLine());
             String[] ansSplit = br.readLine().split(" ");
-            IndexAndNumber[] ansArray = new IndexAndNumber[ansLen];
-            IntStream.range(0, ansLen).forEach(i -> ansArray[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i])));
+            IndexAndNumber[] arrayAns = new IndexAndNumber[ansLen];
+            IntStream.range(0, ansLen).forEach(i -> arrayAns[i] = new IndexAndNumber(i, Integer.parseInt(ansSplit[i])));
             
-            System.out.println(findNumber(array, ansArray));
+            System.out.println(findNumber(array, arrayAns));
         }
     }
 }
