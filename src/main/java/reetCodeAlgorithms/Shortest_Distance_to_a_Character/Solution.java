@@ -43,4 +43,23 @@ class Solution {
         
         return ret;
     }
+    
+    public int[] shortestToChar2(String S, char C) {
+		char[] chars = S.toCharArray();
+		int len = chars.length;
+		int[] ret = new int[len];
+    	int index = ret.length-1;
+		
+		for (int i = 0; i < ret.length; i++) {
+			if (C == ret[i]) index = i;
+			ret[i] = Math.abs(index - i);
+		}
+		
+		index = 0;
+		for (int i = index; i > 0; i--) {
+			if (C == ret[i]) index = i;
+			ret[i] = Math.min(ret[i], Math.abs(i - index));
+		}
+    	return ret;
+    }
 }
