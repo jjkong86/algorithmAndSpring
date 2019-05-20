@@ -63,24 +63,19 @@ public class Main {
         Arrays.sort(arrayAns);
         
         int idx = 0;
-        int idxAns = 0;
         int[] retArray = new int[arrayAns.length];
-        while (idxAns <= arrayAns.length) {
-            if (array[idx] == arrayAns[idxAns].number) {
-            	retArray[arrayAns[idxAns++].index] = 1;
-                if (idxAns >= arrayAns.length) {
-					break;
+        loop : for (int i = 0; i < retArray.length; i++) {
+			if (arrayAns[i].number == array[idx]) {
+				retArray[arrayAns[i].index] = 1;
+			} else {
+				while (arrayAns[i].number > array[idx]) {
+					if (++idx >= array.length) break loop;
 				}
-            } else {
-                if (idx >= array.length-1) break;
-                while (idx <= array.length-1) {
-                    if (array[idx++] == arrayAns[idxAns].number) {
-                    	idx--;
-                        break;
-                    }
-                }
-            }
-        }
+				if (arrayAns[i].number == array[idx]) {
+					retArray[arrayAns[i].index] = 1;
+				}
+			}
+		}
         
         for (int i=0; i<arrayAns.length; i++) {
             sb.append(retArray[i]).append("\n");
