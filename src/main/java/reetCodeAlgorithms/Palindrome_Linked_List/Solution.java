@@ -57,7 +57,7 @@ class Solution {
     
     public static void main(String[] args) {
 		Solution s = new Solution();
-		int[] array = new int[] {1};
+		int[] array = new int[] {1,2,3,2,1};
 		ListNode node = new ListNode(0);
 		buildNode(node, array, 0);
 		node = node.next;
