@@ -11,17 +11,14 @@ import org.junit.Test;
 public class Programmers12904 {
 
 	public int solution(String s) {
-		// 문자열 s가 abcdcba이면 7을 return하고 abacde이면 3을 return
-		// 문자열 s가 sssssss이면 ?
-		if (s.length() == 1)
-			return 1;
+		if (s.length() == 1) return 1;
 		int answer = 0;
 		char[] chars = s.toCharArray();
 		int len = chars.length;
 //		System.out.println("String >> " + s);
 		for (int i = 0; i < len; i++) {
-			for (int j = i + 1; j < chars.length; j++) {
-				if (chkPalindrome(chars, i, j)) {
+			for (int j = i + 1; j < len; j++) {
+				if (j - i + 1 > answer && chkPalindrome(chars, i, j)) {
 //					System.out.println(new String(chars, i, j-i+1));
 					answer = Math.max(answer, (j - i + 1));
 				}
@@ -33,8 +30,7 @@ public class Programmers12904 {
 	public boolean chkPalindrome(char[] chars, int left, int right) {
 		int end = right;
 		for (int i = left; i <= right; i++) {
-			if (chars[i] != chars[end--])
-				return false;
+			if (chars[i] != chars[end--]) return false;
 		}
 		return true;
 	}
