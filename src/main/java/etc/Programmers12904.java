@@ -24,6 +24,9 @@ public class Programmers12904 {
 				}
 			}
 		}
+		
+		if (s.length() > 1 && answer == 0) return 1; //길이가 1 이상이면서 팰린드롬이 아닌 문자케이스
+		
 		return answer;
 	}
 
