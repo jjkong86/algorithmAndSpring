@@ -1,5 +1,7 @@
 package etc;
 
+import java.util.Objects;
+
 public class Test6 {
 	public static void main(String[] args) {
 		for (int i = 0; i < 9; i++) {
@@ -9,6 +11,11 @@ public class Test6 {
                 System.out.println("indexI : "+indexI + ", indexJ : "+indexJ);
 			}
 			System.out.println("===============================");
+		}
+		
+		String str= null;
+		if (Objects.requireNonNull(str) != null) {
+			System.out.println("not null");
 		}
 	}
 }
