@@ -13,15 +13,14 @@ public class Solution {
 		if("".equals(s) || s == null){
             return 0;
         }
-		String saveStr = s.substring(0,1);
+        String saveStr = s.substring(0,1);
         int sLen = s.length();
-        int maxCount = 0;
-        String maxStr = "";
+        int maxCount = 0;        
         for(int i=1; i<sLen; i++) {
             String tempStr = s.substring(i, i+1);
             if(saveStr.contains(tempStr)) {
             	if(maxCount < saveStr.length()) {
-            		maxStr = saveStr;
+            		maxCount = saveStr.length();
             	}
             	saveStr = saveStr.substring(saveStr.indexOf(tempStr)+1, saveStr.length());
             }
@@ -29,19 +28,16 @@ public class Solution {
         }
         if(maxCount == 0) {
         	maxCount = saveStr.length();
-        	maxStr = saveStr;
         } else {
         	if (maxCount < saveStr.length()) {
             	maxCount = saveStr.length();
-            	maxStr = saveStr;
 			}
         }
-        System.out.println(maxStr + "::"+maxCount);
-		return maxCount;
+        return maxCount;
     }
 
 	public static void main(String[] args) {
-		String s = "abcdabc";
+		String s = "abcadaa";
 		int max = lengthOfLongestSubstring(s);
 		System.out.println(max);
 		
