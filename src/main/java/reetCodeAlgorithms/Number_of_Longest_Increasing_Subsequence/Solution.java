@@ -10,41 +10,26 @@ class Solution {
         // 정렬되지 않은 정수 배열이 주어지면 가장 길게 증가하는 서브 시퀀스의 수 return
         // int[][] array = new int[nums.length][2]
         // 각 index에 증가하는 서브 시퀀스의 길이와 개 수를 저장함
-		 int N = nums.length;
-	        if (N <= 1) return N;
-	        int[] lengths = new int[N]; //lengths[i] = length of longest ending in nums[i]
-	        int[] counts = new int[N]; //count[i] = number of longest ending in nums[i]
-	        Arrays.fill(counts, 1);
-
-	        for (int j = 0; j < N; ++j) {
-	            for (int i = 0; i < j; ++i) if (nums[i] < nums[j]) {
-	                if (lengths[i] >= lengths[j]) {
-	                    lengths[j] = lengths[i] + 1;
-	                    counts[j] = counts[i];
-	                } else if (lengths[i] + 1 == lengths[j]) {
-	                    counts[j] += counts[i];
-	                }
-	            }
-	        }
-
-	        int longest = 0, ans = 0;
-	        for (int length: lengths) {
-	            longest = Math.max(longest, length);
-	        }
-	        for (int i = 0; i < N; ++i) {
-	            if (lengths[i] == longest) {
-	                ans += counts[i];
-	            }
-	        }
-	        return ans;
-    }
-    
-    public int calLength(int[] nums, int[] array, int i, int prev) {
-        if (prev < 0) return 1;
-        if (nums[i] <= nums[prev]) {
-            return calLength(nums, array, i, prev-1);
+		int n = nums.length, res = 0, max_len = 0;
+        int[] len =  new int[n], cnt = new int[n];
+        for(int i = 0; i<n; i++){
+            len[i] = cnt[i] = 1;
+            for(int j = 0; j <i ; j++){
+                if(nums[i] > nums[j]){
+                    if(len[i] == len[j] + 1)cnt[i] += cnt[j];
+                    if(len[i] < len[j] + 1){
+                        len[i] = len[j] + 1;
+                        cnt[i] = cnt[j];
+                    }
+                }
+            }
+            if(max_len == len[i])res += cnt[i];
+            if(max_len < len[i]){
+                max_len = len[i];
+                res = cnt[i];
+            }
         }
-        return array[prev]+1;
+        return res;
     }
     
     public static class TestClass {
