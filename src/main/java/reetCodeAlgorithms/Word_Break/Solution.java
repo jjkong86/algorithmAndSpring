@@ -12,14 +12,20 @@ class Solution {
         // 사용된 문자열은 다시 사용될 수 없음, 사전은 가능함.
         
     	if (wordDict.size() < 1) return false;
-    	String temp = s;
+    	
         for (int i=0; i<wordDict.size(); i++) {
-            int index = s.indexOf(wordDict.get(i));
-            if (index >= 0) {
-                s = wordSeparation(s, index, wordDict.get(i));
-                if (s.length() == 0) return true;
-                i--;
-            }
+        	String temp = s;
+        	int count = 0;
+        	for (int j = i; j < wordDict.size(); j++) {
+	            int index = temp.indexOf(wordDict.get(j));
+	            if (index >= 0) {
+	            	temp = wordSeparation(temp, index, wordDict.get(j));
+	                if (temp.replace(",", "").length() == 0) return true;
+	                count ++;
+	                j--;
+	            }
+        	}
+        	if (count == 0) return false;
         }
         
         return false;
@@ -28,6 +34,7 @@ class Solution {
     public String wordSeparation(String s, int index, String word) {
         StringBuilder sb = new StringBuilder();
         sb.append(s.substring(0, index));
+        sb.append(",");
         sb.append(s.substring(index+word.length(), s.length()));
         return sb.toString();
     }
@@ -38,6 +45,13 @@ class Solution {
     	public void test1() {
     		assertThat(false, is(s.wordBreak("catsandog", Arrays.asList(new String[] {"cats", "dog", "sand", "and", "cat"}))));
     		assertThat(true, is(s.wordBreak("bb", Arrays.asList(new String[] {"a","b","bbb","bbbb"}))));
+    	}
+    	
+    	@Test
+    	public void test2() {
+    		assertThat(true, is(s.wordBreak("cars", Arrays.asList(new String[] {"car","ca","rs"}))));
+    		assertThat(false, is(s.wordBreak("ccbb", Arrays.asList(new String[] {"bc","cb"}))));
+    		assertThat(true, is(s.wordBreak("ccaccc", Arrays.asList(new String[] {"cc","ac"}))));
     	}
     }
 }
