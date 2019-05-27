@@ -14,8 +14,8 @@ public class Test6 {
         sb.append(s.substring(index+word.length(), s.length()));
         System.out.println(sb);
         
-        String temp = s;
-        temp = temp.substring(0, 3);
-        System.out.println(temp + "::"+s);
+        String temp = "123456711";
+        System.out.println(temp.indexOf("1", 0));
+        
 	}
 }

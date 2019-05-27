@@ -16,8 +16,15 @@ class Solution {
         for (int i=0; i<wordDict.size(); i++) {
         	String temp = s;
         	int count = 0;
+        	int indexCount = 0;
+        	int[] indexes = new int[s.length()];
         	for (int j = i; j < wordDict.size(); j++) {
 	            int index = temp.indexOf(wordDict.get(j));
+	            indexes[indexCount] = index;
+	            while (index < 0 && indexCount < s.length()) {
+	            	index = temp.indexOf(wordDict.get(j), indexes[++indexCount]+1);
+	            }
+	            
 	            if (index >= 0) {
 	            	temp = wordSeparation(temp, index, wordDict.get(j));
 	                if (temp.replace(",", "").length() == 0) return true;
