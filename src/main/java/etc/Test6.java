@@ -17,5 +17,8 @@ public class Test6 {
         String temp = "123456711";
         System.out.println(temp.indexOf("1", 0));
         
+        String amount = "0.000009";
+        System.out.println(Double.parseDouble(amount));
+        
 	}
 }
