@@ -1,5 +1,9 @@
 package etc;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Test6 {
@@ -17,8 +21,18 @@ public class Test6 {
         String temp = "123456711";
         System.out.println(temp.indexOf("1", 0));
         
-        String amount = "0.000009";
-        System.out.println(Double.parseDouble(amount));
+        Map<Integer, List<String>> saveMap = new HashMap<>();
+        List<String> list = new ArrayList<>();
+        list.add("abc");
+        saveMap.put(1, list);
+        saveMap.put(2, null);
+        if (saveMap.get(1) != null) {
+        	System.out.println("1 not null");
+        }
+        if (saveMap.get(2) != null) {
+        	System.out.println("2 not null");
+        }
+        
         
 	}
 }

@@ -10,8 +10,6 @@ class Solution {
     public List<String> wordBreak(String s, List<String> wordDict) {
         // dp로 문제 풀어야함
         // 값을 찾는거라 set 이용하면 될듯
-    	System.out.println(s);
-        List<String> res = new ArrayList<>();
         int len = s.length();
         Set<String> dict = new HashSet<>(wordDict);
         Map<Integer, List<String>> map = new HashMap<>();
@@ -26,22 +24,27 @@ class Solution {
         for (int i=1; i<=len; i++) {
             for (int j=0; j<i; j++) {
                 if (!map.get(j).isEmpty() && dict.contains(s.substring(j, i))) {
-                	System.out.println(s.substring(j, i));
-                	List<String> temp = map.get(i);
-                	temp.add(s.substring(j, i));
-                    map.put(i, temp);
+//                	System.out.println(s.substring(j, i));
+                	List<String> saveList = map.get(i);
+                	List<String> temp = map.get(j);
+                	StringBuilder sb = new StringBuilder();
+                	sb.append(s.substring(j, i));
+                	if (j != 0) {
+                		for (int k = 0; k < temp.size(); k++) {
+							StringBuilder sbSave = new StringBuilder();
+							sbSave.append(temp.get(k) + " ").append(sb);
+							saveList.add(sbSave.toString());
+						}
+                		
+                	} else {
+                		saveList.add(sb.toString());
+                	}
+                    map.put(i, saveList);
                 }
             }
         }
-        
-        for (int i=0; i<map.size(); i++) {
-            List<String> temp = map.get(i);
-            while(!temp.isEmpty()) {
-                
-            }
-        }
-        System.out.println(res.toString());
-		return res;
+        System.out.println(map.get(len).toString());
+		return map.get(len);
     }
     
     public static class TestClass {
@@ -52,6 +55,22 @@ class Solution {
 				new ArrayList<>(Arrays.asList(new String[] {"cats and dog", "cat sand dog"})), 
 				is(s.wordBreak("catsanddog", 
 					new ArrayList<>(Arrays.asList(new String[] {"cat", "cats", "and", "sand", "dog"})))));
+    	}
+    	
+    	@Test
+    	public void test2() {
+    		assertThat(
+				new ArrayList<>(Arrays.asList(new String[] {})), 
+				is(s.wordBreak("catsandog", 
+					new ArrayList<>(Arrays.asList(new String[] {"cats", "dog", "sand", "and", "cat"})))));
+    	}
+    	
+    	@Test
+    	public void test3() {
+    		assertThat(
+				new ArrayList<>(Arrays.asList(new String[] {"pine apple pen apple", "pineapple pen apple", "pine applepen apple"})), 
+				is(s.wordBreak("pineapplepenapple", 
+					new ArrayList<>(Arrays.asList(new String[] {"apple", "pen", "applepen", "pine", "pineapple"})))));
     	}
     }
 }
