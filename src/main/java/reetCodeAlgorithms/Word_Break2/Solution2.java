@@ -50,13 +50,13 @@ public class Solution2 {
 					new ArrayList<>(Arrays.asList(new String[] {"cat", "cats", "and", "sand", "dog"})))));
     	}
     	
-    	@Test
-    	public void test2() {
-    		assertThat(
-				new ArrayList<>(Arrays.asList(new String[] {})), 
-				is(s.wordBreak("catsandog", 
-					new ArrayList<>(Arrays.asList(new String[] {"cats", "dog", "sand", "and", "cat", "an"})))));
-    	}
+//    	@Test
+//    	public void test2() {
+//    		assertThat(
+//				new ArrayList<>(Arrays.asList(new String[] {})), 
+//				is(s.wordBreak("catsandog", 
+//					new ArrayList<>(Arrays.asList(new String[] {"cats", "dog", "sand", "and", "cat", "an"})))));
+//    	}
     	
     	@Test
     	public void test3() {
