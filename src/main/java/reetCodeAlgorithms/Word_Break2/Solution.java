@@ -12,9 +12,9 @@ class Solution {
         // 값을 찾는거라 set 이용하면 될듯
         int len = s.length();
         Set<String> dict = new HashSet<>(wordDict);
-        Map<Integer, List<String>> map = new HashMap<>();
+        Map<Integer, LinkedList<String>> map = new HashMap<>();
         for (int i=0; i<=len; i++) {
-            List<String> list = new ArrayList<>();
+        	LinkedList<String> list = new LinkedList<>();
             if (i == 0) {
                 list.add("first");
             }
@@ -25,25 +25,23 @@ class Solution {
             for (int j=0; j<i; j++) {
                 if (!map.get(j).isEmpty() && dict.contains(s.substring(j, i))) {
 //                	System.out.println(s.substring(j, i));
-                	List<String> saveList = map.get(i);
-                	List<String> temp = map.get(j);
+                	LinkedList<String> temp = map.get(j);
                 	StringBuilder sb = new StringBuilder();
                 	sb.append(s.substring(j, i));
                 	if (j != 0) {
                 		for (int k = 0; k < temp.size(); k++) {
 							StringBuilder sbSave = new StringBuilder();
 							sbSave.append(temp.get(k) + " ").append(sb);
-							saveList.add(sbSave.toString());
+							map.get(i).add(sbSave.toString());
 						}
-                		
                 	} else {
-                		saveList.add(sb.toString());
+                		map.get(i).add(sb.toString());
                 	}
-                    map.put(i, saveList);
+                    map.put(i, map.get(i));
                 }
             }
         }
-        System.out.println(map.get(len).toString());
+//        System.out.println(map.get(len).toString());
 		return map.get(len);
     }
     
