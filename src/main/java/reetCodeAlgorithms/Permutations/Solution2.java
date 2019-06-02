@@ -15,30 +15,24 @@ class Solution2 {
             res.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{nums[0]})));
             return res;
         }
-        List<Integer> convert = Arrays.stream(nums).boxed().collect(Collectors.toList());
-        Set<List<Integer>> setRes = new HashSet<>(); 
-        setRes = makePermute(setRes, convert, new ArrayList<>());
-        res = new ArrayList<>(setRes);
+        Arrays.sort(nums);
+        makePermute(res, new ArrayList<>(), nums);
         System.out.println(res.toString());
         return res;
     }
     
-    private Set<List<Integer>> makePermute(Set<List<Integer>> list, List<Integer> convert, List<Integer> save) {
-        if (convert.isEmpty()) {
-            list.add(new ArrayList<>(save));
-            save.clear();
-            return list;
-        }
-        
-        for (int i=0; i<convert.size(); i++) {
-        	List<Integer> convertCopy = convert.stream().collect(Collectors.toList());
-        	List<Integer> convertsava = save.stream().collect(Collectors.toList());
-        	convertsava.add(convert.get(i));
-        	convertCopy.remove(i);
-            list = makePermute(list, convertCopy, convertsava);
-        }
-        return list;
-    }
+    private void makePermute(List<List<Integer>> list, List<Integer> tempList, int [] nums){
+    	   if(tempList.size() == nums.length){
+    	      list.add(new ArrayList<>(tempList));
+    	   } else{
+    	      for(int i = 0; i < nums.length; i++){ 
+    	         if(tempList.contains(nums[i])) continue; // 중복 체크
+    	         tempList.add(nums[i]);
+    	         makePermute(list, tempList, nums);
+    	         tempList.remove(tempList.size() - 1);
+    	      }
+    	   }
+    	} 
     
     public static class TestClass {
     	Solution2 s = new Solution2();
