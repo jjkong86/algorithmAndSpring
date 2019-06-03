@@ -22,17 +22,19 @@ class Solution2 {
     }
     
     private void makePermute(List<List<Integer>> list, List<Integer> tempList, int [] nums){
-    	   if(tempList.size() == nums.length){
-    	      list.add(new ArrayList<>(tempList));
-    	   } else{
-    	      for(int i = 0; i < nums.length; i++){ 
-    	         if(tempList.contains(nums[i])) continue; // 중복 체크
-    	         tempList.add(nums[i]);
-    	         makePermute(list, tempList, nums);
-    	         tempList.remove(tempList.size() - 1);
-    	      }
-    	   }
-    	} 
+	   if(tempList.size() == nums.length){
+	      list.add(new ArrayList<>(tempList));
+	      return;
+	   } else{
+	      for(int i = 0; i < nums.length; i++){
+	         if(tempList.contains(nums[i])) continue; // 중복 체크
+	         tempList.add(nums[i]);
+//	         System.out.println(tempList.toString() + ", index :" + i);
+	         makePermute(list, tempList, nums);
+	         tempList.remove(tempList.size() - 1);
+	      }
+	   }
+	}
     
     public static class TestClass {
     	Solution2 s = new Solution2();
