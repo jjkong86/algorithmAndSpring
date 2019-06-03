@@ -15,5 +15,7 @@ public class Test6 {
         ArrayList<Integer> subList = new ArrayList<>(Arrays.asList(array));
         list1.add(new ArrayList<>(Arrays.asList(array)));
         
+        String str = "12345";
+        System.out.println(str.substring(2));
 	}
 }
