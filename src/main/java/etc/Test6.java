@@ -16,6 +16,8 @@ public class Test6 {
         list1.add(new ArrayList<>(Arrays.asList(array)));
         
         String str = "12345";
-        System.out.println(str.substring(2));
+        System.out.println(str.substring(0, 1));
+        
+        
 	}
 }
