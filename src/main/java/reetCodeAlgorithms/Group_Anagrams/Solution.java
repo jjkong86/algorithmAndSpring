@@ -8,6 +8,15 @@ import java.util.*;
 import org.junit.Test;
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+    	
+    	if (strs.length == 1) {
+    		List<List<String>> list = new ArrayList<>();
+    		List<String> tempList = new ArrayList<>();
+    		tempList.add(strs[0]);
+    		list.add(tempList);
+    		return list;
+        }
+    	
         Set<String> set = new HashSet<>(Arrays.asList(strs));
         List<List<String>> res = new ArrayList<>();
         
@@ -15,9 +24,16 @@ class Solution {
             if (!set.contains(strs[i])) continue;
             List<String> tempList = new ArrayList<>(findAnagrams(new HashSet<String>(), set, strs[i], ""));
             if (!tempList.isEmpty()) {
+            	Collections.sort(tempList);
                 res.add(tempList);
             }
         }
+        Collections.sort(res, new Comparator<List<String>>() {
+        	@Override
+        	public int compare(List<String> o1, List<String> o2) {
+        		return Integer.compare(o1.size(), o2.size());
+        	}
+		});
         System.out.println(res.toString());
         return res;
     }
@@ -51,6 +67,13 @@ class Solution {
     		assertThat("[[ate, tea, eat], [nat, tan], [bat]]",  
     				is(s.groupAnagrams(new String[] {"eat", "tea", "tan", "ate", "nat", "bat"})));
     	}
+    	
+//    	@Test
+//    	public void test2() {
+//    		Solution s = new Solution();
+//    		assertThat("[[,]]",  
+//    				is(s.groupAnagrams(new String[] {"", ""})));
+//    	}
     }
     
 }
