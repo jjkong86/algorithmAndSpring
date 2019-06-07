@@ -1,7 +1,7 @@
 # Directories #
 /build/
 /bin/
-target/
+/target/
  
 # OS Files #
 .DS_Store
