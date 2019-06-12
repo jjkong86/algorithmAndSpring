@@ -1,35 +1,30 @@
 package reetCodeAlgorithms.Spiral_Matrix;
 
-import java.util.List;
-
 import java.util.*;
 
 class Solution {
-	public List<Integer> spiralOrder(int[][] matrix) {
-		if (matrix.length == 0)
-			return new ArrayList<>();
-
-		List<Integer> res = new ArrayList<>();
-		int flag = 1;
-		int count = 0, vertical = matrix.length - 1, horizon = matrix[0].length - 1;
-		int v = 0, h = 0;
-
-		while (vertical >= 0 && horizon >= 0) {
-			while (v > 0 || v < vertical) {
-				System.out.println(matrix[h][v] + ", v : " + v + ", h : " + h);
-				res.add(matrix[h][v]);
-				v += flag * 1;
-			}
-
-			while (h >= 0 || h <= horizon) {
-				System.out.println(matrix[h][v] + ", v : " + v + ", h : " + h);
-				res.add(matrix[h][v]);
-				h += flag * 1;
-			}
-			flag *= -1;
-			vertical--;
-			horizon--;
-		}
-		return res;
-	}
+    public List<Integer> spiralOrder(int[][] matrix) {
+        if (matrix.length == 0) return new ArrayList<>();
+        
+        List<Integer> res = new ArrayList<>();
+        int times = 0;
+        int vertical = matrix.length-1, horizon = matrix[0].length-1;
+        int v = 0, h = 0;
+        int flag = 1;
+        while(res.size() <= vertical * horizon) {
+            
+            while (h >= 0 || h <= vertical - times) {
+                res.add(matrix[v][h]);
+                h += 1*flag;
+            }
+            
+            while (v >= 0 || h <= horizon - times) {
+                res.add(matrix[v][h]);
+                v += 1*flag;
+            }
+            times++;
+            flag *= -1;
+        }
+        return res;
+    }
 }
