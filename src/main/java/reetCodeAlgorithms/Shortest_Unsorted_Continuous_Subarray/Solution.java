@@ -34,25 +34,27 @@ class Solution {
         Arrays.sort(array, new Comparator<NumAndIndex>() {
 			@Override
 			public int compare(NumAndIndex c1, NumAndIndex c2) {
-				System.out.println(c1.num+"::"+c2.num+"::"+Integer.compare(c1.num, c1.num));
-				return Integer.compare(c1.num, c1.num);
+				return Integer.compare(c1.num, c2.num);
 			} 
         });
         
         int start = 0, end = 0;
+        boolean flag = false;
         for (int i=0; i<len; i++) {
             NumAndIndex temp = array[i];
             if (i != temp.index) {
                 start = i;
+                flag = true;
                 break;
             }
         }
-        if (start ==0) return 0;
+        if (!flag) return 0;
         
         for (int i=len-1; i>start; i--) {
             NumAndIndex temp = array[i];
             if (i != temp.index) {
                 end = i;
+                break;
             }
         }
         return end-start+1;
@@ -62,7 +64,8 @@ class Solution {
     	Solution s = new Solution();
     	@Test
     	public void test1() {
-    		assertThat(5, is(s.findUnsortedSubarray(new int[] {2, 6, 4, 8, 10, 9, 15})));
+//    		assertThat(5, is(s.findUnsortedSubarray(new int[] {2, 6, 4, 8, 10, 9, 15})));
+    		assertThat(0, is(s.findUnsortedSubarray(new int[] {1,2,3,4})));
     	}
     }
 }
