@@ -34,7 +34,7 @@ class Solution {
         Arrays.sort(array, new Comparator<NumAndIndex>() {
 			@Override
 			public int compare(NumAndIndex c1, NumAndIndex c2) {
-				System.out.println(Integer.compare(c1.num, c1.num));
+				System.out.println(c1.num+"::"+c2.num+"::"+Integer.compare(c1.num, c1.num));
 				return Integer.compare(c1.num, c1.num);
 			} 
         });

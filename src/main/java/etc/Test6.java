@@ -23,5 +23,7 @@ public class Test6 {
         System.out.println(res);
         String test1 = "1234567";
         System.out.println(test1.substring(0, 2) + test1.substring(3));
+        
+        System.out.println(Integer.compare(3, 4));
 	}
 }
