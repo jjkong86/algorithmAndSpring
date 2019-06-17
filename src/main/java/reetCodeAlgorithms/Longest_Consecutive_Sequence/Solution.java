@@ -6,7 +6,6 @@ class Solution {
         // 가장 긴 연속적인 서브 시퀀스
         // 복잡도는 O(n)
         if (nums.length == 0) return 0;
-        if (nums.length == 1) return 1;
         int len = nums.length;
         Arrays.sort(nums);
         int max = 1;
