@@ -35,7 +35,7 @@ class Solution {
 			@Override
 			public int compare(NumAndIndex c1, NumAndIndex c2) {
 				return Integer.compare(c1.num, c2.num);
-			} 
+			}
         });
         
         int start = 0, end = 0;

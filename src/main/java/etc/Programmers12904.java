@@ -59,7 +59,7 @@ public class Programmers12904 {
 			assertEquals(3, p.solution("abacde"));
 
 			assertEquals(7, p.solution("aaaeeddddde"));
-			assertEquals(0, p.solution("ajsfdkldsfjkl"));
+			assertEquals(1, p.solution("ajsfdkldsfjkl"));
 			assertEquals(0, p.solution("abcdefg"));
 			assertEquals(13, p.solution("abcbaedeabcba"));
 			assertEquals(5, p.solution("adedaa"));
