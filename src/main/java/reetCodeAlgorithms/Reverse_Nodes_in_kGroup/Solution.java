@@ -9,8 +9,6 @@ package reetCodeAlgorithms.Reverse_Nodes_in_kGroup;
  * }
  */
 
-		
-
 class Solution {
 	
 	public class ListNode {
@@ -21,15 +19,29 @@ class Solution {
 	
     public ListNode reverseKGroup(ListNode head, int k) {
         // k는 node보다 작거나 같음, 
-        // 재귀적으로 파고 들어가서 리턴으로 노드를 보낸다음 연결 하면 ??
+        // n * k번째마다 바뀜
         if (k == 1) return head;
-        return head;
+        ListNode headNode = new ListNode(0);
+        headNode.next = head;
+        
+        findNode(headNode, head, k, 0);
+        
+        return headNode.next;
     }
     
-    private ListNode reverseNode(ListNode node, int count, int index) {
-        if (index >= count) return node;
+    public void findNode(ListNode headNode, ListNode node, int k, int count) {
+        if (node == null) return;
         
-        node.next = reverseNode(node.next, count, index+1);
-        return node;
+        if (k % count == 0) {
+            headNode.next = nodeSwap(node, k, count);
+            count = 0;
+        } else {
+            nodeSwap(node, k, count+1);
+        }
+    }
+    
+    public ListNode nodeSwap(ListNode node, int k, int count) {
+        
+    	return node;
     }
 }

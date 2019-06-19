@@ -25,5 +25,12 @@ public class Test7 {
 		map.forEach((k, v)-> System.out.println(k.getSize() + "," +v));
 		System.out.println(map.firstEntry().getKey().getSize());
 		System.out.println(map.lastEntry().getKey().getSize());
+		
+		int[] array = new int[1000];
+		for (int i=0; i<1000; i++) {
+			array[i] = i;
+		}
+		char c = ' ';
+		System.out.println(array[c]);
 	}
 }
