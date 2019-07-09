@@ -1,25 +1,21 @@
 package reetCodeAlgorithms.Rotate_Array;
 
-import java.util.*;
 class Solution {
-    public void rotate(int[] nums, int k) {
-        // k만큼 오른쪽으로 회전
-        // k%nums.length 만큼 숫자를 교환
-        if (k == 0 || k%nums.length == 0) return;
-        int len = nums.length;
-        k = k%len;
-        for (int i=0; i<len/2; i++) {
-            System.out.println(i+"::"+k);
-            swap(nums, i, len-k+i);
-        }
-        if (len/2 % 2 != 0) {
-            swap(nums, len/2, len-1);
-        }
-    }
     
-    public void swap(int[] nums, int l, int r) {
-        int temp = nums[l];
-        nums[l] = nums[r];
-        nums[r] = temp;
+    public void rotate(int[] nums, int k) {
+        k %= nums.length;
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    public void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
