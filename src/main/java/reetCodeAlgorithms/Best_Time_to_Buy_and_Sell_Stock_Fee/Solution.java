@@ -16,4 +16,15 @@ class Solution {
         }
         return sell[len-1];
     }
+    
+    public int maxProfit2(int[] p, int fee) {
+		int len = p.length;
+		int buy = -p[0];
+		int sell = 0;
+		for (int i = 1; i < len; i++) {
+			buy = Math.max(buy, sell - p[i]);
+			sell = Math.max(sell, buy + p[i] - fee);
+		}
+		return sell;
+    }
 }
