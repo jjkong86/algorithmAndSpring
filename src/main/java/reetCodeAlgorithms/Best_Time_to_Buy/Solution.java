@@ -7,17 +7,16 @@ public class Solution {
         }
         
         int length = prices.length;
-        // buy[i]: max profit if the first "i" days end with a "buy" day
         int[] buy = new int[length + 1];
-        // buy[i]: max profit if the first "i" days end with a "sell" day
         int[] sell = new int[length + 1];
         
         buy[1] = -prices[0];
         
         for (int i = 2; i <= length; i++) {
             int price = prices[i - 1];
-            buy[i] = Math.max(buy[i - 1], sell[i - 2] - price);
-            sell[i] = Math.max(sell[i - 1], buy[i - 1] + price);
+            buy[i] = Math.max(buy[i - 1], sell[i - 2] - price); // i-1번째에서 사는것과 i-2에 팔고 i번째에서 사는것 중 큰 값
+            sell[i] = Math.max(sell[i - 1], buy[i - 1] + price); // i-1번째에서 판것(대기하는것)과 i-1번째 에서 산것을 판 값중 큰 값
+            System.out.println(sell[i]);
         }
         
         // sell[length] >= buy[length]
