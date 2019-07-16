@@ -1,36 +1,38 @@
+package test;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.LinkedList;
+import java.util.List;
 
-public class Test1 {
+public class Test2 {
 	
-	public static String findLastEat(String[] array) {
+	public static String makeQueue(int[] array) {
 		StringBuilder sb = new StringBuilder();
-		int[] ans = new int[] {1,7,6,1,9};
-		for (int i = 0; i < array.length; i++) {
-			String[] temp = array[i].split(" ");
-			int num1 = Integer.parseInt(temp[0]);
-			int num2 = Integer.parseInt(temp[1]);
-			
-			int amount = num1^num2;
-//			System.out.println(num1+"::"+amount+"::"+amount%num1 + ":::"+ans[i]);
-			System.out.println(amount%num1+1 + ":::"+amount);
+		List<Integer> list = new LinkedList<>();
+		list.add(1);
+		for (int i = 1; i < array.length; i++) {
+			list.add(array[i], i+1);
 		}
 		
+		for (int i = list.size()-1; i >= 0; i--) {
+			sb.append(list.get(i) + " ");
+		}
 		return sb.toString();
 	}
 	
 	public static void main(String[] args) throws IOException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
 			int num = Integer.parseInt(br.readLine());
-			String[] array = new String[num];
+			String[] split = br.readLine().split(" ");
+			int[] array = new int[num];
 			for (int i = 0; i < num; i++) {
-				array[i] = br.readLine();
+				array[i] = Integer.parseInt(split[i]);
 			}
 			try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))) {
-				bw.write(findLastEat(array));
+				bw.write(makeQueue(array));
 			}
 		}
 	}
