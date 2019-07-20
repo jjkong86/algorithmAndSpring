@@ -8,7 +8,7 @@ public class Solution2 {
 		int count = 0;
 		while(num != 0) {
 			int temp = num/2;
-			count += (num - temp*2) == 0 ? 0 : 1;
+			count += num - temp*2;
 			num = temp;
 		}
 		System.out.println(count);
