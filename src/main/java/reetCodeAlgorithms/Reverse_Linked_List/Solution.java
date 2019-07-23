@@ -7,17 +7,17 @@ class Solution {
         //재귀적으로 파고 들어가서 연결하면?
         
         ListNode res = new ListNode(0);
-        ListNode copy = res;
         reverseNode(head, res);
-        return copy.next;
+        return res;
     }
     
     public static void reverseNode(ListNode head, ListNode res) {
         if(head == null) return;
         reverseNode(head.next, res);
-        System.out.println(head.val);
-        res.next = head;
+        ListNode temp = new ListNode(head.val);
+        res.next = temp;
         res = res.next;
+        System.out.println(res.val);
     }
     
     public static void main(String[] args) {
