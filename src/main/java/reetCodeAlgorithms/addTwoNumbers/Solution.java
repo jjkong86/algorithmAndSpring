@@ -3,6 +3,8 @@ package reetCodeAlgorithms.addTwoNumbers;
 import java.util.ArrayList;
 import java.util.List;
 
+import reetCodeAlgorithms.ListNode;
+
 public class Solution {
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		ListNode dummyHead = new ListNode(0);
