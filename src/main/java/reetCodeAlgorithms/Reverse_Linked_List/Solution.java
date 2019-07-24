@@ -7,22 +7,19 @@ class Solution {
         //재귀적으로 파고 들어가서 연결하면?
         
         ListNode res = new ListNode(0);
-        reverseNode(head, res);
+        while (head != null) {
+            ListNode temp = head;
+            head = head.next;
+            temp.next = res;
+            res.next = temp;
+            res = res.next;
+        }
         return res;
-    }
-    
-    public static void reverseNode(ListNode head, ListNode res) {
-        if(head == null) return;
-        reverseNode(head.next, res);
-        ListNode temp = new ListNode(head.val);
-        res.next = temp;
-        res = res.next;
-        System.out.println(res.val);
     }
     
     public static void main(String[] args) {
 		ListNode node = ListNode.buildNode(new int[] {1,2,3,4,5});
-		reverseList(node);
-		System.out.println(node.val);
+		ListNode res = reverseList(node);
+		System.out.println(res.val);
 	}
 }
