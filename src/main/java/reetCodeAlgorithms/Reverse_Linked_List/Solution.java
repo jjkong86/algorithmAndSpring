@@ -6,13 +6,12 @@ class Solution {
     public static ListNode reverseList(ListNode head) {
         //재귀적으로 파고 들어가서 연결하면?
         
-        ListNode res = new ListNode(0);
+        ListNode res = null;
         while (head != null) {
-            ListNode temp = head;
-            head = head.next;
-            temp.next = res;
-            res.next = temp;
-            res = res.next;
+        	ListNode temp = head.next;
+            head.next = res;
+            res = head;
+            head = temp;
         }
         return res;
     }
