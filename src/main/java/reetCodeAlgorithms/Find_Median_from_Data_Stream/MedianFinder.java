@@ -3,30 +3,19 @@ package reetCodeAlgorithms.Find_Median_from_Data_Stream;
 import java.util.*;
 class MedianFinder {
 
-    /** initialize your data structure here. */
-    List<Integer> list;
-    
-    public MedianFinder() {
-        this.list = new ArrayList<>();
-    }
-    
+    private Queue<Long> small = new PriorityQueue<>(),
+                        large = new PriorityQueue<>();
+
     public void addNum(int num) {
-        list.add(num);
+        large.add((long) num);
+        small.add(-large.poll());
+        if (large.size() < small.size())
+            large.add(-small.poll());
     }
-    
+
     public double findMedian() {
-        int size = list.size();
-        if (size == 0) return 0.0d;
-        
-        int mid = size/2;
-        return size%2 == 0 ? 
-            Double.valueOf((list.get(mid) + list.get(mid-1)))/2 : list.get(mid);
+        return large.size() > small.size()
+               ? large.peek()
+               : (large.peek() - small.peek()) / 2.0;
     }
 }
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * MedianFinder obj = new MedianFinder();
- * obj.addNum(num);
- * double param_2 = obj.findMedian();
- */
