@@ -34,7 +34,7 @@ public class Solution2 {
 	            for (String sub : sublist) 
 	                res.add(word + (sub.isEmpty() ? "" : " ") + sub);               
 	        }
-	    }       
+	    }
 	    map.put(s, res);
 	    System.out.println(res.toString());
 	    return res;

@@ -2,6 +2,8 @@ package etc;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Test7 {
 	
 	public static class Cup {
@@ -18,5 +20,7 @@ public class Test7 {
 	
 	public static void main(String[] args) {
 		System.out.println("1234".split(" ").length);
+		String input = JOptionPane.showInputDialog("아무거나");
+		System.out.println(input);
 	}
 }
