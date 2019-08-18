@@ -36,5 +36,13 @@ public class Test9 {
 		DecimalFormat fmt = new DecimalFormat("#.##########");
 		BigDecimal sum = Arrays.stream(nums).map(Number -> new BigDecimal(fmt.format(Number.num))).reduce(BigDecimal::add).get();
 		System.out.println(sum);
+		
+		int index = 0;
+		while(true) {
+			if (index++ % 10 == 0) {
+				return;
+			}
+			System.out.println(index);
+		}
 	}
 }
