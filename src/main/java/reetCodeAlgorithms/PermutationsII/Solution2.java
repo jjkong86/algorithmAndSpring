@@ -11,16 +11,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.junit.Test;
 
-class Solution {
+class Solution2 {
 	public List<List<Integer>> permuteUnique(int[] nums) {
 		if (nums == null || nums.length < 1) return new ArrayList<>();
-		List<Integer> convert = Arrays.stream(nums).boxed().collect(Collectors.toList());
+		StringBuilder sb = new StringBuilder();
+		IntStream.of(nums).forEach(i -> sb.append(i));
 		
 		Set<List<Integer>> set = new HashSet<>();
-		permutation(set, convert, new ArrayList<>());
+		permutation(set, sb.toString(), new ArrayList<>());
 		List<List<Integer>> list = new ArrayList<>(set);
 		
         Collections.sort(list, new Comparator<List<Integer>>() {
@@ -38,23 +40,22 @@ class Solution {
 		return list;
 	}
 
-	public void permutation(Set<List<Integer>> set, List<Integer> convert, List<Integer> save) {
-		if (convert.isEmpty()) {
+	public void permutation(Set<List<Integer>> set, String str, List<Integer> save) {
+		if (str.isEmpty()) {
 			set.add(save);
             return;
         }
 		
-        for (int i=0; i<convert.size(); i++) {
-        	List<Integer> convertCopy = convert.stream().collect(Collectors.toList());
-        	List<Integer> convertsava = save.stream().collect(Collectors.toList());
-        	convertsava.add(convert.get(i));
-        	convertCopy.remove(i);
-        	permutation(set, convertCopy, convertsava);
-        }
+		for (int i = 0; i < str.length(); i++) {
+			List<Integer> convertsava = save.stream().collect(Collectors.toList());
+			convertsava.add(Character.getNumericValue(str.charAt(i)));
+			str = str.substring(i+1);
+			permutation(set, str, save);
+		}
 	}
 	
 	public static class TestClass {
-		Solution s = new Solution();
+		Solution2 s = new Solution2();
 		List<List<Integer>> list = new ArrayList<>();
 		@Test
 		public void test1() {
