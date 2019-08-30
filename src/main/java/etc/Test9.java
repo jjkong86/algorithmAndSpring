@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Test9 {
 	
@@ -37,12 +38,10 @@ public class Test9 {
 		BigDecimal sum = Arrays.stream(nums).map(Number -> new BigDecimal(fmt.format(Number.num))).reduce(BigDecimal::add).get();
 		System.out.println(sum);
 		
-		int index = 0;
-		while(true) {
-			if (index++ % 10 == 0) {
-				return;
-			}
-			System.out.println(index);
-		}
+		StringBuilder sb = new StringBuilder("#.");
+		IntStream.range(0, 8).forEach(i -> sb.append("#"));
+		
+		DecimalFormat fmt1 = new DecimalFormat(sb.toString());
+		System.out.println(fmt1.format(calFee));
 	}
 }
