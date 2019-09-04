@@ -15,13 +15,7 @@ class Solution {
 	public String[] uncommonFromSentences(String A, String B) {
 		// 두 문자열에서 중복 되지 않은 문자열은 반환
 		// 한 문자열 안에서도 중복이 발생 할 수 있음
-		String[] arrayA = A.split(" ");
-		String[] arrayB = B.split(" ");
-		
-		Map<String, Integer> map = new HashMap<>();
-		makeMap(map, arrayA);
-		makeMap(map, arrayB);
-		
+		Map<String, Integer> map = makeMap((A + " " + B).split(" "));
 		List<String> list = makeList(map);
 		String[] res = new String[list.size()];
 		list.toArray(res);
@@ -29,10 +23,12 @@ class Solution {
 		return res;
 	}
 	
-	public void makeMap(Map<String, Integer> map, String[] array) {
+	public Map<String, Integer> makeMap(String[] array) {
+		Map<String, Integer> map = new HashMap<>();
 		for (String str : array) {
 			map.put(str, map.getOrDefault(str, 0)+1);
 		}
+		return map;
 	}
 	
 	public List<String> makeList(Map<String, Integer> map) {
