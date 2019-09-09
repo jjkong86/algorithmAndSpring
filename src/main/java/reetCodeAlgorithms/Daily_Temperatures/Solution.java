@@ -3,38 +3,25 @@ package reetCodeAlgorithms.Daily_Temperatures;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Stack;
 
 import org.junit.Test;
 
 class Solution {
-	public int[] dailyTemperatures(int[] T) {
+
+	public int[] dailyTemperatures(int[] temperatures) {
 		// 현재보다 더 따뜻해 지는 날짜 수를 구해야함
 		// map 이용해서 nlogn 정도로 해보면?
-		int len = T.length;
-		int[] res = new int[len];
-		Map<Integer, Integer> map = new HashMap<>();
-
-		for (int i = 0; i < len - 1; i++) {
-			int num = T[i];
-			if (num < T[i + 1]) {
-				res[i] = 1;
-			} else {
-				map.put(i, num);
+		Stack<Integer> stack = new Stack<>();
+		int[] ret = new int[temperatures.length];
+		for (int i = 0; i < temperatures.length; i++) {
+			while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+				int idx = stack.pop();
+				ret[idx] = i - idx;
 			}
-
-			for (Iterator<Map.Entry<Integer, Integer>> it = map.entrySet().iterator(); it.hasNext();) {
-				Map.Entry<Integer, Integer> entry = it.next();
-				if (entry.getValue() < T[i + 1]) {
-					res[entry.getKey()] = i - entry.getKey() + 1;
-					it.remove();
-				}
-			}
+			stack.push(i);
 		}
-
-		return res;
+		return ret;
 	}
 
 	public static class TestClass {
@@ -48,8 +35,8 @@ class Solution {
 
 		@Test
 		public void test2() {
-			assertThat(new int[] {8,1,5,4,3,2,1,1,0,0 },
-					is(s.dailyTemperatures(new int[] { 89,62,70,58,47,47,46,76,100,70 })));
+			assertThat(new int[] { 8, 1, 5, 4, 3, 2, 1, 1, 0, 0 },
+					is(s.dailyTemperatures(new int[] { 89, 62, 70, 58, 47, 47, 46, 76, 100, 70 })));
 		}
 
 	}
