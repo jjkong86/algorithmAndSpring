@@ -53,5 +53,16 @@ public class Test123 {
 		
 		Collections.sort(list2);
 		System.out.println(list2.toString());
+		
+		System.out.println(Arrays.asList("1", "2", "3"));
+		System.out.println(Arrays.asList(new String[] {"1", "2", "3"}));
+		
+		System.out.println("12345".indexOf("123"));
+		
+		String str = "";
+		int index = str.indexOf("4");
+		System.out.println(index);
+		str = str.substring(0, index) + str.substring(index+1);
+		System.out.println(str);
 	}
 }

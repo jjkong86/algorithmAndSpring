@@ -8,29 +8,27 @@ import org.junit.Test;
 
 class Solution {
 	public static List<String> commonChars(String[] A) {
-		Map<String, Integer> map = new HashMap<>();
-		List<String> list = new ArrayList<>();
-		for (String str : A) {
-			for (char c : str.toCharArray()) {
-				String temp = String.valueOf(c);
-				map.put(temp, map.getOrDefault(temp, 0) + 1);
-			}
-		}
-		for (Map.Entry<String, Integer> entry : map.entrySet()) {
-			int value = entry.getValue();
-			while (value >= A.length) {
-				list.add(entry.getKey());
-				value -= A.length;
-			}
-		}
-		return list;
-	}
+        List<String> list = new ArrayList<>();
+        
+        String str = A[0];
+        for (char c : str.toCharArray()) {
+            String temp = String.valueOf(c);
+            int count = 1;
+            for (int i=1; i<A.length; i++) {
+                int index = A[i].indexOf(temp);
+                if (index >= 0) {
+                    count ++;
+                    A[i] = A[i].substring(0, index) + A[i].substring(index+1);
+                }
+            }
+            if (A.length == count) {
+                list.add(temp);
+            }
+            
+        }
 
-	private static Comparator<Map.Entry<String, Integer>> sortByValueAndKey() {
-		return (Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) -> a.getValue() == b.getValue()
-				? a.getKey().compareTo(b.getKey())
-				: b.getValue().compareTo(a.getValue());
-	}
+        return list;
+    }
 
 	public static class TestClass {
 
