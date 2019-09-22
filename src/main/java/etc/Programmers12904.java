@@ -16,7 +16,7 @@ public class Programmers12904 {
 		char[] chars = s.toCharArray();
 		int len = chars.length;
 //		System.out.println("String >> " + s);
-		for (int i = 0; i < len; i++) {
+		for (int i = 0; i < len-1; i++) {
 			for (int j = i + 1; j < len; j++) {
 				if (j - i + 1 > answer && chkPalindrome(chars, i, j)) {
 //					System.out.println(new String(chars, i, j-i+1));
@@ -60,17 +60,17 @@ public class Programmers12904 {
 
 			assertEquals(7, p.solution("aaaeeddddde"));
 			assertEquals(1, p.solution("ajsfdkldsfjkl"));
-			assertEquals(0, p.solution("abcdefg"));
+			assertEquals(1, p.solution("abcdefg"));
 			assertEquals(13, p.solution("abcbaedeabcba"));
 			assertEquals(5, p.solution("adedaa"));
 			assertEquals(5, p.solution("aadeda"));
 			assertEquals(4, p.solution("aaaa"));
 
 			assertEquals(5, p.solution("ababa"));
-			assertThat(0, not(p.solution("bbaa")));
+			assertThat(1, not(p.solution("bbaa")));
 			assertThat(3, not(p.solution("baaba")));
 			assertEquals(1, p.solution("a"));
-			assertThat(0, not(p.solution("aa")));
+			assertThat(1, not(p.solution("aa")));
 
 			assertEquals(33, p.solution("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 			assertEquals(19, p.solution("bbbbaaaaaaaaaaaaaaaaaaaccccceeee"));
