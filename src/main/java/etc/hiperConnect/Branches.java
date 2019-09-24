@@ -1,12 +1,17 @@
 package etc.hiperConnect;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Branches {
+	static Map<Integer, Integer> map = new HashMap<>();
 	
     public static int count(int[] tree) {
     	int count = 0;
     	for (int i = 0; i < tree.length; i++) {
     		if (tree[i] == -1) continue;
     		int temp = countNode(tree, tree[i]);
+    		map.put(i, temp);
     		count = Math.max(count, temp);
 		}
     	return count;
@@ -18,6 +23,7 @@ public class Branches {
 			count++;
 			target = tree[target];
 			if (target == -1) break;
+			if (map.containsKey(target)) return count + map.get(target);
 		}
 		return count;
 	}

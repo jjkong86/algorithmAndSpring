@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Test123 {
 	
@@ -50,6 +51,9 @@ public class Test123 {
 		list2.add(new RedisTknInfo(1));
 		list2.add(new RedisTknInfo(2));
 		list2.add(new RedisTknInfo(3));
+		
+		RedisTknInfo[] result = list2.stream().toArray(RedisTknInfo[]::new);
+		System.out.println(Arrays.toString(result));
 		
 		Collections.sort(list2);
 		System.out.println(list2.toString());
