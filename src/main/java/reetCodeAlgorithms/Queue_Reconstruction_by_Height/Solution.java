@@ -26,33 +26,36 @@ class Solution {
 			}
 			swich(p, i, minIndex);
 		}
-		
+
 		for (int[] is : p) {
 			System.out.println(Arrays.toString(is));
 		}
-		
+
 		return p;
 	}
 
 	public boolean compareTo(int[] minQueue, int[] array) {
-		if (minQueue[1] == array[1]) return Integer.compare(minQueue[0], array[0]) > 0;
-        else return Integer.compare(minQueue[1], array[1]) > 0;
+		if (minQueue[1] == array[1])
+			return Integer.compare(minQueue[0], array[0]) > 0;
+		else
+			return Integer.compare(minQueue[1], array[1]) > 0;
 	}
-	
 
 	private void swich(int[][] p, int index, int minQueueIndex) {
 		int[] temp = p[index];
 		p[index] = p[minQueueIndex];
 		p[minQueueIndex] = temp;
 	}
-	
+
 	public static class TestClass {
 		Solution s = new Solution();
+
 		@Test
 		public void test1() {
-			assertThat(new int[][] {{5,0}, {7,0}, {5,2}, {6,1}, {4,4}, {7,1}}, is(s.reconstructQueue(new int[][] {{7,0}, {4,4}, {7,1}, {5,0}, {6,1}, {5,2}})));
+			assertThat(new int[][] { { 5, 0 }, { 7, 0 }, { 5, 2 }, { 6, 1 }, { 4, 4 }, { 7, 1 } },
+					is(s.reconstructQueue(new int[][] { { 7, 0 }, { 4, 4 }, { 7, 1 }, { 5, 0 }, { 6, 1 }, { 5, 2 } })));
 		}
-		
+
 	}
-	
+
 }
