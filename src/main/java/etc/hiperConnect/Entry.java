@@ -8,7 +8,9 @@ public class Entry {
 	Queue<String> q = new LinkedList<>();
 
 	public void enter(String passportNumber) {
-		q.offer(passportNumber);
+		if (passportNumber != null || !"".equals(passportNumber)) {
+			q.offer(passportNumber);
+		}
 	}
 
 	public String leave() {

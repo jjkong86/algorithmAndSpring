@@ -7,6 +7,7 @@ public class Branches {
 	static Map<Integer, Integer> map = new HashMap<>();
 	
     public static int count(int[] tree) {
+    	if (tree == null) return 0;
     	int count = 0;
     	for (int i = 0; i < tree.length; i++) {
     		if (tree[i] == -1) continue;
