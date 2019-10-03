@@ -1,4 +1,4 @@
-package etc.joy;
+package etc.zoyiCo;
 
 public class Fibonazzi {
 	

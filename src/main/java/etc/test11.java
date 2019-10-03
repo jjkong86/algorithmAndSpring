@@ -1,9 +1,9 @@
-package etc.lambdaAndStream;
+package etc;
 
 import java.util.*;
 import java.util.stream.Stream;
 
-public class test {
+public class test11 {
 
 	public static void main(String[] args) {
 		new Thread(() -> {

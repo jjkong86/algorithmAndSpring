@@ -1,4 +1,4 @@
-package etc;
+package programmers;
 
 import java.util.*;
 class Programmers13524p {

@@ -1,4 +1,4 @@
-package etc.joy;
+package etc.zoyiCo;
 class Person extends FullAbstract {
 
 	@Override

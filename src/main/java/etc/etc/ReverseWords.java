@@ -1,4 +1,4 @@
-package etc;
+package etc.etc;
 
 import java.util.Collections;
 import java.util.stream.Collectors;

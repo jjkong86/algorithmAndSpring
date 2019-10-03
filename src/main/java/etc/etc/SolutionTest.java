@@ -1,4 +1,4 @@
-package etc;
+package etc.etc;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;

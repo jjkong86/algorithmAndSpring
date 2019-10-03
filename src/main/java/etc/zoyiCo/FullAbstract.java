@@ -1,4 +1,4 @@
-package etc.joy;
+package etc.zoyiCo;
 abstract class FullAbstract implements DrinkWater, Walk, IsLiquid {
 
 	public abstract void drinkWater();
