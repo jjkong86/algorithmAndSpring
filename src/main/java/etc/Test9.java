@@ -43,5 +43,11 @@ public class Test9 {
 		
 		DecimalFormat fmt1 = new DecimalFormat(sb.toString());
 		System.out.println(fmt1.format(calFee));
+		
+		Integer aa = 1;
+		Integer bb = 1;
+		if (aa.equals(bb)) {
+			System.out.println("ADAdDSADA");
+		}
 	}
 }
