@@ -1,4 +1,4 @@
-package etc.배민;
+package test.배민;
 
 public class Test1 {
 	public static String solution(int U, int L, int[] C) {

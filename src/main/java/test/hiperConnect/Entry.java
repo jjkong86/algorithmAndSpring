@@ -1,4 +1,4 @@
-package etc.hiperConnect;
+package test.hiperConnect;
 
 import java.io.IOException;
 import java.util.LinkedList;

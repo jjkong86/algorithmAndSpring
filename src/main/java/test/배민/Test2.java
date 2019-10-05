@@ -1,4 +1,4 @@
-package etc.배민;
+package test.배민;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;

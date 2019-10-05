@@ -1,4 +1,4 @@
-package etc.hiperConnect;
+package test.hiperConnect;
 
 import java.util.HashMap;
 import java.util.Map;

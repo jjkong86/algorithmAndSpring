@@ -1,4 +1,4 @@
-package etc.zoyiCo;
+package test.zoyiCo;
 interface Walk {
 	void walk();
 }

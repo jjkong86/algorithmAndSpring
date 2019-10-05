@@ -1,4 +1,4 @@
-package etc.tmon;
+package test.tmon;
 
 public class Solution {
 	
