@@ -31,10 +31,10 @@ public class Test3 {
 		Test3 t = new Test3();
 		@Test
 		public void test1() {
-//			assertThat(3, is(t.solution(new int[] {3,2,-2,5,-3})));
-//			assertThat(0, is(t.solution(new int[] {-3,2,2,5,-3, 6, -7})));
-//			assertThat(0, is(t.solution(new int[] {1,1,1,1,1})));
-//			assertThat(1, is(t.solution(new int[] {1,1,1,1,-1})));
+			assertThat(3, is(t.solution(new int[] {3,2,-2,5,-3})));
+			assertThat(0, is(t.solution(new int[] {-3,2,2,5,-3, 6, -7})));
+			assertThat(0, is(t.solution(new int[] {1,1,1,1,1})));
+			assertThat(1, is(t.solution(new int[] {1,1,1,1,-1})));
 			assertThat(0, is(t.solution(new int[] {-3,-2,5,6})));
 		}
 		

@@ -13,10 +13,10 @@ class Test2 {
 	public String solution(String S) {
 		// write your code in Java SE 8
 		map = new LinkedHashMap<>();
-		map.put("music", new String[] { "mp3", "aac", "flac" });
-		map.put("images", new String[] { "jpg", "bmp", "gif" });
-		map.put("movies", new String[] { "mp4", "avi", "mkv" });
-		map.put("other", new String[] { "" });
+		map.put("music", new String[] { ".mp3", ".aac", ".flac" });
+		map.put("images", new String[] { ".jpg", ".bmp", ".gif" });
+		map.put("movies", new String[] { ".mp4", ".avi", ".mkv" });
+		map.put("other", new String[] {});
 
 		String[] split = S.split("\n");
 		Map<String, Integer> result = new HashMap<>();
@@ -46,17 +46,16 @@ class Test2 {
 		}
 		return "other";
 	}
-	
+
 	public static class TestClass {
 		Test2 t = new Test2();
+
 		@Test
 		public void test1() {
-			
-			assertThat("music 1011b\n" + 
-					"images 0b\n" + 
-					"movies 10200b\n" + 
-					"other 105b", is(t.solution("my.song.mp3 11b\ngreatSong.flac 1000b\nnot3.txt 5b\nvideo.mp4 200b\ngame.exe 100b\nmov!e.mkv 10000b")));
-			
+
+			assertThat("music 1011b\n" + "images 0b\n" + "movies 10200b\n" + "other 105b", is(t.solution(
+					"my.song.mp3 11b\ngreatSong.flac 1000b\nnot3.txt 5b\nvideo.mp4 200b\ngame.exe 100b\nmov!e.mkv 10000b")));
+
 		}
 	}
 }

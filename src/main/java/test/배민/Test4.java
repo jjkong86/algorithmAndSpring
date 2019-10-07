@@ -30,11 +30,11 @@ class Test4 {
 
 		@Test
 		public void test1() {
-			// assertThat(2, is(t.solution(new int[] {1, 3, 2, 1}, new int[] {4, 2, 5, 3,
-			// 2})));
-			// assertThat(-1, is(t.solution(new int[] {1, 3, 2, 1}, new int[] {4})));
-			// assertThat(10, is(t.solution(new int[] { 1, 3, 2, 1, 10 }, new int[] { 10
-			// })));
+			 assertThat(2, is(t.solution(new int[] {1, 3, 2, 1}, new int[] {4, 2, 5, 3,
+			 2})));
+			 assertThat(-1, is(t.solution(new int[] {1, 3, 2, 1}, new int[] {4})));
+			 assertThat(10, is(t.solution(new int[] { 1, 3, 2, 1, 10 }, new int[] { 10
+			 })));
 			assertThat(10, is(t.solution(new int[] { 10 }, new int[] { 4, 2, 5, 3, 10 })));
 			assertThat(2, is(t.solution(new int[] { 1, 2, 10 }, new int[] { 4, 2, 5, 3, 10 })));
 		}

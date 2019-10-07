@@ -4,13 +4,13 @@ import reetCodeAlgorithms.Node;
 
 public class Solution {
 	public int maxDepth(Node root) {
-		if (root == null || root.children == null)
+		if (nullChk(root))
 			return 0;
 		return maxDepthCount(root, 1);
 	}
 
 	private int maxDepthCount(Node node, int maxCount) {
-		if (node == null || node.children == null || node.children.isEmpty()) {
+		if (nullChk(node)) {
 			return maxCount;
 		}
 
@@ -19,5 +19,9 @@ public class Solution {
 			result = Math.max(result, maxDepthCount(temp, maxCount + 1));
 		}
 		return result;
+	}
+	
+	private boolean nullChk(Node node) {
+		return node == null || node.children == null || node.children.isEmpty();
 	}
 }
