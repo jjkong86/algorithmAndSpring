@@ -5,6 +5,9 @@ public class Test1 {
 		// write your code in Java SE 8
 		// 합계가 불가능하면 "IMPOSSIBLE" 출력해야함
 		// 답이 여러개이면 그 중 하나 반환
+		// 2, 1, 1, 0, 1
+		// 1, 1, 1, 0, 0
+		// 1, 0, 0, 0, 1
 		String ip = "IMPOSSIBLE";
 
 		StringBuilder sbU = new StringBuilder();
