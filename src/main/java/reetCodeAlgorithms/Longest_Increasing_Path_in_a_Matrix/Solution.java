@@ -23,17 +23,16 @@ class Solution {
 
 		topBottom = new int[ver][ho];
 		bottomTop = new int[ver][ho];
-		topBottom[0][0] = 1;
-		bottomTop[ver - 1][ho - 1] = 1;
 
 		Queue<int[]> q = new LinkedList<>();
 		q.offer(new int[] { 0, 0 });
 		topDown(matrix, q);
 
-		System.out.println("============================================================================");
 		q.offer(new int[] { ver - 1, ho - 1 });
 		bottomUp(matrix, q);
 
+		print();
+		
 		int max = 0;
 		for (int i = 0; i < ver; i++) {
 			for (int j = 0; j < ho; j++) {
@@ -49,17 +48,7 @@ class Solution {
 
 		int[] co = q.poll();
 		int bottom = co[0], right = co[1];
-		if (m.length <= bottom || m[0].length <= right) {
-			topDown(m, q);
-		}
-
-		int current = 0;
-		try {
-			current = m[bottom][right];
-		} catch (Exception e) {
-			System.out.println("bottom : "+bottom + ", right : "+right);
-			e.printStackTrace();
-		}
+		int current = m[bottom][right];
 		boolean isIncrease = false;
 		if (bottom - 1 >= 0 && m[bottom - 1][right] < current) {
 			topBottom[bottom][right] = Math.max(topBottom[bottom][right], topBottom[bottom - 1][right] + 1);
@@ -75,14 +64,10 @@ class Solution {
 			topBottom[bottom][right] = 1;
 		}
 
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < m.length; i++) {
-			sb.append(Arrays.toString(topBottom[i]) + "\n");
-		}
-		System.out.println(sb);
-
-		q.offer(new int[] { bottom + 1, right });
-		q.offer(new int[] { bottom, right + 1 });
+		if (bottom + 1 <= m.length - 1)
+			q.offer(new int[] { bottom + 1, right });
+		if (right + 1 <= m[0].length - 1)
+			q.offer(new int[] { bottom, right + 1 });
 
 		topDown(m, q);
 	}
@@ -93,17 +78,13 @@ class Solution {
 
 		int[] co = q.poll();
 		int bottom = co[0], right = co[1];
-		if (bottom < 0 || right < 0)
-			bottomUp(m, q);
-
 		int current = m[bottom][right];
 		boolean isIncrease = false;
-		if (bottom + 1 <= m.length && m[bottom + 1][right] < current) {
+		if (bottom + 1 < m.length && m[bottom + 1][right] < current) {
 			bottomTop[bottom][right] = Math.max(bottomTop[bottom][right], bottomTop[bottom + 1][right] + 1);
-			isIncrease = true;
-		}
 
-		if (right + 1 >= m[0].length && m[bottom][right + 1] < current) {
+		}
+		if (right + 1 < m[0].length && m[bottom][right + 1] < current) {
 			bottomTop[bottom][right] = Math.max(bottomTop[bottom][right], bottomTop[bottom][right + 1] + 1);
 			isIncrease = true;
 		}
@@ -112,16 +93,28 @@ class Solution {
 			bottomTop[bottom][right] = 1;
 		}
 
+		if (bottom - 1 >= 0)
+			q.offer(new int[] { bottom - 1, right });
+		if (right - 1 >= 0)
+			q.offer(new int[] { bottom, right - 1 });
+
+		bottomUp(m, q);
+	}
+	
+	public void print() {
+
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < topBottom.length; i++) {
+			sb.append(Arrays.toString(topBottom[i]) + "\n");
+		}
+		System.out.println(sb);
+		
+		sb.setLength(0);
+		for (int i = 0; i < bottomTop.length; i++) {
 			sb.append(Arrays.toString(bottomTop[i]) + "\n");
 		}
 		System.out.println(sb);
-
-		q.offer(new int[] { bottom - 1, right });
-		q.offer(new int[] { bottom, right - 1 });
-
-		bottomUp(m, q);
+		
 	}
 
 	public static class TestClass {
@@ -129,12 +122,12 @@ class Solution {
 
 		@Test
 		public void test1() {
-//			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } })));
+			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } })));
 		}
 
 		@Test
 		public void test2() {
-			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 3, 4, 5 }, { 3, 2, 6 }, { 2, 1, 1 } })));
+//			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 3, 4, 5 }, { 3, 2, 6 }, { 2, 1, 1 } })));
 		}
 
 	}
