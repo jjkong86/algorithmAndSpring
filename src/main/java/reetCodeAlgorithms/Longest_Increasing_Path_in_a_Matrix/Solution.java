@@ -14,6 +14,12 @@ class Solution {
 	int[][] bottomTop;
 
 	public int longestIncreasingPath(int[][] matrix) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < matrix.length; i++) {
+			sb.append(Arrays.toString(matrix[i]) + "\n");
+		}
+		System.out.println(sb);
+		
 		// 가장 긴 증가 경로
 		// 위에서 아래로, 아래에서 위로 두가지 모두 해보면 되나??
 		if (matrix.length == 0 || matrix[0].length == 0)
@@ -82,6 +88,7 @@ class Solution {
 		boolean isIncrease = false;
 		if (bottom + 1 < m.length && m[bottom + 1][right] < current) {
 			bottomTop[bottom][right] = Math.max(bottomTop[bottom][right], bottomTop[bottom + 1][right] + 1);
+			isIncrease = true;
 
 		}
 		if (right + 1 < m[0].length && m[bottom][right + 1] < current) {
@@ -122,12 +129,17 @@ class Solution {
 
 		@Test
 		public void test1() {
-			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } })));
+//			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 9, 9, 4 }, { 6, 6, 8 }, { 2, 1, 1 } })));
 		}
 
 		@Test
 		public void test2() {
 //			assertThat(4, is(s.longestIncreasingPath(new int[][] { { 3, 4, 5 }, { 3, 2, 6 }, { 2, 1, 1 } })));
+		}
+		
+		@Test
+		public void test3() {
+			assertThat(6, is(s.longestIncreasingPath(new int[][] { { 7,8,9 }, { 9,7,6 }, { 7,2,3 } })));
 		}
 
 	}
