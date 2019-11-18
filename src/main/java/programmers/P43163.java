@@ -7,6 +7,12 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+
+/**
+ * begin이 hit, target가 cog, words가 [hot,dot,dog,lot,log,cog]라면 hit -> hot -> dot -> dog -> cog와 같이 4단계를 거쳐 변환할 수 있음
+ * 같은 문자의 count를 구해서  length -1이면 변환 가능 -> 다음 단어의 count를 구해서 length -1이면 변환 가능 -> ... 재귀적으로 호출
+ * 한번 포함된 문자열은 제외 시키는 로직이 필요함 
+ */
 public class P43163 {
 	public int solution(String begin, String target, String[] words) {
 		int answer = minConversion(begin, target, words, 0, new boolean[words.length]);
