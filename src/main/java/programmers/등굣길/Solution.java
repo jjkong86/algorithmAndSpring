@@ -1,6 +1,6 @@
-package programmers;
+package programmers.등굣길;
 
-class P42898 {
+class Solution {
 	final static int MAX_NUM = 1_000_000_007;
 
 	public int solution(int m1, int n1, int[][] puddles) {
@@ -22,7 +22,7 @@ class P42898 {
 		return array[m1][n1];
 	}
 	public static void main(String[] args) {
-		P42898 p = new P42898();
+		Solution p = new Solution();
 		System.out.println(p.solution(4, 3, new int[][] {{2,2}}));
 	}
 }
