@@ -5,17 +5,17 @@ import java.util.Map;
 
 class Solution {
 	public boolean isIsomorphic(String s, String t) {
-		if (s.equals(""))
-			return true;
-		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		char[] chars = s.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
-			if (map.containsKey(chars[i])) {
-				int left = map.get(chars[i]);
-				return t.charAt(left) == t.charAt(i);
+		Map<Character, Character> map = new HashMap<>();
+		for (int i = 0; i < s.length(); i++) {
+			if (map.containsKey(s.charAt(i))) {
+				if (t.charAt(i) != map.get(s.charAt(i)))
+					return false;
+			} else {
+				if (map.containsValue(t.charAt(i)))
+					return false;
+				map.put(s.charAt(i), t.charAt(i));
 			}
-			map.put(chars[i], i);
 		}
-		return false;
+		return true;
 	}
 }
