@@ -20,6 +20,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>me.xdrop</groupId>
+			<artifactId>fuzzywuzzy</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
 		<!-- RESTController json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
