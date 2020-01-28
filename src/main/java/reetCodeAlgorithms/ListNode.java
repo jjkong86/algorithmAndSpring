@@ -1,17 +1,27 @@
 package reetCodeAlgorithms;
 
+import java.util.StringJoiner;
+
 public class ListNode {
 	public int val;
 	public ListNode next;
+
 	public ListNode(int x) {
-		this.val = x; 
+		this.val = x;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.valueOf(val + (next != null ?" ["+next.val+"] " : ""));
+		ListNode copy = this;
+		StringJoiner sj = new StringJoiner(", ");
+		while (copy != null) {
+			sj.add(String.valueOf(copy.val));
+			copy = copy.next;
+		}
+
+		return sj.toString();
 	}
-	
+
 	public static ListNode buildNode(int[] array) {
 		ListNode res = new ListNode(0);
 		ListNode copy = res;
