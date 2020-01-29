@@ -1,5 +1,7 @@
 package reetCodeAlgorithms.Reorder_List;
 
+import org.junit.Test;
+
 import reetCodeAlgorithms.ListNode;
 
 public class HalfResverse {
@@ -11,7 +13,6 @@ public class HalfResverse {
 			slower = slower.next;
 			faster = faster.next.next;
 		}
-		System.out.println(slower.toString());
 
 		ListNode copy = slower, reverse = null;
 		while (copy != null) {
@@ -20,12 +21,35 @@ public class HalfResverse {
 			reverse = copy;
 			copy = temp;
 		}
-		System.out.println(head.toString());
-		System.out.println(slower.toString());
+		ListNode halfReverse = head;
+		while (reverse != null) {
+			ListNode headNext = head.next;
+			ListNode reverseNext = reverse.next;
+			head.next = reverse;
+			reverse.next = headNext;
+			head = headNext;
+			reverse = reverseNext;
+		}
+		head = halfReverse;
+
+		while (head != null) {
+			System.out.println(head.val);
+			head = head.next;
+		}
 	}
 
-	public static void main(String[] args) {
-		ListNode node = ListNode.buildNode(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-		halfReverse(node);
+	public static class TestClass {
+
+//		@Test
+//		public void test1() {
+//			ListNode node = ListNode.buildNode(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+//			halfReverse(node);
+//		}
+
+		@Test
+		public void test2() {
+			ListNode node = ListNode.buildNode(new int[] { 1, 2, 3, 4 });
+			halfReverse(node);
+		}
 	}
 }
