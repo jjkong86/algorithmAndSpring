@@ -6,7 +6,13 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import org.junit.Test;
+
 public class Test9 {
+	@Test
+	public void test1() {
+		
+	}
 	
 	public static class Number {
 		double num;

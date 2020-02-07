@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import reetCodeAlgorithms.ListNode;
+
 public class Solution {
 	public ListNode mergeKLists(ListNode[] lists) {
 		//노드가 배열로옴 --> 각각 오름차순으로 정렬..
@@ -71,11 +73,11 @@ public class Solution {
 
 }
 
-class ListNode {
-	int val;
-	ListNode next;
-	ListNode(int x) {
-		this.val = x; 
-	}
-}
+//class ListNode {
+//	int val;
+//	ListNode next;
+//	ListNode(int x) {
+//		this.val = x; 
+//	}
+//}
 
