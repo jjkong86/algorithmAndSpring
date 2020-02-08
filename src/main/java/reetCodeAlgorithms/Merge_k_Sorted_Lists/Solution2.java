@@ -1,59 +1,45 @@
 package reetCodeAlgorithms.Merge_k_Sorted_Lists;
 
-import java.util.StringJoiner;
-
 import reetCodeAlgorithms.ListNode;
 
-public class Solution2 {
-	public ListNode mergeKLists(ListNode[] lists) {
-		// 정렬된 리스트를 반환
-		ListNode sortedNode = null, res = null;
+// 정렬된 리스트를 반환
+// 리스트를 구성하면서 정렬함
+class Solution2 {
+	ListNode sortedNode = null, res = sortedNode;
 
+	public ListNode mergeKLists(ListNode[] lists) {
 		for (int i = 0; i < lists.length; i++) {
 			ListNode node = lists[i];
-			// print(node);
 			while (node != null) {
-				System.out.println("node :" + node.val);
 				if (sortedNode == null) {
-					sortedNode = node;
+					sortedNode = new ListNode(node.val);
 					res = sortedNode;
-					node = node.next;
-					continue;
+				} else {
+					sortNode(new ListNode(node.val));
 				}
-				sortNode(res, sortedNode, new ListNode(node.val));
 				node = node.next;
 			}
 		}
 		return res;
 	}
 
-	public void sortNode(ListNode res, ListNode sortedNode, ListNode node) {
-		while (sortedNode != null) {
-			// System.out.println("sortedNode :"+sortedNode.val);
-			if (sortedNode.val < node.val) {
+	public void sortNode(ListNode target) {
+		while (sortedNode != null && sortedNode.next != null) {
+			if (sortedNode.next.val < target.val) {
 				sortedNode = sortedNode.next;
 			} else {
-				ListNode temp = sortedNode.next;
-				ListNode tempNode = node.next;
-				sortedNode.next = node;
-				node.next = temp;
 				break;
 			}
 		}
-		if (sortedNode == null) {
-			sortedNode = node;
-		}
-		System.out.println(res.toString());
-		sortedNode = res;
-	}
 
-	public void print(ListNode node) {
-		StringJoiner sj = new StringJoiner(",");
-		ListNode copy = node;
-		while (copy != null) {
-			sj.add(String.valueOf(copy.val));
-			copy = copy.next;
+		if (sortedNode.val > target.val) {
+			target.next = sortedNode;
+			res = sortedNode = target;
+		} else {
+			ListNode next = sortedNode.next;
+			sortedNode.next = target;
+			target.next = next;
+			sortedNode = res;
 		}
-		System.out.println("print start" + sj.toString());
 	}
 }
