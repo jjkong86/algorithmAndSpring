@@ -1,5 +1,7 @@
 package reetCodeAlgorithms.Merge_k_Sorted_Lists;
 
+import java.util.Arrays;
+
 import reetCodeAlgorithms.ListNode;
 
 // 정렬된 리스트를 반환
@@ -41,5 +43,11 @@ class Solution2 {
 			target.next = next;
 			sortedNode = res;
 		}
+	}
+
+	public static void main(String[] args) {
+		int[] array = new int[] { 1, 23, 4, 5 };
+		System.out.println(Arrays.stream(array).max().getAsInt());
+
 	}
 }
