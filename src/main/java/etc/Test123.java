@@ -63,10 +63,12 @@ public class Test123 {
 		
 		System.out.println("12345".indexOf("123"));
 		
-		String str = "";
+		String str = "12345";
 		int index = str.indexOf("4");
 		System.out.println(index);
 		str = str.substring(0, index) + str.substring(index+1);
 		System.out.println(str);
+		
+		System.out.println(10%10);
 	}
 }
