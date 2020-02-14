@@ -13,9 +13,7 @@ public class Solution1 {
 		if (A == null || A.length == 0)
 			return 0;
 
-		int sum = 0;
-		sum = Arrays.stream(A).filter(i -> isTwoDigit(i) == true).sum();
-		return sum;
+		return Arrays.stream(A).filter(i -> isTwoDigit(i) == true).sum();
 	}
 
 	public boolean isTwoDigit(int num) {
@@ -27,15 +25,15 @@ public class Solution1 {
 		System.out.println(s.solution(new int[] { 1, 1000, 80, -91 }));
 		System.out.println(s.solution(new int[] { 100, 1000, 80, -9, -10, -99 }));
 	}
-	
+
 	public static class SolutionTest {
-		
+
 		Solution1 s = new Solution1();
 
 		@Test
 		public void test1() {
 			assertEquals(s.solution(new int[] { 1, 1000, 80, -91 }), -11);
 		}
-		
+
 	}
 }
