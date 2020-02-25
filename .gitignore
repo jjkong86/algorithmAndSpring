@@ -27,3 +27,9 @@ tmp/**/*
 *.tmp
 *.bak
 local.properties
+
+# Intellij #
+.idea/
+_mac/
+codestyles/
+target/
