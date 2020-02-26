@@ -26,6 +26,10 @@
           <option name="url" value="http://git-1.cocone.jp" />
           <option name="userName" value="jeong_jeagong" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://git-1.cocone.jp/TaneTaneProject/taneitemserver" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/IdeaProjects" />
