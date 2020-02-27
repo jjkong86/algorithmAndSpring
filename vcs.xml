@@ -38,6 +38,14 @@
           <option name="url" value="https://git-1.cocone.jp/TaneTaneProject/tanecmsserver" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://git-1.cocone.jp/TaneTaneProject/TaneBatchServer/-/tree/alpha_master" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://git-1.cocone.jp/TaneTaneProject/TaneBatchServer" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/IdeaProjects" />
