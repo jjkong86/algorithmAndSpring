@@ -4,40 +4,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 class Solution {
-	public int longestCommonSubsequence(String text1, String text2) {
-		int index = 0, count = 0;
-		char[] leftChars = text1.toCharArray(), rightChars = text2.toCharArray();
-		return findMaxSubsequence(leftChars, rightChars, leftChars.length-1, rightChars.length-1);
-	}
-
-	public int findMaxSubsequence(char[] leftChars, char[] rightChars) {
-		int index = 0, count = 0;
-		for (char leftChar : leftChars) {
-			for (int j = index; j < rightChars.length; j++) {
-				if (leftChar == rightChars[j]) {
-					index = j + 1;
-					count++;
-				}
-			}
-		}
-
-		return count;
-	}
-
-	public int findMaxSubsequence(char[] leftChars, char[] rightChars, int m, int n) {
-		int[][] memo = new int[m + 1][n + 1];
-
-		for (int i = 0; i <= m; i++) {
-			for (int j = 0; j <= n; j++) {
-				if (i == 0 || j == 0)
-					memo[i][j] = 0;
-				else if (leftChars[i - 1] == rightChars[j - 1])
-					memo[i][j] = memo[i - 1][j - 1] + 1;
-				else
-					memo[i][j] = Math.max(memo[i - 1][j], memo[i][j - 1]);
-			}
-		}
-		return memo[m][n];
+	public int longestCommonSubsequence(String s1, String s2) {
+		int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+		for (int i = 0; i < s1.length(); i++)
+			for (int j = 0; j < s2.length(); j++)
+				if (s1.charAt(i) == s2.charAt(j)) dp[i + 1][j + 1] = 1 + dp[i][j];
+				else dp[i + 1][j + 1] =  Math.max(dp[i][j + 1], dp[i + 1][j]);
+		return dp[s1.length()][s2.length()];
 	}
 
 	public static class TestClass {
