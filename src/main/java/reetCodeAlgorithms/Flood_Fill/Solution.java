@@ -1,14 +1,19 @@
 package reetCodeAlgorithms.Flood_Fill;
 
-import org.junit.Assert;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 class Solution {
     int[][] coors = new int[][]{{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
     boolean[][] isCheck;
     int newColor;
+    int targetColor;
 
     private static class Coordinate {
         int ho;
@@ -25,10 +30,13 @@ class Solution {
             return image;
 
         this.newColor = newColor;
+        this.targetColor = image[sr][sc];
+
         int hoLength = image.length, verLength = image[0].length;
         isCheck = new boolean[hoLength][verLength];
         Stack<Coordinate> stack = new Stack<>();
         stack.push(new Coordinate(sr, sc));
+        image[sr][sc] = newColor;
 
         while (!stack.isEmpty()) {
             Coordinate curr = stack.pop();
@@ -50,14 +58,20 @@ class Solution {
     }
 
     private boolean outOfIndexCheck(int[][] image, int ho, int ver) {
-        return ho >= 0 && ho < isCheck.length && ver >= 0 && ver < isCheck[0].length && !isCheck[ho][ver] && image[ho][ver] != newColor;
+        return ho >= 0 && ho < isCheck.length && ver >= 0 && ver < isCheck[0].length && !isCheck[ho][ver] && image[ho][ver] == targetColor;
     }
 
     public static class TestClass {
         @Test
         public void test1() {
             Solution s = new Solution();
-            Assert.assertSame(s.floodFill(new int[][]{{1, 1, 1}, {1, 1, 0}, {1, 0, 1}}, 1, 1, 2), new int[][]{{2, 2, 2}, {2, 2, 0}, {2, 0, 1}});
+            assertEquals(Arrays.deepToString(s.floodFill(new int[][]{{1, 1, 1}, {1, 1, 0}, {1, 0, 1}}, 1, 1, 2)), Arrays.deepToString(new int[][]{{2, 2, 2}, {2, 2, 0}, {2, 0, 1}}));
+        }
+
+        @Test
+        public void test2() {
+            Solution s = new Solution();
+            assertEquals(Arrays.deepToString(s.floodFill(new int[][]{{0, 0, 0}, {0, 1, 0}}, 1, 1, 2)), Arrays.deepToString(new int[][]{{0, 0, 0}, {0, 2, 0}}));
         }
     }
 }
