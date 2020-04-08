@@ -1,6 +1,7 @@
 package test.npay;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
 
@@ -32,7 +33,7 @@ public class Solution1 {
 
 		@Test
 		public void test1() {
-			assertEquals(s.solution(new int[] { 1, 1000, 80, -91 }), -11);
+			assertThat(s.solution(new int[] { 1, 1000, 80, -91 }), is(-11));
 		}
 
 	}

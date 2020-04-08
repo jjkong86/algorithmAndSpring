@@ -1,6 +1,7 @@
 package reetCodeAlgorithms.Is_Subsequence;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class Solution {
 
 		@Test
 		public void test1() {
-			assertEquals(s.isSubsequence1("abc", "ahbgdc"), true);
+			assertThat(s.isSubsequence1("abc", "ahbgdc"), is(true));
 		}
 	}
 

@@ -1,6 +1,7 @@
 package test.npay;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
@@ -35,7 +36,7 @@ public class Solution2 {
 
 		@Test
 		public void test1() {
-			assertEquals(s.solution(new int[] { 1, 1, 2, 3, 3 }, 3), true);
+			assertThat(s.solution(new int[] { 1, 1, 2, 3, 3 }, 3), is(true));
 		}
 	}
 }
