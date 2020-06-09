@@ -1,10 +1,15 @@
 package reetCodeAlgorithms;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
+@Getter
+@ToString
 public class TreeNode {
-	public Integer val;
+	public int val;
 	public TreeNode left;
 	public TreeNode right;
 
@@ -20,7 +25,7 @@ public class TreeNode {
 		int index = 0;
 		Queue<TreeNode> queueNode = new LinkedList<>();
 		queueNode.add(node);
-		
+
 		while (!queueNode.isEmpty()) {
 			if (index >= array.length-1) break;
 			TreeNode rootNode = queueNode.remove();
@@ -28,7 +33,7 @@ public class TreeNode {
 				rootNode.left = new TreeNode(array[index]);
 				queueNode.add(rootNode.left);
 			}
-			
+
 			if (array[++index] != null) {
 				rootNode.right = new TreeNode(array[index]);
 				queueNode.add(rootNode.right);
@@ -36,11 +41,5 @@ public class TreeNode {
 		}
 		System.out.println("root node val : "+node.val);
 		return node;
-	}
-	
-	@Override
-	public String toString() {
-		return "val : "+val + " [ left : " +(left != null ? left.val : "")+"] "
-				+ " [ right : " +(right != null ? right.val : "")+"] "; 
 	}
 }
