@@ -171,6 +171,7 @@ public class LadderMaker {
             sj.add("\n");
         }
         System.out.println(sj.toString());
-
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        map.getOrDefault(1, new ArrayList<>());
     }
 }

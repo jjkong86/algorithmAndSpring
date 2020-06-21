@@ -6,14 +6,13 @@ import reetCodeAlgorithms.TreeNode;
 class Solution2 {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode copy = root, minNode = root;
+        TreeNode copy = root;
 
         while (copy != null) {
             TreeNode temp = this.compare(copy, p, q);
             if (temp.val == copy.val)
                 return copy;
             copy = temp;
-            minNode = this.findMinNode(copy, minNode);
         }
 
         return null;
@@ -22,11 +21,6 @@ class Solution2 {
     private TreeNode compare(TreeNode node, TreeNode p, TreeNode q) {
         if (node.val > p.val && node.val > q.val) return node.left;
         else if (node.val < p.val && node.val < q.val) return node.right;
-        else return node;
-    }
-
-    private TreeNode findMinNode(TreeNode node, TreeNode minNode) {
-        if (node.val > minNode.val) return minNode;
         else return node;
     }
 }
