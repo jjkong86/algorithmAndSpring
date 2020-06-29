@@ -3,7 +3,7 @@ package javaStudy.multiThread;
 import java.util.concurrent.TimeUnit;
 
 public class JoiningThreads {
-	public static void main(String argc[]) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		String currentThreadName = Thread.currentThread().getName();
 		System.out.println("[" + currentThreadName + "]" + " thread starts here...");
 
