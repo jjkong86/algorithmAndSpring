@@ -46,30 +46,29 @@ public class EnumFinder {
                 .findFirst().orElseThrow(() -> new RuntimeException("Enum name : " + enumType.getSimpleName() + ", Type : " + type + ", Not found."));
     }
 
-    public static class TestClass {
 
-        @Test
-        public void enum_성능테스트() {
-            DiceName diceName = DiceName.LITTLEDOLL;
-            long time = System.currentTimeMillis();
-            for (int i = 0; i < 100000; i++) {
-                Arrays.stream(DiceName.values()).anyMatch(elem -> elem.getName().equals(diceName.getName()));
-            }
-            System.out.println("enum values time : " + (System.currentTimeMillis() - time));
-
-            time = System.currentTimeMillis();
-            for (int i = 0; i < 100000; i++) {
-                EnumFinder.findByStringType(diceName.getName(), DiceName.class);
-            }
-            System.out.println("enum Finder string access time : " + (System.currentTimeMillis() - time));
-
-            time = System.currentTimeMillis();
-            for (int i = 0; i < 100000; i++) {
-                DiceName temp = DiceName.LITTLEDOLL;
-                temp.getName();
-            }
-            System.out.println("direct access time : " + (System.currentTimeMillis() - time));
-
+    @Test
+    public void enum_성능테스트() {
+        DiceName diceName = DiceName.LITTLEDOLL;
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            Arrays.stream(DiceName.values()).anyMatch(elem -> elem.getName().equals(diceName.getName()));
         }
+        System.out.println("enum values time : " + (System.currentTimeMillis() - time));
+
+        time = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            EnumFinder.findByStringType(diceName.getName(), DiceName.class);
+        }
+        System.out.println("enum Finder string access time : " + (System.currentTimeMillis() - time));
+
+        time = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            DiceName temp = DiceName.LITTLEDOLL;
+            temp.getName();
+        }
+        System.out.println("direct access time : " + (System.currentTimeMillis() - time));
+
     }
+
 }
